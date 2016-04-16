@@ -1,6 +1,6 @@
 ---
 title: "Oklahoma Tornadoes"
-author: "Conrad Cartmellr"
+author: "Conrad Cartmell"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -53,7 +53,7 @@ From this summary, we can see that our p-value for the likelihood ratio test sta
 >
 >Tornado season is generally March through August, although tornadoes can occur at any time of the year.
 
-Which suggusts that days with tornadoes are going to be found predominantly between March 1st and August 31st, or between roughly the 60th and 244th days of the year. Let's see what our tile plot of Oklahoma tornadoes looks like when we superimpose those two dates upon it.
+Which suggests that days with tornadoes are going to be found predominantly between March 1st and August 31st, or between roughly the 60th and 244th days of the year. Let's see what our tile plot of Oklahoma tornadoes looks like when we superimpose those two dates upon it.
 
 ```{r, fig.width = 7, fig.height = 4}
 torn.data <- tornadoes.test$data[[1]]
@@ -82,7 +82,7 @@ summary(tornadoes.season.test)
 
 Again, it turns out that a simple, first order binary Markov chain does is not sufficient for modeling this data. Why is this?
 
-It wasn't mentioned at the begining of this vignette for the sake of constructing an interesting problem, but the authors of the Drton et al. paper did not actually use a first order binary Markov chain to describe their data. In their case, they used what are called non-homogeneous Markov chains to describe their data. These are Markov chains for which the transition probabilities change as the chain moves through states. Given a little bit of thought, the requirement for this kind of chain makes perfect sense, as there are climate factors that fluctuate throughout the year that affect tornado formation. Another issue is that tornadoes in an area limited to the size of Oklahoma are affected by far more local weather patterns than tornadoes across the entire United States, which may make them harder to model with Markov chains. Unfortunately, this is the limit of the functionality of the package, so all we can conclude is that simple first order binary Markov chains are not sufficient to represent this data.
+It wasn't mentioned at the beginning of this vignette for the sake of constructing an interesting problem, but the authors of the Drton et al. paper did not actually use a first order binary Markov chain to describe their data. In their case, they used what are called non-homogeneous Markov chains to describe their data. These are Markov chains for which the transition probabilities change as the chain moves through states. Given a little bit of thought, the requirement for this kind of chain makes perfect sense, as there are climate factors that fluctuate throughout the year that affect tornado formation. Another issue is that tornadoes in an area limited to the size of Oklahoma are affected by far more local weather patterns than tornadoes across the entire United States, which may make them harder to model with Markov chains. Unfortunately, this is the limit of the functionality of the package, so all we can conclude is that simple first order binary Markov chains are not sufficient to represent this data.
 
 
 

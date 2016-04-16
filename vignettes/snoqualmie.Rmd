@@ -28,7 +28,7 @@ snoqualmie.matrix <- as.matrix(maRkov::snoqualmie)
 We're finally ready to call `multiple.binary.test()`, which will produce an object of class `multiple.binary.test`. Afterwards, we'll look at some plots and a summary of our data. Specifically, we'll be taking a look at the distribution of test statistics and the p-value for the likelihood ratio test (LRT). This test will give us a answer to the question of whether or not the null hypothesis of a single binary chain is acceptable against the alternative of a second order binary chain.
 
 ```{r, fig.width = 7}
-snoqualmie.test <- multiple.binary.test(binary.chains = snoqualmie.matrix, swaps = 1000, n = 1000)
+snoqualmie.test <- multiple.binary.test(binary.chains = snoqualmie.matrix, swaps = 10000, n = 10000)
 plot(snoqualmie.test)
 ```
 By looking at these plots, we notice a few things. First, plotting a object of class `multiple.binary.test` gives us a whole lot of information, much of which isn't particularly interesting to us. We'll just be looking at the tile plot and the histogram of likelihood ratio test statistics. The tile plot lets us get a general feel for the makeup of our set of chains, and the histogram of likelihood ratio statistics shows us that the test statistic of the real set of chains lies somewhere in the meaty part of the distribution, making it unlikely that it is an unusual observation. For more detailed and precise analysis, let's turn our attention to the summary of `snoqualmie.test`.
