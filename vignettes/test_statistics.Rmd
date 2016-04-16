@@ -1,0 +1,36 @@
+---
+title: "Explanation of Test Statistics"
+author: "Conrad Cartmell"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Explanation of Test Statistics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The test statistics utilized in the `maRkov` package are drawn from the paper "Exact goodness-of-t tests for Markov chains" by Julian Besag and Debashis Mondal. This vignette will attempt to give a brief introduction to them so that the user of the `maRkov` package may better understand the guts of the included programs.
+
+The general principle underpinning the package is that it is possible to use a single or set of many real chain(s) of binary data to produce a set of independent chains that are generated to preserve a certain property found in the original chain. This property is the count of transitions between states of the chain. For example, the chain of data `a = { 1, 0, 0, 0, 1, 0, 1}` has two transitions from 1 to 0, two transitions from 0 to 0, and two transitions from 0 to 1. An example of a different chain with the same transition counts would be `b = { 1, 0, 0, 1, 0, 0, 1}`.
+
+In order to generate a large number of such chains that are sufficiently independent of the original one, the the procedure attempts swapping entries in the supplied chain `c` some number `n` times. For each attempted swap, the chain is checked to make sure that the transition counts are the same. If they are, the swap is made and the chain is saved. If not, another swap is attempted. The swaps that are attempted are determined by randomly generating indices of the chains.
+
+Once `n` swaps have been attempted, the resulting chain of data, here referred to as `d` is saved. Then, using `d` as a starting point for each new chain, the procedure attempts `n` _more_ swaps, after which it saves the resulting chain. However many chains of generated data are desired are created in this fashion from `d`, and all are independent from the original supplied chain `c`.
+
+Once the program has generated a sufficient amount of data, it goes about generating test statistics. Since the test statistics in the `maRkov` package are concerned with determining the appropriateness of first order chains against second order ones, a table of second order transition counts is compiled. From this table, the program generates test statistics using the following formulas (for single chains):
+
+$$LRT = 2 * \sum_{i,j,k}^{} n_{ijk} * log\Bigg(\frac{\frac{n_{ijk}}{n_{ij+}}}{\frac{n_{+jk}}{n_{+j+}}}\Bigg)$$
+
+$${\chi}^2 = \sum_{i,j,k}^{} \frac{\bigg(n_{ijk}-\frac{n_{ij+}*n_{+jk}}{n_{+j+}}\bigg)^2}{\frac{n_{ij+}*n_{+jk}}{n_{+j+}}}$$
+
+Where $n_{ijk}$ represents the frequency of the transition from state $ij$ to state $jk$ in a second order chain. The $n's$ with $+$ in the subscript indicate summation across all values of either $i, j, k$ or some combination thereof.
+
+Run test statistics are also included in the package, and those simply represent the number of times that a run of a certain specified length occurs within the chain.
+
+For multiple binary chains, the test statistics are slightly different:
+
+$$ LRT = 2 * \sum_{i,j,k,t}^{} n_{ijk}^{(t)}*log\Bigg(\frac{\frac{n_{ijk}^{(t)}}{n_{ij+}^{(t)}}}{\frac{n_{+jk}^{(t)}}{n_{+j+}^{(t)}}}\Bigg)$$
+
+Where $n_{ijk}^{(t)}$ represents the frequency of the transition from state $ij$ to state $jk$ in the $t^{th}$ chain in the set. $+$ indicates the same thing as in the single chain case.
+
+The ${\chi}^2$ test statistic for multiple chains is calculated by taking the ${\chi}^2$ test statistic for each chain in the set, and then adding them together, and the run test statistic is calculated in the same fashion as well.

@@ -1,0 +1,23 @@
+Package: maRkov
+Type: Package
+Title: Goodness-of-fit Tests for Binary Markov Chains
+Version: 0.1
+Date: 2015-08-04
+Author: c(person(given = "Conrad", family = "Cartmell", role =
+    c("aut", "cre"), email = "cwcartmell@gmail.com"),
+    person(given = "Debashis", family = "Mondal", role = "ctb", email
+    = "debashis.stat@gmail.com"))
+Maintainer: Conrad Cartmell <cwcartmell@gmail.com>
+Description: Preforming goodness-of-fit tests on single binary Markov chains,
+    as well as sets of multiple binary Markov chains. Provides LRT, chi square,
+    and run test statistics, and generates data that can be used to preform
+    user-created tests as well.
+License: GPL
+Imports:
+    Rcpp
+LinkingTo: Rcpp
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
