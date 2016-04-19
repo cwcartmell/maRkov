@@ -5,7 +5,6 @@
 #include <Rmath.h>
 #include <math.h>
 #include <vector>
-#include <algorithm>
 #include "general_resources.h"
 
 //Enable C++11
