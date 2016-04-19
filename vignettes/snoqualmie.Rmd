@@ -14,25 +14,25 @@ It rains a lot in Washington. This will come as no surprise to anyone who has be
 
 To do this, we will be using the `multiple.binary.test()` function. But first we need to encode the rainfall data in the proper way. The data is below. Note that a "1" denotes that there was more than 0.01 inches of rain on a given day, and a "0"" denotes that there was less rainfall than that. Each row is a separate year and each column is a day of the month of January.
 
-```{r, echo=FALSE, results='asis'}
+```{r set_environment, echo=FALSE, results='asis'}
 library(maRkov)
 knitr::kable(maRkov::snoqualmie)
 ```
 
 We'll need to encode this data in a way that `multiple.binary.test()` can understand, so we're going to turn it into a matrix with rows representing each single year chain, and columns representing days of January. Luckily, the as.matrix function makes it easy to do this.
 
-```{r}
+```{r import_data}
 snoqualmie.matrix <- as.matrix(maRkov::snoqualmie)
 ```
 
 We're finally ready to call `multiple.binary.test()`, which will produce an object of class `multiple.binary.test`. Afterwards, we'll look at some plots and a summary of our data. Specifically, we'll be taking a look at the distribution of test statistics and the p-value for the likelihood ratio test (LRT). This test will give us a answer to the question of whether or not the null hypothesis of a single binary chain is acceptable against the alternative of a second order binary chain.
 
-```{r, fig.width = 7}
+```{r run_test_plot, fig.width = 7}
 snoqualmie.test <- multiple.binary.test(binary.chains = snoqualmie.matrix, swaps = 10000, n = 10000)
 plot(snoqualmie.test)
 ```
 By looking at these plots, we notice a few things. First, plotting a object of class `multiple.binary.test` gives us a whole lot of information, much of which isn't particularly interesting to us. We'll just be looking at the tile plot and the histogram of likelihood ratio test statistics. The tile plot lets us get a general feel for the makeup of our set of chains, and the histogram of likelihood ratio statistics shows us that the test statistic of the real set of chains lies somewhere in the meaty part of the distribution, making it unlikely that it is an unusual observation. For more detailed and precise analysis, let's turn our attention to the summary of `snoqualmie.test`.
-```{r, fig.width = 20}
+```{r summary, fig.width = 20}
 summary(snoqualmie.test)
 ```
 While the output of this code is a little jumbled due to the formatting that knitr coerces it into, you can see the general structure of the output. The likelihood ratio test statistics are broken down by quantile, and there is a p-value printed next to them as well. In this case, the p-value of the likelihood ratio test indicates that a single binary chain is probably acceptable for modeling this data.

@@ -16,7 +16,7 @@ The first thing that we are going to investigate is whether, out of all the data
 
 We need to take our data and transform it into forms that `single.binary.test()` and `multiple.binary.test()` can understand:
 
-```{r}
+```{r set_environment_import_data}
 library(maRkov)
 tornadoes <- as.matrix(ok_tornado)
 tornadoes.2009 <- tornadoes[ 60, ]
@@ -24,26 +24,26 @@ tornadoes.2009 <- tornadoes[ 60, ]
 
 Now that we have a vector representing the days with tornadoes in 2009 and a matrix representing days with tornadoes from 1950-2015, we'll run `single.binary.test()` on the chain from 2009 and look at a summary of the results:
 
-```{r}
+```{r run_single_test_summary_1}
 tornadoes.2009.test <- single.binary.test(tornadoes.2009, swaps = 10000, n = 10000)
 summary(tornadoes.2009.test)
 ```
 
 Although the output of `summary(tornadoes.2009.test)` is constrained by the width of the vignette, you can see that the p-value for the likelihood ratio test is quite large. Given this, we'll move forward with analyzing all of the chains with `multiple.binary.test()`:
 
-```{r}
+```{r run_multiple_test_2}
 tornadoes.test <- multiple.binary.test(tornadoes, swaps = 10000, n = 10000)
 ```
 
 And then we'll plot the results:
 
-```{r, fig.width = 7}
+```{r plot_2, fig.width = 7}
 plot(tornadoes.test)
 ```
 
 As you can see from the likelihood ratio test statistic histogram, our data seems to be extremely unusual. Let's take a look at the summary of `tornadoes.test`:
 
-```{r}
+```{r summary_2}
 summary(tornadoes.test)
 ```
 
@@ -55,7 +55,7 @@ From this summary, we can see that our p-value for the likelihood ratio test sta
 
 Which suggests that days with tornadoes are going to be found predominantly between March 1st and August 31st, or between roughly the 60th and 244th days of the year. Let's see what our tile plot of Oklahoma tornadoes looks like when we superimpose those two dates upon it.
 
-```{r, fig.width = 7, fig.height = 4}
+```{r explore_data_plot, fig.width = 7, fig.height = 4}
 torn.data <- tornadoes.test$data[[1]]
 reverse <- nrow(torn.data):1
 torn.data <- torn.data[reverse, ]
@@ -69,14 +69,14 @@ text(274, 63, "August 31st")
 
 As you can see, there does seem to be marked difference between the distribution of tornadoes between these two dates and the distribution of tornadoes in the rest of the year. This fact begs the question: is it possible that we could model tornado season in Oklahoma with a Markov chain? Let's find out. We'll need to truncate our data to include only the days between March and August.
 
-```{r}
+```{r run_multiple_test_3}
 tornadoes.season <- tornadoes[ , 60 : 244]
 tornadoes.season.test <- multiple.binary.test(tornadoes.season, swaps = 10000, n = 10000)
 ```
 
 Now we'll look at the summary of the data, since we've already produced the tile plot.
 
-```{r}
+```{r summary_3}
 summary(tornadoes.season.test)
 ```
 
