@@ -94,22 +94,6 @@ vecGreaterThan <- function(testStats) {
     .Call('maRkov_vecGreaterThan', PACKAGE = 'maRkov', testStats)
 }
 
-#' Generate a random indice of a vector
-#'
-#' \code{rUnifInt} takes a one dimensional vector and randomly generates a
-#' valid index of that vector from the discrete uniform distribution. It does
-#' not return either the first or last indice.
-#'
-#' \code{rUnifInt} works by taking the length of a supplied R integer vector,
-#' subtracting two from it, and multiplying it by a random number from the
-#' uniform distribution on the interval (0, 1). it then rounds this number up
-#' to the nearest integer and returns it.
-#'
-#' @param binChain A single binary chain in the form of an integer vector.
-rUnifInt <- function(binChain) {
-    .Call('maRkov_rUnifInt', PACKAGE = 'maRkov', binChain)
-}
-
 #' Swap elements of multiple binary chains
 #'
 #' \code{swapMult} is used to swap elements of multiple binary chains if doing

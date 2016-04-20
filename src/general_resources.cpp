@@ -150,23 +150,3 @@ int vecGreaterThan (NumericVector testStats) {
   return rank ;
 }
 
-//' Generate a random indice of a vector
-//'
-//' \code{rUnifInt} takes a one dimensional vector and randomly generates a
-//' valid index of that vector from the discrete uniform distribution. It does
-//' not return either the first or last indice.
-//'
-//' \code{rUnifInt} works by taking the length of a supplied R integer vector,
-//' subtracting two from it, and multiplying it by a random number from the
-//' uniform distribution on the interval (0, 1). it then rounds this number up
-//' to the nearest integer and returns it.
-//'
-//' @param binChain A single binary chain in the form of an integer vector.
-// [[Rcpp::export]]
-int rUnifInt (IntegerVector binChain) {
-  long double u ;
-  long double n = binChain.size() ;
-  u = ceil(unif_rand() * (n - 2)) ;
-  return u ;
-}
-

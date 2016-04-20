@@ -79,17 +79,6 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// rUnifInt
-int rUnifInt(IntegerVector binChain);
-RcppExport SEXP maRkov_rUnifInt(SEXP binChainSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerVector >::type binChain(binChainSEXP);
-    __result = Rcpp::wrap(rUnifInt(binChain));
-    return __result;
-END_RCPP
-}
 // swapMult
 std::vector<std::vector<int> > swapMult(std::vector<std::vector<int> > binChains, int m);
 RcppExport SEXP maRkov_swapMult(SEXP binChainsSEXP, SEXP mSEXP) {
