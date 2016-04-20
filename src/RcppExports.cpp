@@ -213,20 +213,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // swap
-IntegerVector swap(IntegerVector binChain, int i, int j);
-RcppExport SEXP maRkov_swap(SEXP binChainSEXP, SEXP iSEXP, SEXP jSEXP) {
+std::vector<int> swap(std::vector<int> binChain, int m);
+RcppExport SEXP maRkov_swap(SEXP binChainSEXP, SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerVector >::type binChain(binChainSEXP);
-    Rcpp::traits::input_parameter< int >::type i(iSEXP);
-    Rcpp::traits::input_parameter< int >::type j(jSEXP);
-    __result = Rcpp::wrap(swap(binChain, i, j));
+    Rcpp::traits::input_parameter< std::vector<int> >::type binChain(binChainSEXP);
+    Rcpp::traits::input_parameter< int >::type m(mSEXP);
+    __result = Rcpp::wrap(swap(binChain, m));
     return __result;
 END_RCPP
 }
 // metropolis
-IntegerMatrix metropolis(IntegerVector binChain, int m, int b);
+std::vector<std::vector<int> > metropolis(IntegerVector binChain, int m, int b);
 RcppExport SEXP maRkov_metropolis(SEXP binChainSEXP, SEXP mSEXP, SEXP bSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -239,48 +238,48 @@ BEGIN_RCPP
 END_RCPP
 }
 // nCounts
-std::vector<std::vector<std::vector<int> > > nCounts(IntegerVector binChain, int nChainUniques);
+std::vector<std::vector<std::vector<int> > > nCounts(std::vector<int> binChain, int nChainUniques);
 RcppExport SEXP maRkov_nCounts(SEXP binChainSEXP, SEXP nChainUniquesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerVector >::type binChain(binChainSEXP);
+    Rcpp::traits::input_parameter< std::vector<int> >::type binChain(binChainSEXP);
     Rcpp::traits::input_parameter< int >::type nChainUniques(nChainUniquesSEXP);
     __result = Rcpp::wrap(nCounts(binChain, nChainUniques));
     return __result;
 END_RCPP
 }
 // u1TestStat
-float u1TestStat(IntegerVector binChain, int nChainUniques);
+float u1TestStat(std::vector<int> binChain, int nChainUniques);
 RcppExport SEXP maRkov_u1TestStat(SEXP binChainSEXP, SEXP nChainUniquesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerVector >::type binChain(binChainSEXP);
+    Rcpp::traits::input_parameter< std::vector<int> >::type binChain(binChainSEXP);
     Rcpp::traits::input_parameter< int >::type nChainUniques(nChainUniquesSEXP);
     __result = Rcpp::wrap(u1TestStat(binChain, nChainUniques));
     return __result;
 END_RCPP
 }
 // chiSqTestStat
-float chiSqTestStat(IntegerVector binChain, int nChainUniques);
+float chiSqTestStat(std::vector<int> binChain, int nChainUniques);
 RcppExport SEXP maRkov_chiSqTestStat(SEXP binChainSEXP, SEXP nChainUniquesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerVector >::type binChain(binChainSEXP);
+    Rcpp::traits::input_parameter< std::vector<int> >::type binChain(binChainSEXP);
     Rcpp::traits::input_parameter< int >::type nChainUniques(nChainUniquesSEXP);
     __result = Rcpp::wrap(chiSqTestStat(binChain, nChainUniques));
     return __result;
 END_RCPP
 }
 // indicateRun
-bool indicateRun(IntegerVector binChain, int p, int i);
+bool indicateRun(std::vector<int> binChain, int p, int i);
 RcppExport SEXP maRkov_indicateRun(SEXP binChainSEXP, SEXP pSEXP, SEXP iSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerVector >::type binChain(binChainSEXP);
+    Rcpp::traits::input_parameter< std::vector<int> >::type binChain(binChainSEXP);
     Rcpp::traits::input_parameter< int >::type p(pSEXP);
     Rcpp::traits::input_parameter< int >::type i(iSEXP);
     __result = Rcpp::wrap(indicateRun(binChain, p, i));
@@ -288,48 +287,48 @@ BEGIN_RCPP
 END_RCPP
 }
 // runTestStat
-int runTestStat(IntegerVector binChain, int p);
+int runTestStat(std::vector<int> binChain, int p);
 RcppExport SEXP maRkov_runTestStat(SEXP binChainSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerVector >::type binChain(binChainSEXP);
+    Rcpp::traits::input_parameter< std::vector<int> >::type binChain(binChainSEXP);
     Rcpp::traits::input_parameter< int >::type p(pSEXP);
     __result = Rcpp::wrap(runTestStat(binChain, p));
     return __result;
 END_RCPP
 }
 // u1TestStatArray
-NumericVector u1TestStatArray(IntegerMatrix binChains, int nChainUniques);
+NumericVector u1TestStatArray(std::vector<std::vector<int> > binChains, int nChainUniques);
 RcppExport SEXP maRkov_u1TestStatArray(SEXP binChainsSEXP, SEXP nChainUniquesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerMatrix >::type binChains(binChainsSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::vector<int> > >::type binChains(binChainsSEXP);
     Rcpp::traits::input_parameter< int >::type nChainUniques(nChainUniquesSEXP);
     __result = Rcpp::wrap(u1TestStatArray(binChains, nChainUniques));
     return __result;
 END_RCPP
 }
 // chiSqTestStatArray
-NumericVector chiSqTestStatArray(IntegerMatrix binChains, int nChainUniques);
+NumericVector chiSqTestStatArray(std::vector<std::vector<int> > binChains, int nChainUniques);
 RcppExport SEXP maRkov_chiSqTestStatArray(SEXP binChainsSEXP, SEXP nChainUniquesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerMatrix >::type binChains(binChainsSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::vector<int> > >::type binChains(binChainsSEXP);
     Rcpp::traits::input_parameter< int >::type nChainUniques(nChainUniquesSEXP);
     __result = Rcpp::wrap(chiSqTestStatArray(binChains, nChainUniques));
     return __result;
 END_RCPP
 }
 // runTestStatArray
-NumericVector runTestStatArray(IntegerMatrix binChains, int p);
+NumericVector runTestStatArray(std::vector<std::vector<int> > binChains, int p);
 RcppExport SEXP maRkov_runTestStatArray(SEXP binChainsSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< IntegerMatrix >::type binChains(binChainsSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::vector<int> > >::type binChains(binChainsSEXP);
     Rcpp::traits::input_parameter< int >::type p(pSEXP);
     __result = Rcpp::wrap(runTestStatArray(binChains, p));
     return __result;

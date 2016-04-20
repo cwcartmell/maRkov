@@ -12,9 +12,9 @@
 
 using namespace Rcpp ;
 
-IntegerVector swap (IntegerVector binChain, int i, int j) ;
-IntegerMatrix metropolis (IntegerVector binChain, int m, int b) ;
-std::vector<std::vector<std::vector<int> > > nCounts (IntegerVector binChain, int nChainUniques) ;
+std::vector<int> swap (std::vector<int> binChain, int m) ;
+std::vector<std::vector<int> > metropolis (IntegerVector binChain, int m, int b) ;
+std::vector<std::vector<std::vector<int> > > nCounts (std::vector<int> binChain, int nChainUniques) ;
 
 float u1TestStat (IntegerVector binChain, int nChainUniques) ;
 float chiSqTestStat (IntegerVector binChain, int nChainUniques) ;
@@ -42,19 +42,23 @@ NumericVector runTestStatArray (IntegerMatrix binChains, int p) ;
 //' @param i An integer which is a valid indice of the vector binChain.
 //' @param j An integer which is a valid indice of the vector binChain.
 // [[Rcpp::export]]
-IntegerVector swap (IntegerVector binChain, int i, int j) {
-  int minimum = std::min(i, j) ;
-  if ((abs(i - j) > 1 and binChain[i - 1] + binChain[i + 1] == binChain[j - 1] + binChain[j + 1]))  {
-    int xi = binChain[i] ;
-    binChain[i] = binChain[j] ;
-    binChain[j] =  xi ;
+std::vector<int> swap (std::vector<int> binChain, int m) {
+  int a, b, min, xa ;
+  for (int i = 0 ; i < m ; i++) {
+    a = ceil(unif_rand() * (binChain.size() - 2)) ;
+    b = ceil(unif_rand() * (binChain.size() - 2)) ;
+    min = std::min(a, b) ;
+    if ((abs(a - b) > 1 and binChain[a - 1] + binChain[a + 1] == binChain[b - 1] + binChain[b + 1]))  {
+      xa = binChain[a] ;
+      binChain[a] = binChain[b] ;
+      binChain[b] =  xa ;
+    }
+    else if ((abs(a - b) == 1 and binChain[min - 1] == binChain[min + 2])) {
+      xa = binChain[a] ;
+      binChain[a] = binChain[b] ;
+      binChain[b] =  xa ;
+    }
   }
-  else if ((abs(i - j) == 1 and binChain[minimum - 1] == binChain[minimum + 2])) {
-    int xi = binChain[i] ;
-    binChain[i] = binChain[j] ;
-    binChain[j] =  xi ;
-  }
-
   return binChain ;
 }
 
@@ -83,27 +87,32 @@ IntegerVector swap (IntegerVector binChain, int i, int j) {
 //' @export
 //' @useDynLib maRkov
 // [[Rcpp::export]]
-IntegerMatrix metropolis (IntegerVector binChain, int m, int b) {
-  IntegerMatrix out(b + 1, binChain.size()) ;
-  for (int i = 0 ; i < binChain.size() ; i++) {
-    out(0, i) = binChain[i] ;
+std::vector<std::vector<int> > metropolis (IntegerVector binChain, int m, int b) {
+  std::vector<std::vector<int> > out ;
+  std::vector<int> startBinChain ;
+  std::vector<int> backwardsBinChain ;
+  std::vector<int> tempBinChain ;
+
+  out.resize(b + 1) ;
+  for (int i = 0 ; i < b + 1 ; i++) {
+    out[i].resize(binChain.size()) ;
   }
 
-  IntegerVector startBinChain(binChain.size()) ;
-  startBinChain = binChain ;
+  startBinChain.resize(binChain.size()) ;
+  backwardsBinChain.resize(binChain.size()) ;
+  tempBinChain.resize(binChain.size()) ;
 
-  for (int l = 0 ; l < m ; l++) {
-    startBinChain = swap(startBinChain, rUnifInt(binChain), rUnifInt(binChain)) ;
+  for (int j = 0 ; j < binChain.size() ; j++) {
+    out[0][j] = binChain[j] ;
+    startBinChain[j] = binChain[j] ;
   }
-  IntegerVector tempBinChain(binChain.size()) ;
 
-  for (int k = 1 ; k <= b ; k++) {
-    tempBinChain = startBinChain ;
-    for (int j = 0 ; j < m ; j++) {
-      tempBinChain = swap(tempBinChain, rUnifInt(binChain), rUnifInt(binChain)) ;
-    }
-    for (int o = 0 ; o < binChain.size() ; o++) {
-      out(k, o) = tempBinChain[o] ;
+  backwardsBinChain = swap(startBinChain, m) ;
+
+  for (int k = 1 ; k < b + 1 ; k++) {
+    tempBinChain = swap(backwardsBinChain, m) ;
+    for (int l = 0 ; l < binChain.size() ; l++) {
+      out[k][l] = tempBinChain[l] ;
     }
   }
   return out ;
@@ -122,13 +131,12 @@ IntegerMatrix metropolis (IntegerVector binChain, int m, int b) {
 //' @export
 //' @useDynLib maRkov
 // [[Rcpp::export]]
-std::vector<std::vector<std::vector<int> > > nCounts (IntegerVector binChain, int nChainUniques) {
+std::vector<std::vector<std::vector<int> > > nCounts (std::vector<int> binChain, int nChainUniques) {
   std::vector<std::vector<std::vector<int> > > n ;
 
   n.resize(nChainUniques);
   for (int i = 0; i < nChainUniques ; ++i) {
     n[i].resize(nChainUniques) ;
-
     for (int j = 0; j < nChainUniques; ++j)
       n[i][j].resize(nChainUniques) ;
   }
@@ -159,7 +167,7 @@ std::vector<std::vector<std::vector<int> > > nCounts (IntegerVector binChain, in
 //' @param nChainUniques A integer value representing the number of unique
 //' values in \code{binChain}.
 // [[Rcpp::export]]
-float u1TestStat (IntegerVector binChain, int nChainUniques) {
+float u1TestStat (std::vector<int> binChain, int nChainUniques) {
   std::vector<std::vector<std::vector<int> > > n = nCounts(binChain, nChainUniques) ;
 
   float testStat = 0 ;
@@ -192,7 +200,7 @@ float u1TestStat (IntegerVector binChain, int nChainUniques) {
 //' @param nChainUniques A integer value representing the number of unique
 //' values in \code{binChain}.
 // [[Rcpp::export]]
-float chiSqTestStat (IntegerVector binChain, int nChainUniques) {
+float chiSqTestStat (std::vector<int> binChain, int nChainUniques) {
   std::vector<std::vector<std::vector<int> > > n = nCounts(binChain, nChainUniques) ;
 
   float testStat = 0 ;
@@ -221,15 +229,14 @@ float chiSqTestStat (IntegerVector binChain, int nChainUniques) {
 //' @export
 //' @useDynLib maRkov
 // [[Rcpp::export]]
-bool indicateRun (IntegerVector binChain, int p, int i) {
+bool indicateRun (std::vector<int> binChain, int p, int i) {
   int first = binChain[i] ;
-  bool run = TRUE ;
   for (int k = 0 ; k < p ; k++) {
     if (binChain[i + k] != first) {
       return FALSE ;
     }
   }
-  return run ;
+  return TRUE ;
 }
 
 //' Calculate the run test statistic for a single binary chain.
@@ -242,7 +249,7 @@ bool indicateRun (IntegerVector binChain, int p, int i) {
 //' @param p An integer greater than one representing the length of run to test
 //' for.
 // [[Rcpp::export]]
-int runTestStat (IntegerVector binChain, int p) {
+int runTestStat (std::vector<int> binChain, int p) {
   int n = binChain.size() ;
   int testStat = 0 ;
   for (int i = 0 ; i < n - p ; i++) {
@@ -264,16 +271,10 @@ int runTestStat (IntegerVector binChain, int p) {
 //' @param nChainUniques An integer value representing the number of unique
 //' values in the binary chains found in \code{binChains}.
 // [[Rcpp::export]]
-NumericVector u1TestStatArray (IntegerMatrix binChains, int nChainUniques) {
-  int nrow = binChains.nrow() ;
-  int ncol = binChains.ncol() ;
-  NumericVector out(nrow) ;
-  for (int i = 0 ; i < nrow ; i++) {
-    IntegerVector tempBinChain(ncol) ;
-    for (int k = 0 ; k < ncol ; k++) {
-      tempBinChain[k] = binChains(i, k) ;
-    }
-    out[i] = u1TestStat(tempBinChain, nChainUniques) ;
+NumericVector u1TestStatArray (std::vector<std::vector<int> >  binChains, int nChainUniques) {
+  NumericVector out(binChains.size()) ;
+  for (int i = 0 ; i < binChains.size() ; i++) {
+    out[i] = u1TestStat(binChains[i], nChainUniques) ;
   }
   return out ;
 }
@@ -289,16 +290,10 @@ NumericVector u1TestStatArray (IntegerMatrix binChains, int nChainUniques) {
 //' @param nChainUniques A integer value representing the number of unique
 //' values in \code{binChains}.
 // [[Rcpp::export]]
-NumericVector chiSqTestStatArray (IntegerMatrix binChains, int nChainUniques) {
-  int nrow = binChains.nrow() ;
-  int ncol = binChains.ncol() ;
-  NumericVector out(nrow) ;
-  for (int i = 0 ; i < nrow ; i++) {
-    IntegerVector tempBinChain(ncol) ;
-    for (int j = 0 ; j < ncol ; j++) {
-      tempBinChain[j] = binChains(i, j) ;
-    }
-    out(i) = chiSqTestStat(tempBinChain, nChainUniques) ;
+NumericVector chiSqTestStatArray (std::vector<std::vector<int> > binChains, int nChainUniques) {
+  NumericVector out(binChains.size()) ;
+  for (int i = 0 ; i < binChains.size() ; i++) {
+    out(i) = chiSqTestStat(binChains[i], nChainUniques) ;
   }
   return out ;
 }
@@ -315,16 +310,10 @@ NumericVector chiSqTestStatArray (IntegerMatrix binChains, int nChainUniques) {
 //' @export
 //' @useDynLib maRkov
 // [[Rcpp::export]]
-NumericVector runTestStatArray (IntegerMatrix binChains, int p) {
-  int nrow = binChains.nrow() ;
-  int ncol = binChains.ncol() ;
-  NumericVector out(nrow) ;
-  for (int i = 0 ; i < nrow ; i++) {
-    IntegerVector tempBinChain(ncol) ;
-    for (int k = 0 ; k < ncol ; k++) {
-      tempBinChain[k] = binChains(i, k) ;
-    }
-    out[i] = runTestStat(tempBinChain, p) ;
+NumericVector runTestStatArray (std::vector<std::vector<int> > binChains, int p) {
+  NumericVector out(binChains.size()) ;
+  for (int i = 0 ; i < binChains.size() ; i++) {
+    out[i] = runTestStat(binChains[i], p) ;
   }
   return out ;
 }

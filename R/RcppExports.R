@@ -305,8 +305,8 @@ multipleRunTestStatArray <- function(binChains, p) {
 #' @param binChain A binary one dimensional integer vector.
 #' @param i An integer which is a valid indice of the vector binChain.
 #' @param j An integer which is a valid indice of the vector binChain.
-swap <- function(binChain, i, j) {
-    .Call('maRkov_swap', PACKAGE = 'maRkov', binChain, i, j)
+swap <- function(binChain, m) {
+    .Call('maRkov_swap', PACKAGE = 'maRkov', binChain, m)
 }
 
 #' Generate independent data from a single binary chain.

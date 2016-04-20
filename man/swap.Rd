@@ -4,7 +4,7 @@
 \alias{swap}
 \title{Swap elements of single binary chains}
 \usage{
-swap(binChain, i, j)
+swap(binChain, m)
 }
 \arguments{
 \item{binChain}{A binary one dimensional integer vector.}
