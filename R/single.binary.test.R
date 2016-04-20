@@ -106,7 +106,8 @@ single.binary.test <- function(binary.chain, swaps = 1000, n = 1000, run = 4,
     p.value.chisq <- vecGreaterThan(test.stats.chisq)/(n + 1)
     p.value.run <- vecGreaterThan(test.stats.run)/(n + 1)
 
-    out <- list(data = data,
+    out <- list(data =  matrix(unlist(data), ncol = length(binary.chain),
+                               byrow = TRUE),
                 test.stats.lrt = test.stats.lrt,
                 test.stats.chisq = test.stats.chisq,
                 test.stats.run = test.stats.run,
