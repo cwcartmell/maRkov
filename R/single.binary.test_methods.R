@@ -43,15 +43,15 @@ summary.single.binary.test <- function(single.binary.test, ...) {
         width = 10), format(quantile(single.binary.test$test.stats.chisq)[4], trim = FALSE, justify = "right", width = 10), format(quantile(single.binary.test$test.stats.chisq)[5],
         trim = FALSE, justify = "right", width = 10), format(single.binary.test$test.stats.chisq[1], trim = FALSE, justify = "right", width = 10),
         format(single.binary.test$p.value.chisq, trim = FALSE, justify = "right", width = 10), sep = "  ")
-    if (single.binary.test$p.value.run < 0.001) {
+    if (single.binary.test$p.value.chisq < 0.001) {
         cat(" ***\n")
-    } else if (single.binary.test$p.value.run < 0.01 & single.binary.test$p.value.run >= 0.001) {
+    } else if (single.binary.test$p.value.chisq < 0.01 & single.binary.test$p.value.chisq >= 0.001) {
         cat(" **\n")
-    } else if (single.binary.test$p.value.run < 0.05 & single.binary.test$p.value.run >= 0.01) {
+    } else if (single.binary.test$p.value.chisq < 0.05 & single.binary.test$p.value.chisq >= 0.01) {
         cat(" *\n")
-    } else if (single.binary.test$p.value.run < 0.1 & single.binary.test$p.value.run >= 0.05) {
+    } else if (single.binary.test$p.value.chisq < 0.1 & single.binary.test$p.value.chisq >= 0.05) {
         cat(" .\n")
-    } else if (single.binary.test$p.value.run < 1 & single.binary.test$p.value.run >= 0.1) {
+    } else if (single.binary.test$p.value.chisq < 1 & single.binary.test$p.value.chisq >= 0.1) {
         cat(" \n")
     }
 
@@ -78,7 +78,7 @@ summary.single.binary.test <- function(single.binary.test, ...) {
     cat("Generated data 1 :\t\t", single.binary.test$data[2, ], "\n")
     cat("Generated data 2 :\t\t", single.binary.test$data[3, ], "\n")
     cat(".\n.\n.\n")
-    cat("Generated data", length(single.binary.test$data[, 1]) - 1, ":\t", single.binary.test$data[length(single.binary.test$data[, 1]), ], "\n")
+    cat("Generated data", length(single.binary.test$data[, 1]) - 1, ":\t\t", single.binary.test$data[length(single.binary.test$data[, 1]), ], "\n")
 }
 
 #' Produce plots from objects of class "single.binary.test".
