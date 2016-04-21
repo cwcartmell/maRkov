@@ -25,3 +25,18 @@
 #'
 #' @format A data frame with 66 rows and 366 columns.
 "ok_tornado"
+
+#' Data from the Madras schizophrenia study
+#'
+#' A dataset documenting the presence of thought disorders across 12 months
+#' since hospitalization. Each column represents a single patient, and each
+#' row represents a seperate month. Months with thought disorders are encoded as
+#' 1 and those without are encoded as 0. Data is sourced from "Analysis of
+#' Longitudinal Data" by Peter J. Diggle, Patrick J. Heagerty, Kung-Yee Liang,
+#' and Scott L. Zeger. It was retrieved from
+#' http://faculty.washington.edu/heagerty/Books/AnalysisLongitudinal/madras.data
+#' . Individuals who did not have 12 months of post hospitalization data were
+#' removed to make the data rectangular.
+#'
+#' @format A data frame with 69 rows and 12 columns.
+"madras"
