@@ -17,8 +17,13 @@ check.false.binary <- function(bin.chain) {
     options <- unique(bin.chain)
     if (length(options) == 2) {
         return(TRUE)
+    } else if (length(options) == 1){
+      print("WARNING: Your binary chain only has one value. This will probably
+            cause calculating test statistics impossible, and you should
+            reconsider your model.")
+      return(TRUE)
     } else {
-        return(FALSE)
+      return(FALSE)
     }
 }
 #' Check if a two dimensional matrix has two unique elements.
@@ -40,7 +45,7 @@ check.false.binary.multiple <- function(bin.chains) {
     unique <- c()
     for (i in 1:nrow(bin.chains)){
         unique <- union(unique, unique(bin.chains[i,]))
-        if (length(unique) != 2) {
+        if (length(unique) != 2 & length(unique) != 1) {
             return(FALSE)
         }
     }
