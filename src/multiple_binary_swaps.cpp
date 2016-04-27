@@ -251,11 +251,11 @@ float multipleChiSqTestStat (std::vector<std::vector<int> > binChains, int nChai
   for (int i = 0 ; i < dimi ; i++) {
     for (int j = 0 ; j < dimj ; j++) {
       for (int k = 0 ; k < dimk  ; k++) {
-        if (n[i][j][k] != 0) {
-          testStat = testStat + (pow((n[i][j][k] - ((kDimSum(n, i, j) * iDimSum(n, j, k)) / ikDimSum(n, j))), 2) / ((kDimSum(n, i, j) * iDimSum(n, j, k)) / (ikDimSum(n, j)))) ;
+        if (n[i][j][k] == 0 or jkDimSum(n, i) == 0 or jDimSum(n, i, k) == 0 or kDimSum(n, i, j) == 0) {
+          testStat = testStat ;
         }
         else {
-          testStat = testStat ;
+          testStat = testStat + (pow((n[i][j][k] - ((kDimSum(n, i, j) * jDimSum(n, i, k)) / jkDimSum(n, i))), 2) / ((kDimSum(n, i, j) * jDimSum(n, i, k)) / (jkDimSum(n, i)))) ;
         }
       }
     }
