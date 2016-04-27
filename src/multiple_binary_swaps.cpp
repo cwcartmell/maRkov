@@ -16,10 +16,10 @@ std::vector<std::vector<int> > swapMult (std::vector<std::vector<int> > binChain
 std::vector<std::vector<std::vector<int> > > u6Metropolis (IntegerMatrix binChains, int m, int b) ;
 std::vector<std::vector<std::vector<int> > > nCountsMultiple (IntegerMatrix binChains, int nChainUniques) ;
 
-float u6TestStat (IntegerMatrix binChains, int nChainUniques, int nMultChains, int lengthOfChains) ;
-float multipleChiSqTestStat (std::vector<std::vector<int> > binChains, int nChainUniques) ;
+long double u6TestStat (IntegerMatrix binChains, int nChainUniques, int nMultChains, int lengthOfChains) ;
+long double multipleChiSqTestStat (std::vector<std::vector<int> > binChains, int nChainUniques) ;
 bool multipleIndicateRun (std::vector<int> binChain, int p, int i) ;
-float multipleRunTestStat (std::vector<std::vector<int> > binChains, int p) ;
+long double multipleRunTestStat (std::vector<std::vector<int> > binChains, int p) ;
 
 NumericVector u6TestStatArray (std::vector<std::vector<std::vector<int> > > binChains, int nChainUniques) ;
 NumericVector multipleChiSqTestStatArray (std::vector<std::vector<std::vector<int> > > binChains, int nChainUniques) ;
@@ -204,9 +204,9 @@ std::vector<std::vector<std::vector<int> > > nCountsMultiple (std::vector<std::v
 //' @param nChainUniques An integer value representing the number of unique
 //' elements in the set of chains \code{binChains}.
 // [[Rcpp::export]]
-float u6TestStat (std::vector<std::vector<int> > binChains, int nChainUniques) {
+long double u6TestStat (std::vector<std::vector<int> > binChains, int nChainUniques) {
   std::vector<std::vector<std::vector<int> > > n = nCountsMultiple(binChains, nChainUniques) ;
-  float testStat = 0 ;
+  long double testStat = 0 ;
 
   int dimi = n.size() ;
   int dimj = n[0].size() ;
@@ -240,9 +240,9 @@ float u6TestStat (std::vector<std::vector<int> > binChains, int nChainUniques) {
 //' @param nChainUniques An integer value representing the number of unique
 //' elements in the set of chains \code{binChains}.
 // [[Rcpp::export]]
-float multipleChiSqTestStat (std::vector<std::vector<int> > binChains, int nChainUniques) {
+long double multipleChiSqTestStat (std::vector<std::vector<int> > binChains, int nChainUniques) {
   std::vector<std::vector<std::vector<int> > > n = nCountsMultiple(binChains, nChainUniques) ;
-  float testStat = 0 ;
+  long double testStat = 0 ;
 
   int dimi = n.size() ;
   int dimj = n[0].size() ;
@@ -251,11 +251,11 @@ float multipleChiSqTestStat (std::vector<std::vector<int> > binChains, int nChai
   for (int i = 0 ; i < dimi ; i++) {
     for (int j = 0 ; j < dimj ; j++) {
       for (int k = 0 ; k < dimk  ; k++) {
-        if (n[i][j][k] == 0 or jkDimSum(n, i) == 0 or jDimSum(n, i, k) == 0 or kDimSum(n, i, j) == 0) {
+        if (n[i][j][k] == 0) {
           testStat = testStat ;
         }
         else {
-          testStat = testStat + (pow((n[i][j][k] - ((kDimSum(n, i, j) * jDimSum(n, i, k)) / jkDimSum(n, i))), 2) / ((kDimSum(n, i, j) * jDimSum(n, i, k)) / (jkDimSum(n, i)))) ;
+          testStat = testStat + (pow((n[i][j][k] - ((kDimSum(n, i, j) / 1.0 * jDimSum(n, i, k) / 1.0) / (jkDimSum(n, i) / 1.0))), 2) / ((kDimSum(n, i, j) / 1.0 * jDimSum(n, i, k) / 1.0) / (jkDimSum(n, i) / 1.0))) ;
         }
       }
     }
@@ -298,10 +298,10 @@ bool multipleIndicateRun (std::vector<int> binChain, int p, int i) {
 //' seperate binary chain of data.
 //' @param p An integer value representing the length of run to test for.
 //[[Rcpp::export]]
-float multipleRunTestStat (std::vector<std::vector<int> > binChains, int p) {
+long double multipleRunTestStat (std::vector<std::vector<int> > binChains, int p) {
   int nRow = binChains.size() ;
   int nCol = binChains[0].size() ;
-  int testStat = 0 ;
+  long double testStat = 0 ;
   for (int i = 0 ; i < nRow ; i++) {
     for (int j = 0 ; j < nCol - p ; j++) {
       if (multipleIndicateRun(binChains[i], p, j)) {

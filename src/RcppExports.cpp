@@ -117,7 +117,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // u6TestStat
-float u6TestStat(std::vector<std::vector<int> > binChains, int nChainUniques);
+long double u6TestStat(std::vector<std::vector<int> > binChains, int nChainUniques);
 RcppExport SEXP maRkov_u6TestStat(SEXP binChainsSEXP, SEXP nChainUniquesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -129,7 +129,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // multipleChiSqTestStat
-float multipleChiSqTestStat(std::vector<std::vector<int> > binChains, int nChainUniques);
+long double multipleChiSqTestStat(std::vector<std::vector<int> > binChains, int nChainUniques);
 RcppExport SEXP maRkov_multipleChiSqTestStat(SEXP binChainsSEXP, SEXP nChainUniquesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -154,7 +154,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // multipleRunTestStat
-float multipleRunTestStat(std::vector<std::vector<int> > binChains, int p);
+long double multipleRunTestStat(std::vector<std::vector<int> > binChains, int p);
 RcppExport SEXP maRkov_multipleRunTestStat(SEXP binChainsSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -239,7 +239,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // u1TestStat
-float u1TestStat(std::vector<int> binChain, int nChainUniques);
+long double u1TestStat(std::vector<int> binChain, int nChainUniques);
 RcppExport SEXP maRkov_u1TestStat(SEXP binChainSEXP, SEXP nChainUniquesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -251,7 +251,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // chiSqTestStat
-float chiSqTestStat(std::vector<int> binChain, int nChainUniques);
+long double chiSqTestStat(std::vector<int> binChain, int nChainUniques);
 RcppExport SEXP maRkov_chiSqTestStat(SEXP binChainSEXP, SEXP nChainUniquesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;

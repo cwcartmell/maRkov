@@ -16,8 +16,8 @@ std::vector<int> swap (std::vector<int> binChain, int m) ;
 std::vector<std::vector<int> > metropolis (IntegerVector binChain, int m, int b) ;
 std::vector<std::vector<std::vector<int> > > nCounts (std::vector<int> binChain, int nChainUniques) ;
 
-float u1TestStat (IntegerVector binChain, int nChainUniques) ;
-float chiSqTestStat (IntegerVector binChain, int nChainUniques) ;
+long double u1TestStat (IntegerVector binChain, int nChainUniques) ;
+long double chiSqTestStat (IntegerVector binChain, int nChainUniques) ;
 bool indicateRun (IntegerVector binChain, int p, int i) ;
 int runTestStat (IntegerVector binChain, int p) ;
 
@@ -166,9 +166,9 @@ std::vector<std::vector<std::vector<int> > > nCounts (std::vector<int> binChain,
 //' @param nChainUniques A integer value representing the number of unique
 //' values in \code{binChain}.
 // [[Rcpp::export]]
-float u1TestStat (std::vector<int> binChain, int nChainUniques) {
+long double u1TestStat (std::vector<int> binChain, int nChainUniques) {
   std::vector<std::vector<std::vector<int> > > n = nCounts(binChain, nChainUniques) ;
-  float testStat = 0 ;
+  long double testStat = 0 ;
 
   for (int i = 0 ; i < 2 ; i++) {
     for (int j = 0 ; j < 2 ; j++) {
@@ -197,15 +197,15 @@ float u1TestStat (std::vector<int> binChain, int nChainUniques) {
 //' @param nChainUniques A integer value representing the number of unique
 //' values in \code{binChain}.
 // [[Rcpp::export]]
-float chiSqTestStat (std::vector<int> binChain, int nChainUniques) {
+long double chiSqTestStat (std::vector<int> binChain, int nChainUniques) {
   std::vector<std::vector<std::vector<int> > > n = nCounts(binChain, nChainUniques) ;
 
-  float testStat = 0 ;
+  long double testStat = 0 ;
 
   for (int i = 0 ; i < 2 ; i++) {
     for (int j = 0 ; i < 2 ; i++) {
       for (int k = 0 ; i < 2 ; i++) {
-        testStat = testStat + (pow((n[i][j][k] - ((kDimSum(n, i, j) * iDimSum(n, j, k)) / ikDimSum(n, j))), 2) / ((kDimSum(n, i, j) * iDimSum(n, j, k)) / (ikDimSum(n, j)))) ;
+        testStat = testStat + (pow((n[i][j][k] - ((kDimSum(n, i, j) / 1.0 * iDimSum(n, j, k) / 1.0) / (ikDimSum(n, j) / 1.0 ))), 2) / ((kDimSum(n, i, j) / 1.0 * iDimSum(n, j, k) / 1.0) / (ikDimSum(n, j) / 1.0))) ;
       }
     }
   }
