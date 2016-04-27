@@ -153,7 +153,6 @@ std::vector<std::vector<std::vector<int> > > nCounts (std::vector<int> binChain,
       }
     }
   }
-
   return n ;
 }
 
@@ -169,14 +168,13 @@ std::vector<std::vector<std::vector<int> > > nCounts (std::vector<int> binChain,
 // [[Rcpp::export]]
 float u1TestStat (std::vector<int> binChain, int nChainUniques) {
   std::vector<std::vector<std::vector<int> > > n = nCounts(binChain, nChainUniques) ;
-
   float testStat = 0 ;
 
   for (int i = 0 ; i < 2 ; i++) {
     for (int j = 0 ; j < 2 ; j++) {
       for (int k = 0 ; k < 2 ; k++) {
         if (n[i][j][k] != 0) {
-          testStat = testStat + (n[i][j][k] * (log(n[i][j][k]) - log(kDimSum(n, i, k)) - log(iDimSum(n, j, k)) + log(ikDimSum(n, j)))) ;
+          testStat = testStat + (n[i][j][k] * (log(n[i][j][k]) - log(kDimSum(n, i, j)) - log(iDimSum(n, j, k)) + log(ikDimSum(n, j)))) ;
         }
         else {
           testStat = testStat ;
@@ -185,7 +183,6 @@ float u1TestStat (std::vector<int> binChain, int nChainUniques) {
     }
   }
   testStat = testStat * 2 ;
-
   return testStat ;
 }
 
