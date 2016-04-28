@@ -3,6 +3,9 @@
 #' Instruct user to use \code{summary} and \code{print} to examine objects of
 #' \link{class} \code{multiple.binary.test}.
 #'
+#' @param multiple.binary.test An object of \code{\link{class}}
+#' \code{multiple.binary.test}.
+#'
 #' @export
 print.multiple.binary.test <- function(multiple.binary.test, ...) {
     cat("\ncall:\n")
@@ -13,6 +16,9 @@ print.multiple.binary.test <- function(multiple.binary.test, ...) {
 #' Produce a summary of objects of class "multiple.binary.test".
 #'
 #' Prints test statistics and p-values for objects of \link{class}
+#' \code{multiple.binary.test}.
+#'
+#' @param multiple.binary.test An object of \code{\link{class}}
 #' \code{multiple.binary.test}.
 #'
 #' @export
@@ -80,6 +86,9 @@ summary.multiple.binary.test <- function(multiple.binary.test, ..) {
 #'
 #' Produces some interesting plots of data and test statistics of objects of
 #' \link{class} \code{multiple.binary.test}.
+#'
+#' @param multiple.binary.test An object of \code{\link{class}}
+#' \code{multiple.binary.test}.
 #'
 #' @export
 plot.multiple.binary.test <- function(multiple.binary.test, ...) {
