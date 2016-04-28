@@ -7,7 +7,7 @@
 #' \code{multiple.binary.test}.
 #'
 #' @export
-print.multiple.binary.test <- function(multiple.binary.test, ...) {
+print.multiple.binary.test <- function(multiple.binary.test) {
     cat("\ncall:\n")
     print(multiple.binary.test$call)
     cat("\n---\nUse summary() and plot() for more information.")
@@ -22,7 +22,7 @@ print.multiple.binary.test <- function(multiple.binary.test, ...) {
 #' \code{multiple.binary.test}.
 #'
 #' @export
-summary.multiple.binary.test <- function(multiple.binary.test, ..) {
+summary.multiple.binary.test <- function(multiple.binary.test) {
     cat("\ncall:\n")
     print(multiple.binary.test$call)
     cat("\nTest statistics\n")
@@ -91,7 +91,7 @@ summary.multiple.binary.test <- function(multiple.binary.test, ..) {
 #' \code{multiple.binary.test}.
 #'
 #' @export
-plot.multiple.binary.test <- function(multiple.binary.test, ...) {
+plot.multiple.binary.test <- function(multiple.binary.test) {
     par(ask = TRUE,  mar = c(5, 1, 1, 1))
     x <- multiple.binary.test$data[[1]]
     reverse <- nrow(x):1
