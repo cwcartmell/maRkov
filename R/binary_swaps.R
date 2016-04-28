@@ -35,7 +35,7 @@ check.false.binary <- function(bin.chain) {
 #' This function checks every row and column element to see if they all share
 #' the same two values.
 #'
-#' @param bin.chain A two dimensional matrix
+#' @param bin.chains A two dimensional matrix
 #'
 #' @examples
 #' check.false.binary.multiple(matrix(data = c(1,0,1,0,1,0,0,1,1), ncol = 3))
@@ -86,7 +86,7 @@ check.true.binary <- function(bin.chain) {
 #' This function checks every row and column element of its argument to see if
 #' they contain either the integer values 0 or 1.
 #'
-#' @param bin.chain A two dimensional matrix.
+#' @param bin.chains A two dimensional matrix.
 #'
 #' @examples
 #' check.true.binary.multiple(matrix(data = c(1,0,1,0,1,0,0,1,1), ncol = 3))
@@ -146,7 +146,7 @@ alter.to.true.binary <- function(bin.chain) {
 #' \code{alter.to.true.binary} if \code{\link{check.false.binary.multiple}}
 #' returns TRUE.
 #'
-#' @param bin.chain A two dimensional vector with two unique elements.
+#' @param bin.chains A two dimensional vector with two unique elements.
 #'
 #' @examples
 #' alter.to.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
