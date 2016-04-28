@@ -13,6 +13,7 @@
 #' check.false.binary(c(1,0,0,1,0,0,0,1))
 #' check.false.binary(c("A","B","B","B","A","B","A","A"))
 #' check.false.binary(c(T,T,T,F,F,T,F,F,T,T,F))
+#' @export
 check.false.binary <- function(bin.chain) {
     options <- unique(bin.chain)
     if (length(options) == 2) {
@@ -41,6 +42,7 @@ check.false.binary <- function(bin.chain) {
 #' check.false.binary.multiple(matrix(data = c(1,0,1,0,1,0,0,1,1), ncol = 3))
 #' check.false.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
 #' check.false.binary.multiple(matrix(data = c(F,T,F,T,F,T,T,F,F), ncol = 3))
+#' @export
 check.false.binary.multiple <- function(bin.chains) {
     unique <- c()
     for (i in 1:nrow(bin.chains)){
@@ -67,6 +69,7 @@ check.false.binary.multiple <- function(bin.chains) {
 #' check.true.binary(c(1,0,0,1,0,0,0,1))
 #' check.true.binary(c("A","B","B","B","A","B","A","A"))
 #' check.true.binary(c(T,T,T,F,F,T,F,F,T,T,F))
+#' @export
 check.true.binary <- function(bin.chain) {
     length <- length(bin.chain)
     for (i in 1:length) {
@@ -92,6 +95,7 @@ check.true.binary <- function(bin.chain) {
 #' check.true.binary.multiple(matrix(data = c(1,0,1,0,1,0,0,1,1), ncol = 3))
 #' check.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
 #' check.true.binary.multiple(matrix(data = c(F,T,F,T,F,T,T,F,F), ncol = 3))
+#' @export
 check.true.binary.multiple <- function(bin.chains) {
     for (i in 1:nrow(bin.chains)) {
         for (j in 1:ncol(bin.chains)) {
@@ -120,6 +124,7 @@ check.true.binary.multiple <- function(bin.chains) {
 #' @examples
 #' alter.to.true.binary(c("A","B","B","B","A","B","A","A"))
 #' alter.to.true.binary(c(T,T,T,F,F,T,F,F,T,T,F))
+#' @export
 alter.to.true.binary <- function(bin.chain) {
     uniques <- unique(bin.chain)
     binary <- c(0, 1)
@@ -151,6 +156,7 @@ alter.to.true.binary <- function(bin.chain) {
 #' @examples
 #' alter.to.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
 #' alter.to.true.binary.multiple(matrix(data = c(F,T,F,T,F,T,T,F,F), ncol = 3))
+#' @export
 alter.to.true.binary.multiple <- function(bin.chains) {
     uniques <- c()
     for (i in 1:nrow(bin.chains)) {
