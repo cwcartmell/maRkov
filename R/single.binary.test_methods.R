@@ -88,7 +88,7 @@ summary.single.binary.test <- function(single.binary.test, ...) {
 #'
 #' @export
 plot.single.binary.test <- function(single.binary.test, ...) {
-    par(ask = TRUE)
+    par(ask = TRUE, mar = c(5, 1, 1, 1))
     x <- single.binary.test$data
     x <- x[1:single.binary.test$tiles, ]
     reverse <- nrow(x):1
@@ -97,6 +97,8 @@ plot.single.binary.test <- function(single.binary.test, ...) {
     image(c(1:ncol(x)), c(1:nrow(x)), t(x), axes = FALSE, ylab = " ", xlab = "Real data above the black line, generated data below it", col = c("aquamarine3",
         "chocolate1"))
     abline(h = single.binary.test$tiles - 0.5, col = "black", lwd = 4)
+
+    par(ask = TRUE, mar = c(5, 4, 4, 2))
 
     hist(single.binary.test$test.stats.lrt, breaks = single.binary.test$bins, xlab = "LRT Test Statistics\nRed line indicates value of test statistic of real data",
         main = NULL)

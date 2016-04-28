@@ -83,14 +83,14 @@ summary.multiple.binary.test <- function(multiple.binary.test, ..) {
 #'
 #' @export
 plot.multiple.binary.test <- function(multiple.binary.test, ...) {
-    par(ask = TRUE)
+    par(ask = TRUE,  mar = c(5, 1, 1, 1))
     x <- multiple.binary.test$data[[1]]
     reverse <- nrow(x):1
     x <- x[reverse, ]
     image(c(1:ncol(x)), c(1:nrow(x)), t(x), axes = FALSE, ylab = " ", xlab = "Visual representation of the actual Markov Chain.", col = c("aquamarine3",
         "chocolate1"))
 
-
+    par(ask = TRUE, mar = c(5, 4, 4, 2))
     hist(multiple.binary.test$test.stats.lrt, breaks = multiple.binary.test$bins, xlab = "LRT Test Statistics\nRed line indicates value of test statistic of real data",
         main = NULL)
     abline(v = multiple.binary.test$test.stats.lrt[1], col = "red")
