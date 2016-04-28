@@ -31,16 +31,13 @@ NumericVector runTestStatArray (IntegerMatrix binChains, int p) ;
 //' maintains the same number of transitions between the two states of that
 //' chain.
 //'
-//' \code{swap} takes a R integer vector, as well as two integers, i and j,
-//' which are valid indicies of that vector. It then checks if swapping the
-//' values at indicies i and j would change the number of transitions between
-//' states in the vector, and if the swap does not, it switches the two values,
-//' returning a new vector with the values switched. If it cannot switch the
-//' values, it returns the original vector.
+//' \code{swap} takes a one dimensional vector of integers \code{binChain} and
+//' an integer \code{m}. It attempts to swap elements of \code{binChain}
+//' \code{m} times, each time only completing the swap if it does not affect the
+//' number of transitions between states in the sequence.
 //'
 //' @param binChain A binary one dimensional integer vector.
-//' @param i An integer which is a valid indice of the vector binChain.
-//' @param j An integer which is a valid indice of the vector binChain.
+//' @param m A integer value representing the number of swaps to attempt.
 // [[Rcpp::export]]
 std::vector<int> swap (std::vector<int> binChain, int m) {
   int a, b, min, xa ;
