@@ -3,8 +3,11 @@
 #' Instruct user to use \code{summary} and \code{print} to examine objects of
 #' \link{class} \code{single.binary.test}.
 #'
+#' @param single.binary.test An object of \code{\link{class}}
+#' \code{single.binary.test}.
+#'
 #' @export
-print.single.binary.test <- function(single.binary.test, ...) {
+print.single.binary.test <- function(single.binary.test) {
     cat("\nCall:\n")
     print(single.binary.test$call)
     cat("\n---\nUse summary() and plot() for more information.")
@@ -15,8 +18,11 @@ print.single.binary.test <- function(single.binary.test, ...) {
 #' Prints test statistics, p-values, and provides sample data for objects of
 #' \link{class} \code{single.binary.test}.
 #'
+#' @param single.binary.test An object of \code{\link{class}}
+#' \code{single.binary.test}.
+#'
 #' @export
-summary.single.binary.test <- function(single.binary.test, ...) {
+summary.single.binary.test <- function(single.binary.test) {
     cat("\nCall:\n")
     print(single.binary.test$call)
     cat("\nVarious test statistics:\n")
@@ -86,8 +92,11 @@ summary.single.binary.test <- function(single.binary.test, ...) {
 #' Produces some interesting plots of data and test statistics of objects of
 #' \link{class} \code{single.binary.test}.
 #'
+#' @param single.binary.test An object of \code{\link{class}}
+#' \code{single.binary.test}.
+#'
 #' @export
-plot.single.binary.test <- function(single.binary.test, ...) {
+plot.single.binary.test <- function(single.binary.test) {
     par(ask = TRUE, mar = c(5, 1, 1, 1))
     x <- single.binary.test$data
     x <- x[1:single.binary.test$tiles, ]
