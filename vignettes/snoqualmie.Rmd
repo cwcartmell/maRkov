@@ -19,11 +19,25 @@ library(maRkov)
 knitr::kable(maRkov::snoqualmie)
 ```
 
-We'll need to encode this data in a way that `multiple.binary.test()` can understand, so we're going to turn it into a matrix with rows representing each single year chain, and columns representing days of January. Luckily, the as.matrix function makes it easy to do this.
+We'll need to encode this data in a way that `single.binary.test` and `multiple.binary.test()` can understand, so we're going to turn it into a matrix with rows representing each single year chain, and columns representing days of January. Luckily, the as.matrix function makes it easy to do this.
 
 ```{r import_data}
 snoqualmie.matrix <- as.matrix(maRkov::snoqualmie)
 ```
+
+Before we can examine whether a simple binary Markov chain is appropriate for describing rainfall in the month of January in general, we need to ask ourselves if each January that we have is appropriately modeled by a simple binary chain. To determine this, we will generate a vector of likelihood ratio p-values for each year, and a histogram:
+
+```{r multiple_single_test, fig.width = 7, fig.height = 4}
+lrt.p.values <- vector(mode = "numeric", length = nrow(snoqualmie.matrix))
+for (i in 1:nrow(snoqualmie.matrix)) {
+  snoqualmie.year <- snoqualmie.matrix[i, ]
+  snoqualmie.year.test <- single.binary.test(snoqualmie.year, swaps = 10000, n = 10000)
+  lrt.p.values[i] <- snoqualmie.year.test$p.value.lrt
+}
+hist(lrt.p.values, breaks = 10)
+```
+
+This is quick and dirty analysis, but it is clear from looking at the histogram of p-values that very low ones are generally uncommon. This gives us no reason to doubt that simple binary chains can be used to model the month of January in each year, as the years with low p-values may very well be the result of having data from a great many years.
 
 We're finally ready to call `multiple.binary.test()`, which will produce an object of class `multiple.binary.test`. Afterwards, we'll look at some plots and a summary of our data. Specifically, we'll be taking a look at the distribution of test statistics and the p-value for the likelihood ratio test (LRT). This test will give us a answer to the question of whether or not the null hypothesis of a single binary chain is acceptable against the alternative of a second order binary chain.
 
