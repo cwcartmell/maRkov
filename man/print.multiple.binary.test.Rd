@@ -4,7 +4,11 @@
 \alias{print.multiple.binary.test}
 \title{Print instructions for examining objects of class "multiple.binary.test".}
 \usage{
-\method{print}{multiple.binary.test}(multiple.binary.test, ...)
+\method{print}{multiple.binary.test}(multiple.binary.test)
+}
+\arguments{
+\item{multiple.binary.test}{An object of \code{\link{class}}
+\code{multiple.binary.test}.}
 }
 \description{
 Instruct user to use \code{summary} and \code{print} to examine objects of

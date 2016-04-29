@@ -4,7 +4,11 @@
 \alias{plot.single.binary.test}
 \title{Produce plots from objects of class "single.binary.test".}
 \usage{
-\method{plot}{single.binary.test}(single.binary.test, ...)
+\method{plot}{single.binary.test}(single.binary.test)
+}
+\arguments{
+\item{single.binary.test}{An object of \code{\link{class}}
+\code{single.binary.test}.}
 }
 \description{
 Produces some interesting plots of data and test statistics of objects of

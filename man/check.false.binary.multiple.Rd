@@ -7,7 +7,7 @@
 check.false.binary.multiple(bin.chains)
 }
 \arguments{
-\item{bin.chain}{A two dimensional matrix}
+\item{bin.chains}{A two dimensional matrix}
 }
 \description{
 \code{check.false.binary.multiple} returns TRUE is there are two unique elements

@@ -7,7 +7,7 @@
 check.true.binary.multiple(bin.chains)
 }
 \arguments{
-\item{bin.chain}{A two dimensional matrix.}
+\item{bin.chains}{A two dimensional matrix.}
 }
 \description{
 \code{check.true.binary.multiple} returns TRUE if all of the elements in its

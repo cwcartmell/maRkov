@@ -8,7 +8,7 @@ to integers 0 and 1.}
 alter.to.true.binary.multiple(bin.chains)
 }
 \arguments{
-\item{bin.chain}{A two dimensional vector with two unique elements.}
+\item{bin.chains}{A two dimensional vector with two unique elements.}
 }
 \description{
 \code{alter.to.true.binary.multiple} takes a two dimensional matrix that

@@ -4,7 +4,11 @@
 \alias{summary.single.binary.test}
 \title{Produce a summary of objects of class "single.binary.test".}
 \usage{
-\method{summary}{single.binary.test}(single.binary.test, ...)
+\method{summary}{single.binary.test}(single.binary.test)
+}
+\arguments{
+\item{single.binary.test}{An object of \code{\link{class}}
+\code{single.binary.test}.}
 }
 \description{
 Prints test statistics, p-values, and provides sample data for objects of
