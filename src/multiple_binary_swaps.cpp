@@ -112,6 +112,7 @@ std::vector<std::vector<int> > swapMult (std::vector<std::vector<int> > binChain
 //' @useDynLib maRkov
 // [[Rcpp::export]]
 std::vector<std::vector<std::vector<int> > > u6Metropolis (IntegerMatrix binChains, int m, int b) {
+  // std::cout << "DEATH LINE 115" << std::endl ;
   std::vector<std::vector<std::vector<int> > > metropolis ;
   std::vector<std::vector<int> > backwardsBinChain ;
   std::vector<std::vector<int> > tempBinChain ;
@@ -125,7 +126,6 @@ std::vector<std::vector<std::vector<int> > > u6Metropolis (IntegerMatrix binChai
       metropolis[i][j].resize(nCol) ;
     }
   }
-
   backwardsBinChain.resize(nRow) ;
   tempBinChain.resize(nRow) ;
   convertedBinChain.resize(nRow) ;
