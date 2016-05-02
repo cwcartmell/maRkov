@@ -1,7 +1,7 @@
 #' Check if a vector has two unique elements.
 #'
-#' \code{check.false.binary} returns TRUE if there are two unique elements in its
-#' argument, and returns FALSE if there are not two unique elements in its
+#' \code{check.false.binary} returns TRUE if there are two unique elements in
+#' its argument, and returns FALSE if there are not two unique elements in its
 #' argument.
 #'
 #' This function is not designed to be used outside of this package. It is
@@ -12,7 +12,8 @@
 #' @examples
 #' check.false.binary(c(1,0,0,1,0,0,0,1))
 #' check.false.binary(c("A","B","B","B","A","B","A","A"))
-#' check.false.binary(c(T,T,T,F,F,T,F,F,T,T,F))
+#' check.false.binary(c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,
+#' FALSE))
 #' @export
 check.false.binary <- function(bin.chain) {
     options <- unique(bin.chain)
@@ -29,9 +30,9 @@ check.false.binary <- function(bin.chain) {
 }
 #' Check if a two dimensional matrix has two unique elements.
 #'
-#' \code{check.false.binary.multiple} returns TRUE is there are two unique elements
-#' in its argument, and returns FALSE if there are not two unique elements in
-#' its argument.
+#' \code{check.false.binary.multiple} returns TRUE is there are two unique
+#' elements in its argument, and returns FALSE if there are not two unique
+#' elements in its argument.
 #'
 #' This function checks every row and column element to see if they all share
 #' the same two values.
@@ -40,8 +41,10 @@ check.false.binary <- function(bin.chain) {
 #'
 #' @examples
 #' check.false.binary.multiple(matrix(data = c(1,0,1,0,1,0,0,1,1), ncol = 3))
-#' check.false.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
-#' check.false.binary.multiple(matrix(data = c(F,T,F,T,F,T,T,F,F), ncol = 3))
+#' check.false.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A",
+#' "A"), ncol = 3))
+#' check.false.binary.multiple(matrix(data = c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,
+#' FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3))
 #' @export
 check.false.binary.multiple <- function(bin.chains) {
     unique <- c()
@@ -68,7 +71,8 @@ check.false.binary.multiple <- function(bin.chains) {
 #' @examples
 #' check.true.binary(c(1,0,0,1,0,0,0,1))
 #' check.true.binary(c("A","B","B","B","A","B","A","A"))
-#' check.true.binary(c(T,T,T,F,F,T,F,F,T,T,F))
+#' check.true.binary(c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,
+#' FALSE))
 #' @export
 check.true.binary <- function(bin.chain) {
     length <- length(bin.chain)
@@ -93,8 +97,10 @@ check.true.binary <- function(bin.chain) {
 #'
 #' @examples
 #' check.true.binary.multiple(matrix(data = c(1,0,1,0,1,0,0,1,1), ncol = 3))
-#' check.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
-#' check.true.binary.multiple(matrix(data = c(F,T,F,T,F,T,T,F,F), ncol = 3))
+#' check.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A",
+#' "A"), ncol = 3))
+#' check.true.binary.multiple(matrix(data = c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,
+#' FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3))
 #' @export
 check.true.binary.multiple <- function(bin.chains) {
     for (i in 1:nrow(bin.chains)) {
@@ -123,7 +129,8 @@ check.true.binary.multiple <- function(bin.chains) {
 #'
 #' @examples
 #' alter.to.true.binary(c("A","B","B","B","A","B","A","A"))
-#' alter.to.true.binary(c(T,T,T,F,F,T,F,F,T,T,F))
+#' alter.to.true.binary(c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,
+#' FALSE))
 #' @export
 alter.to.true.binary <- function(bin.chain) {
     uniques <- unique(bin.chain)
@@ -154,8 +161,10 @@ alter.to.true.binary <- function(bin.chain) {
 #' @param bin.chains A two dimensional vector with two unique elements.
 #'
 #' @examples
-#' alter.to.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
-#' alter.to.true.binary.multiple(matrix(data = c(F,T,F,T,F,T,T,F,F), ncol = 3))
+#' alter.to.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B",
+#' "A","A"), ncol = 3))
+#' alter.to.true.binary.multiple(matrix(data = c(TRUE,TRUE,TRUE,FALSE,FALSE,
+#' TRUE,FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3))
 #' @export
 alter.to.true.binary.multiple <- function(bin.chains) {
     uniques <- c()

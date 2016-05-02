@@ -21,6 +21,7 @@ either the integer values 0 or 1.
 \examples{
 check.true.binary(c(1,0,0,1,0,0,0,1))
 check.true.binary(c("A","B","B","B","A","B","A","A"))
-check.true.binary(c(T,T,T,F,F,T,F,F,T,T,F))
+check.true.binary(c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,
+FALSE))
 }
 

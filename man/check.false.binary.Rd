@@ -10,8 +10,8 @@ check.false.binary(bin.chain)
 \item{bin.chain}{A one dimension vector.}
 }
 \description{
-\code{check.false.binary} returns TRUE if there are two unique elements in its
-argument, and returns FALSE if there are not two unique elements in its
+\code{check.false.binary} returns TRUE if there are two unique elements in
+its argument, and returns FALSE if there are not two unique elements in its
 argument.
 }
 \details{
@@ -21,6 +21,7 @@ sufficiently simple as to be practically redundant to the user.
 \examples{
 check.false.binary(c(1,0,0,1,0,0,0,1))
 check.false.binary(c("A","B","B","B","A","B","A","A"))
-check.false.binary(c(T,T,T,F,F,T,F,F,T,T,F))
+check.false.binary(c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,
+FALSE))
 }
 

@@ -10,9 +10,9 @@ check.false.binary.multiple(bin.chains)
 \item{bin.chains}{A two dimensional matrix}
 }
 \description{
-\code{check.false.binary.multiple} returns TRUE is there are two unique elements
-in its argument, and returns FALSE if there are not two unique elements in
-its argument.
+\code{check.false.binary.multiple} returns TRUE is there are two unique
+elements in its argument, and returns FALSE if there are not two unique
+elements in its argument.
 }
 \details{
 This function checks every row and column element to see if they all share
@@ -20,7 +20,9 @@ the same two values.
 }
 \examples{
 check.false.binary.multiple(matrix(data = c(1,0,1,0,1,0,0,1,1), ncol = 3))
-check.false.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
-check.false.binary.multiple(matrix(data = c(F,T,F,T,F,T,T,F,F), ncol = 3))
+check.false.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A",
+"A"), ncol = 3))
+check.false.binary.multiple(matrix(data = c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,
+FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3))
 }
 

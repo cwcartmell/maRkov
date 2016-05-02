@@ -23,7 +23,9 @@ using \code{\link{check.false.binary.multiple}} and only used in
 returns TRUE.
 }
 \examples{
-alter.to.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
-alter.to.true.binary.multiple(matrix(data = c(F,T,F,T,F,T,T,F,F), ncol = 3))
+alter.to.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B",
+"A","A"), ncol = 3))
+alter.to.true.binary.multiple(matrix(data = c(TRUE,TRUE,TRUE,FALSE,FALSE,
+TRUE,FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3))
 }
 

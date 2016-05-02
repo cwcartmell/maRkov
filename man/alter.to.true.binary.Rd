@@ -23,6 +23,7 @@ using \code{\link{check.false.binary}}, and only used in
 }
 \examples{
 alter.to.true.binary(c("A","B","B","B","A","B","A","A"))
-alter.to.true.binary(c(T,T,T,F,F,T,F,F,T,T,F))
+alter.to.true.binary(c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,
+FALSE))
 }
 

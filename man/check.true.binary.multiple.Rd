@@ -20,7 +20,9 @@ they contain either the integer values 0 or 1.
 }
 \examples{
 check.true.binary.multiple(matrix(data = c(1,0,1,0,1,0,0,1,1), ncol = 3))
-check.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A","A"), ncol = 3))
-check.true.binary.multiple(matrix(data = c(F,T,F,T,F,T,T,F,F), ncol = 3))
+check.true.binary.multiple(matrix(data = c("A","B","A","B","A","B","B","A",
+"A"), ncol = 3))
+check.true.binary.multiple(matrix(data = c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,
+FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3))
 }
 
