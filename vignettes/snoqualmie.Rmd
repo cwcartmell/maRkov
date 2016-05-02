@@ -10,9 +10,9 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-It rains a lot in Washington. This will come as no surprise to anyone who has been to the Evergreen State, but the specific patterns of the rainfall in the region are important to scientists. For this example, we will be investigating whether precipitation at Snoqualmie Falls Washington can be modeled with a set of binary Markov chains. To determine the answer to this question, we will be testing the null hypothesis of a simple binary chain against the alternative of a second order binary chain.
+It rains a lot in Washington. This will come as no surprise to anyone who has been to the Evergreen State, but the specific patterns of the rainfall in the region are important to scientists. For this example, we will be investigating whether precipitation at Snoqualmie Falls Washington during the month of January can be modeled with a single binary Markov chains. To determine the answer to this question, we will be testing the null hypothesis of a simple binary chain against the alternative of a second order binary chain for every year of rainfall data that we have from Snoqualmie Falls, and then test the null hypothesis that we only need one chain for all of the years against the alternative that we need different chains for different years.
 
-To do this, we will be using the `multiple.binary.test()` function. But first we need to encode the rainfall data in the proper way. The data is below. Note that a "1" denotes that there was more than 0.01 inches of rain on a given day, and a "0"" denotes that there was less rainfall than that. Each row is a separate year and each column is a day of the month of January.
+To do this, we will be using the `single.binary.test()` and `multiple.binary.test()` functions. But first we need to encode the rainfall data in the proper way. The data is below. Note that a "1" denotes that there was more than 0.01 inches of rain on a given day, and a "0"" denotes that there was less rainfall than that. Each row is a separate year and each column is a day of the month of January.
 
 ```{r set_environment, echo=FALSE, results='asis'}
 library(maRkov)
