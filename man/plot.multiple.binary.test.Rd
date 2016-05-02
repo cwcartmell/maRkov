@@ -4,11 +4,13 @@
 \alias{plot.multiple.binary.test}
 \title{Produce plots from objects of class "multiple.binary.test".}
 \usage{
-\method{plot}{multiple.binary.test}(multiple.binary.test)
+\method{plot}{multiple.binary.test}(x, ...)
 }
 \arguments{
-\item{multiple.binary.test}{An object of \code{\link{class}}
+\item{x}{An object of \code{\link{class}}
 \code{multiple.binary.test}.}
+
+\item{...}{Further arguments passed to or from other methods.}
 }
 \description{
 Produces some interesting plots of data and test statistics of objects of

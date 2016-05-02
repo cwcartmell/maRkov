@@ -4,11 +4,13 @@
 \alias{summary.multiple.binary.test}
 \title{Produce a summary of objects of class "multiple.binary.test".}
 \usage{
-\method{summary}{multiple.binary.test}(multiple.binary.test)
+\method{summary}{multiple.binary.test}(object, ...)
 }
 \arguments{
-\item{multiple.binary.test}{An object of \code{\link{class}}
+\item{object}{An object of \code{\link{class}}
 \code{multiple.binary.test}.}
+
+\item{...}{Further arguments passed to or from other methods.}
 }
 \description{
 Prints test statistics and p-values for objects of \link{class}
