@@ -81,12 +81,8 @@ the Pearson's chi square test, and a run test for a run of length specified
 by the argument \code{run}.
 }
 \examples{
-data <- matrix(data = c(0,0,1,1,0,0,1,0,1,1,
-                        1,1,1,0,1,1,0,0,0,0,
-                        1,1,0,0,0,1,1,0,0,1,
-                        1,1,1,1,0,1,1,1,1,1,
-                        1,1,0,1,1,1,0,0,1,0), ncol = 10, byrow = TRUE)
-foo <- multiple.binary.test(binary.chains = data, swaps = 10000, n=10000,
+data <- as.matrix(maRkov::snoqualmie)
+foo <- multiple.binary.test(binary.chains = data, swaps = 10000, n = 10000,
                             run = 3, bins = 50)
 
 }
