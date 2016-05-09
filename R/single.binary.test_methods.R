@@ -29,11 +29,20 @@ summary.single.binary.test <- function(object, ...) {
   print(object$call)
   cat("\nVarious test statistics:\n")
   cat("                 Min          1Q      Median          3Q         Max   test stat  Pr(>test stat)\n")
-  cat("LRT\t", format(quantile(object$test.stats.lrt)[1], trim = FALSE, justify = "right", width = 10), format(quantile(object$test.stats.lrt)[2],
-                                                                                                               trim = FALSE, justify = "right", width = 10), format(quantile(object$test.stats.lrt)[3], trim = FALSE, justify = "right", width = 10),
-      format(quantile(object$test.stats.lrt)[4], trim = FALSE, justify = "right", width = 10), format(quantile(object$test.stats.lrt)[5],
-                                                                                                      trim = FALSE, justify = "right", width = 10), format(object$test.stats.lrt[1], trim = FALSE, justify = "right", width = 10),
-      format(object$p.value.lrt, trim = FALSE, justify = "right", width = 10), sep = "  ")
+  cat("LRT\t", format(quantile(object$test.stats.lrt)[1], trim = FALSE,
+                      justify = "right", width = 10),
+      format(quantile(object$test.stats.lrt)[2], trim = FALSE,
+             justify = "right", width = 10),
+      format(quantile(object$test.stats.lrt)[3], trim = FALSE,
+             justify = "right", width = 10),
+      format(quantile(object$test.stats.lrt)[4], trim = FALSE,
+             justify = "right", width = 10),
+      format(quantile(object$test.stats.lrt)[5], trim = FALSE,
+             justify = "right", width = 10),
+      format(object$test.stats.lrt[1], trim = FALSE, justify = "right",
+             width = 10),
+      format(object$p.value.lrt, trim = FALSE, justify = "right", width = 10),
+      sep = "  ")
   if (object$p.value.lrt < 0.001) {
     cat(" ***\n")
   } else if (object$p.value.lrt < 0.01 & object$p.value.lrt >= 0.001) {
@@ -46,11 +55,22 @@ summary.single.binary.test <- function(object, ...) {
     cat(" \n")
   }
 
-  cat("ChiSq\t", format(quantile(object$test.stats.chisq), trim = FALSE, justify = "right", width = 10)[1], format(quantile(object$test.stats.chisq)[2],
-                                                                                                                   trim = FALSE, justify = "right", width = 10), format(quantile(object$test.stats.chisq)[3], trim = FALSE, justify = "right",
-                                                                                                                                                                        width = 10), format(quantile(object$test.stats.chisq)[4], trim = FALSE, justify = "right", width = 10), format(quantile(object$test.stats.chisq)[5],
-                                                                                                                                                                                                                                                                                       trim = FALSE, justify = "right", width = 10), format(object$test.stats.chisq[1], trim = FALSE, justify = "right", width = 10),
-      format(object$p.value.chisq, trim = FALSE, justify = "right", width = 10), sep = "  ")
+  cat("ChiSq\t",
+      format(quantile(object$test.stats.chisq)[1], trim = FALSE,
+             justify = "right", width = 10, digits = 6),
+      format(quantile(object$test.stats.chisq)[2], trim = FALSE,
+             justify = "right", width = 10, digits = 6),
+      format(quantile(object$test.stats.chisq)[3], trim = FALSE,
+             justify = "right", width = 10, digits = 6),
+      format(quantile(object$test.stats.chisq)[4], trim = FALSE,
+             justify = "right", width = 10, digits = 6),
+      format(quantile(object$test.stats.chisq)[5], trim = FALSE,
+             justify = "right", width = 10, digits = 6),
+      format(object$test.stats.chisq[1], trim = FALSE, justify = "right",
+             width = 10, digits = 6),
+      format(object$p.value.chisq, trim = FALSE, justify = "right", width = 10,
+             digits = 6),
+      sep = "  ")
   if (object$p.value.chisq < 0.001) {
     cat(" ***\n")
   } else if (object$p.value.chisq < 0.01 & object$p.value.chisq >= 0.001) {
@@ -63,11 +83,20 @@ summary.single.binary.test <- function(object, ...) {
     cat(" \n")
   }
 
-  cat("Run =", object$run, format(quantile(object$test.stats.run)[1], trim = FALSE, justify = "right", width = 10), format(quantile(object$test.stats.run)[2],
-                                                                                                                           trim = FALSE, justify = "right", width = 10), format(quantile(object$test.stats.run)[3], trim = FALSE, justify = "right", width = 10),
-      format(quantile(object$test.stats.run)[4], trim = FALSE, justify = "right", width = 10), format(quantile(object$test.stats.run)[5],
-                                                                                                      trim = FALSE, justify = "right", width = 10), format(object$test.stats.run[1], trim = FALSE, justify = "right", width = 10),
-      format(object$p.value.run, trim = FALSE, justify = "right", width = 10), sep = "  ")
+  cat("Run =", object$run, format(quantile(object$test.stats.run)[1],
+                                  trim = FALSE, justify = "right", width = 10),
+      format(quantile(object$test.stats.run)[2], trim = FALSE,
+             justify = "right", width = 10),
+      format(quantile(object$test.stats.run)[3], trim = FALSE,
+             justify = "right", width = 10),
+      format(quantile(object$test.stats.run)[4], trim = FALSE,
+             justify = "right", width = 10),
+      format(quantile(object$test.stats.run)[5], trim = FALSE,
+             justify = "right", width = 10),
+      format(object$test.stats.run[1], trim = FALSE, justify = "right",
+             width = 10),
+      format(object$p.value.run, trim = FALSE, justify = "right", width = 10),
+      sep = "  ")
   if (object$p.value.run < 0.001) {
     cat(" ***\n")
   } else if (object$p.value.run < 0.01 & object$p.value.run >= 0.001) {
@@ -86,7 +115,8 @@ summary.single.binary.test <- function(object, ...) {
   cat("Generated data 1 :\t\t", object$data[2, ], "\n")
   cat("Generated data 2 :\t\t", object$data[3, ], "\n")
   cat(".\n.\n.\n")
-  cat("Generated data", length(object$data[, 1]) - 1, ":\t\t", object$data[length(object$data[, 1]), ], "\n")
+  cat("Generated data", length(object$data[, 1]) - 1, ":\t\t",
+      object$data[length(object$data[, 1]), ], "\n")
 }
 
 #' Produce plots from objects of class "single.binary.test".

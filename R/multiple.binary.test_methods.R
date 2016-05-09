@@ -28,7 +28,7 @@ summary.multiple.binary.test <- function(object, ...) {
   cat("\ncall:\n")
   print(object$call)
   cat("\nTest statistics\n")
-  cat("                 Min          1Q      Median          3Q         Max   test stat   Pr(>test stat)\n")
+  cat("                 Min          1Q      Median          3Q         Max   test stat  Pr(>test stat)\n")
   cat("LRT\t", format(quantile(object$test.stats.lrt)[1], trim = FALSE,
                       justify = "right", width = 10),
       format(quantile(object$test.stats.lrt)[2], trim = FALSE,
@@ -38,10 +38,9 @@ summary.multiple.binary.test <- function(object, ...) {
       format(quantile(object$test.stats.lrt)[4], trim = FALSE,
              justify = "right", width = 10),
       format(quantile(object$test.stats.lrt)[5], trim = FALSE,
-             justify = "right", width = 10), format(object$test.stats.lrt[1],
-                                                    trim = FALSE,
-                                                    justify = "right",
-                                                    width = 10),
+             justify = "right", width = 10),
+      format(object$test.stats.lrt[1], trim = FALSE, justify = "right",
+             width = 10),
       format(object$p.value.lrt, trim = FALSE, justify = "right", width = 10),
       sep = "  ")
   if (object$p.value.lrt < 0.001) {
