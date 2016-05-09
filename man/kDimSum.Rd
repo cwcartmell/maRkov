@@ -19,7 +19,7 @@ kDimSum(n, i, j)
 \description{
 \code{kDimSum} takes a three dimensional integer vector, fixes the values
 of the first and second dimensions, and then sums the values of all the
-entires in the vector with those two values for its first and second
+entries in the vector with those two values for its first and second
 dimensions.
 }
 

@@ -20,9 +20,9 @@ chains.
 \details{
 \code{swapMult} works by taking a two dimensional integer vector
 \code{binChains} and \code{m}, a number of times to attempt swaps. It
-generates random integers which are valid indicies of the two dimensional
+generates random integers which are valid indices of the two dimensional
 vector \code{binChains} and tries to swap the elements of the vector at
-the indicies that it generates, only doing so if this preserves the total
+the indices that it generates, only doing so if this preserves the total
 number of transitions between states. After attempting \code{m} swaps,
 \code{swapMult} returns the new, freshly swapped two dimensional vector of
 binary chains.

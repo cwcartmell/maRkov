@@ -17,7 +17,7 @@ elements in the set of chains \code{binChains}.}
 \description{
 \code{multipleChiSqTestStatArray} takes a three dimensional vector
 containing multiple sets of binary chains of data, and returns a numeric
-vector with entires corresponding to the Pearson's chi square test
+vector with entries corresponding to the Pearson's chi square test
 statistics of each set of binary chains of data.
 }
 

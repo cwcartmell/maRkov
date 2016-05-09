@@ -17,6 +17,6 @@ test for a run starting at.}
 \description{
 \code{indicateRun} takes an integer vector \code{binChain}, and two
 integers, \code{p} and \code{i}, and tells the user if a run of length
-\code{p} starting and index \code{i} in the form of a boolean value.
+\code{p} starting and index \code{i} in the form of a Boolean value.
 }
 

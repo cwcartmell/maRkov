@@ -33,9 +33,9 @@ NumericVector multipleRunTestStatArray (std::vector<std::vector<std::vector<int>
 //'
 //' \code{swapMult} works by taking a two dimensional integer vector
 //' \code{binChains} and \code{m}, a number of times to attempt swaps. It
-//' generates random integers which are valid indicies of the two dimensional
+//' generates random integers which are valid indices of the two dimensional
 //' vector \code{binChains} and tries to swap the elements of the vector at
-//' the indicies that it generates, only doing so if this preserves the total
+//' the indices that it generates, only doing so if this preserves the total
 //' number of transitions between states. After attempting \code{m} swaps,
 //' \code{swapMult} returns the new, freshly swapped two dimensional vector of
 //' binary chains.
@@ -103,7 +103,7 @@ std::vector<std::vector<int> > swapMult (std::vector<std::vector<int> > binChain
 //' dimension of this vector is used to store the original set of binary chains
 //' \code{binChains}.
 //'
-//' @param binChains An integer matrix whose rows represent seperate binary
+//' @param binChains An integer matrix whose rows represent separate binary
 //' chains of data.
 //' @param m An integer value representing the number of swaps to be attempted.
 //' @param b An integer value representing the number of new sets of data to be
@@ -156,7 +156,7 @@ std::vector<std::vector<std::vector<int> > > u6Metropolis (IntegerMatrix binChai
 //'
 //' \code{nCountsMultiple} counts the number of second order transitions in
 //' a integer matrix whose rows represent individual binary chains. It returns
-//' a three dimensional vector whose indicies represent the type of transition,
+//' a three dimensional vector whose indices represent the type of transition,
 //' and whose values represent the number of times that each transition occurs
 //' in the set of chains.
 //'
@@ -191,15 +191,15 @@ std::vector<std::vector<std::vector<int> > > nCountsMultiple (std::vector<std::v
   return n ;
 }
 
-//' Calculate the liklihood ratio test statistic for a set of binary chains of
+//' Calculate the likelihood ratio test statistic for a set of binary chains of
 //' data.
 //'
 //' \code{u6TestStat} takes a two dimensional integer vector \code{binChains}
 //' in which each row represents a single binary chain of data, and calculates
-//' a liklihood ratio test statistic for the entire set.
+//' a likelihood ratio test statistic for the entire set.
 //'
 //' @param binChains A two dimensional integer vector where each row is a
-//' seperate binary chain of data.
+//' separate binary chain of data.
 //' @param nChainUniques An integer value representing the number of unique
 //' elements in the set of chains \code{binChains}.
 // [[Rcpp::export]]
@@ -235,7 +235,7 @@ long double u6TestStat (std::vector<std::vector<int> > binChains, int nChainUniq
 //' and calculates a Pearson's chi square test statistic for the entire set.
 //'
 //' @param binChains A two dimensional integer vector where each row is a
-//' seperate binary chain of data.
+//' separate binary chain of data.
 //' @param nChainUniques An integer value representing the number of unique
 //' elements in the set of chains \code{binChains}.
 // [[Rcpp::export]]
@@ -294,7 +294,7 @@ bool multipleIndicateRun (std::vector<int> binChain, int p, int i) {
 //' entire set.
 //'
 //' @param binChains A two dimensional integer vector where each row is a
-//' seperate binary chain of data.
+//' separate binary chain of data.
 //' @param p An integer value representing the length of run to test for.
 //[[Rcpp::export]]
 long double multipleRunTestStat (std::vector<std::vector<int> > binChains, int p) {
@@ -311,12 +311,12 @@ long double multipleRunTestStat (std::vector<std::vector<int> > binChains, int p
   return testStat ;
 }
 
-//' Calculate liklihood ratio test statistics for many sets of binary chains of
+//' Calculate likelihood ratio test statistics for many sets of binary chains of
 //' data.
 //'
 //' \code{u6TestStatArray} takes a three dimensional vector containing multiple
-//' sets of binary chains of data, and returns a numeric vector with entires
-//' corresponding to the liklihood ratio test statistics of each set of binary
+//' sets of binary chains of data, and returns a numeric vector with entries
+//' corresponding to the likelihood ratio test statistics of each set of binary
 //' chains of data.
 //'
 //' @param binChains A three dimensional vector containing sets of chains of
@@ -340,7 +340,7 @@ NumericVector u6TestStatArray (std::vector<std::vector<std::vector<int> > > binC
 //'
 //' \code{multipleChiSqTestStatArray} takes a three dimensional vector
 //' containing multiple sets of binary chains of data, and returns a numeric
-//' vector with entires corresponding to the Pearson's chi square test
+//' vector with entries corresponding to the Pearson's chi square test
 //' statistics of each set of binary chains of data.
 //'
 //' @param binChains A three dimensional vector containing sets of chains of

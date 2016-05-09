@@ -9,9 +9,9 @@
 madras
 }
 \description{
-A dataset documenting the presence of thought disorders across 12 months
+A data set documenting the presence of thought disorders across 12 months
 since hospitalization. Each column represents a single patient, and each
-row represents a seperate month. Months with thought disorders are encoded as
+row represents a separate month. Months with thought disorders are encoded as
 1 and those without are encoded as 0. Data is sourced from "Analysis of
 Longitudinal Data" by Peter J. Diggle, Patrick J. Heagerty, Kung-Yee Liang,
 and Scott L. Zeger. It was retrieved from

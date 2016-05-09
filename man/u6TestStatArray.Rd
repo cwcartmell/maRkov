@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{u6TestStatArray}
 \alias{u6TestStatArray}
-\title{Calculate liklihood ratio test statistics for many sets of binary chains of
+\title{Calculate likelihood ratio test statistics for many sets of binary chains of
 data.}
 \usage{
 u6TestStatArray(binChains, nChainUniques)
@@ -16,8 +16,8 @@ elements in the set of chains \code{binChains}.}
 }
 \description{
 \code{u6TestStatArray} takes a three dimensional vector containing multiple
-sets of binary chains of data, and returns a numeric vector with entires
-corresponding to the liklihood ratio test statistics of each set of binary
+sets of binary chains of data, and returns a numeric vector with entries
+corresponding to the likelihood ratio test statistics of each set of binary
 chains of data.
 }
 

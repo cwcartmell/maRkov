@@ -9,7 +9,7 @@ multipleChiSqTestStat(binChains, nChainUniques)
 }
 \arguments{
 \item{binChains}{A two dimensional integer vector where each row is a
-seperate binary chain of data.}
+separate binary chain of data.}
 
 \item{nChainUniques}{An integer value representing the number of unique
 elements in the set of chains \code{binChains}.}

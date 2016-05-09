@@ -16,8 +16,8 @@ using namespace Rcpp ;
 //' vector.
 //'
 //' \code{iDimSum} takes a three dimensional integer vector, fixes the values
-//' of the second and thrid dimensions, and then sums the values of all the
-//' entires in the vector with those two values for its second and third
+//' of the second and third dimensions, and then sums the values of all the
+//' entries in the vector with those two values for its second and third
 //' dimensions.
 //'
 //' @param n A three dimensional integer vector.
@@ -39,8 +39,8 @@ int iDimSum (std::vector<std::vector<std::vector<int> > > n, int j, int k) {
 //' vector.
 //'
 //' \code{jDimSum} takes a three dimensional integer vector, fixes the values
-//' of the first and thrid dimensions, and then sums the values of all the
-//' entires in the vector with those two values for its first and third
+//' of the first and third dimensions, and then sums the values of all the
+//' entries in the vector with those two values for its first and third
 //' dimensions.
 //'
 //' @param n A three dimensional integer vector.
@@ -63,7 +63,7 @@ int jDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int k) {
 //'
 //' \code{kDimSum} takes a three dimensional integer vector, fixes the values
 //' of the first and second dimensions, and then sums the values of all the
-//' entires in the vector with those two values for its first and second
+//' entries in the vector with those two values for its first and second
 //' dimensions.
 //'
 //' @param n A three dimensional integer vector.
@@ -86,7 +86,7 @@ int kDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int j) {
 //'
 //' \code{ikDimSum} takes a three dimensional integer vector, fixes the value
 //' of the second dimension, and then sums the values of all the
-//' entires in the vector with that value for its second dimension.
+//' entries in the vector with that value for its second dimension.
 //'
 //' @param n A three dimensional integer vector.
 //' @param j An integer that is a valid index of the second dimension of
@@ -109,7 +109,7 @@ int ikDimSum (std::vector<std::vector<std::vector<int> > > n, int j) {
 //'
 //' \code{ikDimSum} takes a three dimensional integer vector, fixes the value
 //' of the first dimension, and then sums the values of all the
-//' entires in the vector with that value for its first dimension.
+//' entries in the vector with that value for its first dimension.
 //'
 //' @param n A three dimensional integer vector.
 //' @param i An integer that is a valid index of the first dimension of
@@ -131,7 +131,7 @@ int jkDimSum (std::vector<std::vector<std::vector<int> > > n, int i) {
 //' Find the number of entries in a vector greater or equal to the value of the
 //' first entry.
 //'
-//' \code{vecGreaterThan} counts the number of entries in a numberic vector
+//' \code{vecGreaterThan} counts the number of entries in a numeric vector
 //' \code{testStats} whose values are greater than that of the value of the
 //' first element of the vector.
 //'

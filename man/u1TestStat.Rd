@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{u1TestStat}
 \alias{u1TestStat}
-\title{Calculates the liklihood ratio test statistic for a single binary chain.}
+\title{Calculates the likelihood ratio test statistic for a single binary chain.}
 \usage{
 u1TestStat(binChain, nChainUniques)
 }
@@ -14,7 +14,7 @@ integer vector.}
 values in \code{binChain}.}
 }
 \description{
-\code{u1TestStat} takes a binary chain of data and calculates the liklihood
+\code{u1TestStat} takes a binary chain of data and calculates the likelihood
 ratio test statistic associated with it.
 }
 

@@ -7,7 +7,7 @@
 u6Metropolis(binChains, m, b)
 }
 \arguments{
-\item{binChains}{An integer matrix whose rows represent seperate binary
+\item{binChains}{An integer matrix whose rows represent separate binary
 chains of data.}
 
 \item{m}{An integer value representing the number of swaps to be attempted.}

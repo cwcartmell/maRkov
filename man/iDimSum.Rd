@@ -18,8 +18,8 @@ iDimSum(n, j, k)
 }
 \description{
 \code{iDimSum} takes a three dimensional integer vector, fixes the values
-of the second and thrid dimensions, and then sums the values of all the
-entires in the vector with those two values for its second and third
+of the second and third dimensions, and then sums the values of all the
+entries in the vector with those two values for its second and third
 dimensions.
 }
 

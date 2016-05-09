@@ -11,7 +11,7 @@ vecGreaterThan(testStats)
 \item{testStats}{A one dimensional numeric vector.}
 }
 \description{
-\code{vecGreaterThan} counts the number of entries in a numberic vector
+\code{vecGreaterThan} counts the number of entries in a numeric vector
 \code{testStats} whose values are greater than that of the value of the
 first element of the vector.
 }

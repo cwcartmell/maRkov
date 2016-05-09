@@ -8,12 +8,12 @@ to integers 0 and 1.}
 alter.to.true.binary(bin.chain)
 }
 \arguments{
-\item{bin.chain}{A one dimesional vector with two unique elements.}
+\item{bin.chain}{A one dimensional vector with two unique elements.}
 }
 \description{
 \code{alter.to.true.binary} takes a one dimensional vector that contains two
 unique values and switches all of the values with either integer values 0 or
-1, so that the resulting vector has a one-to-one corespondance with the
+1, so that the resulting vector has a one-to-one correspondence with the
 original.
 }
 \details{

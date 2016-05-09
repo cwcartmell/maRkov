@@ -118,7 +118,7 @@ std::vector<std::vector<int> > metropolis (IntegerVector binChain, int m, int b)
 //' Second order transition counts for a single binary chain.
 //'
 //' \code{nCounts} counts the number of second order transitions in a binary
-//' chain of data, then returns a three dimensional vector whose indicies
+//' chain of data, then returns a three dimensional vector whose indices
 //' represent the type of transition, and whose values represent the number of
 //' times that each transition occurs in the chain.
 //'
@@ -153,9 +153,9 @@ std::vector<std::vector<std::vector<int> > > nCounts (std::vector<int> binChain,
   return n ;
 }
 
-//' Calculates the liklihood ratio test statistic for a single binary chain.
+//' Calculates the likelihood ratio test statistic for a single binary chain.
 //'
-//' \code{u1TestStat} takes a binary chain of data and calculates the liklihood
+//' \code{u1TestStat} takes a binary chain of data and calculates the likelihood
 //' ratio test statistic associated with it.
 //'
 //' @param binChain A binary chain of data in the form of a one dimensional
@@ -214,7 +214,7 @@ long double chiSqTestStat (std::vector<int> binChain, int nChainUniques) {
 //'
 //' \code{indicateRun} takes an integer vector \code{binChain}, and two
 //' integers, \code{p} and \code{i}, and tells the user if a run of length
-//' \code{p} starting and index \code{i} in the form of a boolean value.
+//' \code{p} starting and index \code{i} in the form of a Boolean value.
 //'
 //' @param binChain A binary chain of data in the form of an integer vector.
 //' @param p A integer value representing the length of the run to test for.
@@ -254,10 +254,10 @@ int runTestStat (std::vector<int> binChain, int p) {
   return testStat ;
 }
 
-//' Calulate likihood ratio test statistics for many binary chains.
+//' Calculate likelihood ratio test statistics for many binary chains.
 //'
 //' \code{u1TestStatArray} takes an integer matrix with each row denoting a
-//' binary chain of data and returns an integer vector with liklihood ratio test
+//' binary chain of data and returns an integer vector with likelihood ratio test
 //' statistics corresponding to each binary chain.
 //'
 //' @param binChains A two dimensional integer matrix with each row denoting a
@@ -276,7 +276,7 @@ NumericVector u1TestStatArray (std::vector<std::vector<int> >  binChains, int nC
 //' Calculate the chi square test statistics for many single binary chains.
 //'
 //' \code{chiSqTestStatArray} takes a two dimensional matrix of many binary
-//' chains of data and returns a numberic vector filled with a chi square test
+//' chains of data and returns a numeric vector filled with a chi square test
 //' statistic for each of them.
 //'
 //' @param binChains A integer matrix of binary chains of data, with each row

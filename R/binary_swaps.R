@@ -118,14 +118,14 @@ check.true.binary.multiple <- function(bin.chains) {
 #'
 #' \code{alter.to.true.binary} takes a one dimensional vector that contains two
 #' unique values and switches all of the values with either integer values 0 or
-#' 1, so that the resulting vector has a one-to-one corespondance with the
+#' 1, so that the resulting vector has a one-to-one correspondence with the
 #' original.
 #'
 #' For this function to work properly, its argument should be checked first
 #' using \code{\link{check.false.binary}}, and only used in
 #' \code{alter.to.true.binary} if \code{\link{check.false.binary}} returns TRUE.
 #'
-#' @param bin.chain A one dimesional vector with two unique elements.
+#' @param bin.chain A one dimensional vector with two unique elements.
 #'
 #' @examples
 #' alter.to.true.binary(c("A","B","B","B","A","B","A","A"))
@@ -150,7 +150,7 @@ alter.to.true.binary <- function(bin.chain) {
 #'
 #' \code{alter.to.true.binary.multiple} takes a two dimensional matrix that
 #' contains two unique values and switches all of the values with either integer
-#' values 0 or 1, so that the resulting matrix has a one-to-one corespondance
+#' values 0 or 1, so that the resulting matrix has a one-to-one correspondence
 #' with the original.
 #'
 #' For this function to work properly, its argument should be checked first

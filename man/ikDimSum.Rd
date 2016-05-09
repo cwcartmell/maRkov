@@ -16,6 +16,6 @@ ikDimSum(n, j)
 \description{
 \code{ikDimSum} takes a three dimensional integer vector, fixes the value
 of the second dimension, and then sums the values of all the
-entires in the vector with that value for its second dimension.
+entries in the vector with that value for its second dimension.
 }
 

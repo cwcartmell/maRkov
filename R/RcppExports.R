@@ -5,8 +5,8 @@
 #' vector.
 #'
 #' \code{iDimSum} takes a three dimensional integer vector, fixes the values
-#' of the second and thrid dimensions, and then sums the values of all the
-#' entires in the vector with those two values for its second and third
+#' of the second and third dimensions, and then sums the values of all the
+#' entries in the vector with those two values for its second and third
 #' dimensions.
 #'
 #' @param n A three dimensional integer vector.
@@ -22,8 +22,8 @@ iDimSum <- function(n, j, k) {
 #' vector.
 #'
 #' \code{jDimSum} takes a three dimensional integer vector, fixes the values
-#' of the first and thrid dimensions, and then sums the values of all the
-#' entires in the vector with those two values for its first and third
+#' of the first and third dimensions, and then sums the values of all the
+#' entries in the vector with those two values for its first and third
 #' dimensions.
 #'
 #' @param n A three dimensional integer vector.
@@ -40,7 +40,7 @@ jDimSum <- function(n, i, k) {
 #'
 #' \code{kDimSum} takes a three dimensional integer vector, fixes the values
 #' of the first and second dimensions, and then sums the values of all the
-#' entires in the vector with those two values for its first and second
+#' entries in the vector with those two values for its first and second
 #' dimensions.
 #'
 #' @param n A three dimensional integer vector.
@@ -57,7 +57,7 @@ kDimSum <- function(n, i, j) {
 #'
 #' \code{ikDimSum} takes a three dimensional integer vector, fixes the value
 #' of the second dimension, and then sums the values of all the
-#' entires in the vector with that value for its second dimension.
+#' entries in the vector with that value for its second dimension.
 #'
 #' @param n A three dimensional integer vector.
 #' @param j An integer that is a valid index of the second dimension of
@@ -71,7 +71,7 @@ ikDimSum <- function(n, j) {
 #'
 #' \code{ikDimSum} takes a three dimensional integer vector, fixes the value
 #' of the first dimension, and then sums the values of all the
-#' entires in the vector with that value for its first dimension.
+#' entries in the vector with that value for its first dimension.
 #'
 #' @param n A three dimensional integer vector.
 #' @param i An integer that is a valid index of the first dimension of
@@ -83,7 +83,7 @@ jkDimSum <- function(n, i) {
 #' Find the number of entries in a vector greater or equal to the value of the
 #' first entry.
 #'
-#' \code{vecGreaterThan} counts the number of entries in a numberic vector
+#' \code{vecGreaterThan} counts the number of entries in a numeric vector
 #' \code{testStats} whose values are greater than that of the value of the
 #' first element of the vector.
 #'
@@ -102,9 +102,9 @@ vecGreaterThan <- function(testStats) {
 #'
 #' \code{swapMult} works by taking a two dimensional integer vector
 #' \code{binChains} and \code{m}, a number of times to attempt swaps. It
-#' generates random integers which are valid indicies of the two dimensional
+#' generates random integers which are valid indices of the two dimensional
 #' vector \code{binChains} and tries to swap the elements of the vector at
-#' the indicies that it generates, only doing so if this preserves the total
+#' the indices that it generates, only doing so if this preserves the total
 #' number of transitions between states. After attempting \code{m} swaps,
 #' \code{swapMult} returns the new, freshly swapped two dimensional vector of
 #' binary chains.
@@ -134,7 +134,7 @@ swapMult <- function(binChains, m) {
 #' dimension of this vector is used to store the original set of binary chains
 #' \code{binChains}.
 #'
-#' @param binChains An integer matrix whose rows represent seperate binary
+#' @param binChains An integer matrix whose rows represent separate binary
 #' chains of data.
 #' @param m An integer value representing the number of swaps to be attempted.
 #' @param b An integer value representing the number of new sets of data to be
@@ -149,7 +149,7 @@ u6Metropolis <- function(binChains, m, b) {
 #'
 #' \code{nCountsMultiple} counts the number of second order transitions in
 #' a integer matrix whose rows represent individual binary chains. It returns
-#' a three dimensional vector whose indicies represent the type of transition,
+#' a three dimensional vector whose indices represent the type of transition,
 #' and whose values represent the number of times that each transition occurs
 #' in the set of chains.
 #'
@@ -161,15 +161,15 @@ nCountsMultiple <- function(binChains, nChainUniques) {
     .Call('maRkov_nCountsMultiple', PACKAGE = 'maRkov', binChains, nChainUniques)
 }
 
-#' Calculate the liklihood ratio test statistic for a set of binary chains of
+#' Calculate the likelihood ratio test statistic for a set of binary chains of
 #' data.
 #'
 #' \code{u6TestStat} takes a two dimensional integer vector \code{binChains}
 #' in which each row represents a single binary chain of data, and calculates
-#' a liklihood ratio test statistic for the entire set.
+#' a likelihood ratio test statistic for the entire set.
 #'
 #' @param binChains A two dimensional integer vector where each row is a
-#' seperate binary chain of data.
+#' separate binary chain of data.
 #' @param nChainUniques An integer value representing the number of unique
 #' elements in the set of chains \code{binChains}.
 u6TestStat <- function(binChains, nChainUniques) {
@@ -184,7 +184,7 @@ u6TestStat <- function(binChains, nChainUniques) {
 #' and calculates a Pearson's chi square test statistic for the entire set.
 #'
 #' @param binChains A two dimensional integer vector where each row is a
-#' seperate binary chain of data.
+#' separate binary chain of data.
 #' @param nChainUniques An integer value representing the number of unique
 #' elements in the set of chains \code{binChains}.
 multipleChiSqTestStat <- function(binChains, nChainUniques) {
@@ -215,18 +215,18 @@ multipleIndicateRun <- function(binChain, p, i) {
 #' entire set.
 #'
 #' @param binChains A two dimensional integer vector where each row is a
-#' seperate binary chain of data.
+#' separate binary chain of data.
 #' @param p An integer value representing the length of run to test for.
 multipleRunTestStat <- function(binChains, p) {
     .Call('maRkov_multipleRunTestStat', PACKAGE = 'maRkov', binChains, p)
 }
 
-#' Calculate liklihood ratio test statistics for many sets of binary chains of
+#' Calculate likelihood ratio test statistics for many sets of binary chains of
 #' data.
 #'
 #' \code{u6TestStatArray} takes a three dimensional vector containing multiple
-#' sets of binary chains of data, and returns a numeric vector with entires
-#' corresponding to the liklihood ratio test statistics of each set of binary
+#' sets of binary chains of data, and returns a numeric vector with entries
+#' corresponding to the likelihood ratio test statistics of each set of binary
 #' chains of data.
 #'
 #' @param binChains A three dimensional vector containing sets of chains of
@@ -244,7 +244,7 @@ u6TestStatArray <- function(binChains, nChainUniques) {
 #'
 #' \code{multipleChiSqTestStatArray} takes a three dimensional vector
 #' containing multiple sets of binary chains of data, and returns a numeric
-#' vector with entires corresponding to the Pearson's chi square test
+#' vector with entries corresponding to the Pearson's chi square test
 #' statistics of each set of binary chains of data.
 #'
 #' @param binChains A three dimensional vector containing sets of chains of
@@ -321,7 +321,7 @@ metropolis <- function(binChain, m, b) {
 #' Second order transition counts for a single binary chain.
 #'
 #' \code{nCounts} counts the number of second order transitions in a binary
-#' chain of data, then returns a three dimensional vector whose indicies
+#' chain of data, then returns a three dimensional vector whose indices
 #' represent the type of transition, and whose values represent the number of
 #' times that each transition occurs in the chain.
 #'
@@ -334,9 +334,9 @@ nCounts <- function(binChain, nChainUniques) {
     .Call('maRkov_nCounts', PACKAGE = 'maRkov', binChain, nChainUniques)
 }
 
-#' Calculates the liklihood ratio test statistic for a single binary chain.
+#' Calculates the likelihood ratio test statistic for a single binary chain.
 #'
-#' \code{u1TestStat} takes a binary chain of data and calculates the liklihood
+#' \code{u1TestStat} takes a binary chain of data and calculates the likelihood
 #' ratio test statistic associated with it.
 #'
 #' @param binChain A binary chain of data in the form of a one dimensional
@@ -365,7 +365,7 @@ chiSqTestStat <- function(binChain, nChainUniques) {
 #'
 #' \code{indicateRun} takes an integer vector \code{binChain}, and two
 #' integers, \code{p} and \code{i}, and tells the user if a run of length
-#' \code{p} starting and index \code{i} in the form of a boolean value.
+#' \code{p} starting and index \code{i} in the form of a Boolean value.
 #'
 #' @param binChain A binary chain of data in the form of an integer vector.
 #' @param p A integer value representing the length of the run to test for.
@@ -390,10 +390,10 @@ runTestStat <- function(binChain, p) {
     .Call('maRkov_runTestStat', PACKAGE = 'maRkov', binChain, p)
 }
 
-#' Calulate likihood ratio test statistics for many binary chains.
+#' Calculate likelihood ratio test statistics for many binary chains.
 #'
 #' \code{u1TestStatArray} takes an integer matrix with each row denoting a
-#' binary chain of data and returns an integer vector with liklihood ratio test
+#' binary chain of data and returns an integer vector with likelihood ratio test
 #' statistics corresponding to each binary chain.
 #'
 #' @param binChains A two dimensional integer matrix with each row denoting a
@@ -407,7 +407,7 @@ u1TestStatArray <- function(binChains, nChainUniques) {
 #' Calculate the chi square test statistics for many single binary chains.
 #'
 #' \code{chiSqTestStatArray} takes a two dimensional matrix of many binary
-#' chains of data and returns a numberic vector filled with a chi square test
+#' chains of data and returns a numeric vector filled with a chi square test
 #' statistic for each of them.
 #'
 #' @param binChains A integer matrix of binary chains of data, with each row

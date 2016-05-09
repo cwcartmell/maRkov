@@ -2,7 +2,7 @@
 title: "Madras Schizophrenia Study"
 author: "Conrad Cartmell"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 vignette: >
   %\VignetteIndexEntry{Madras Schizophrenia Study}
   %\VignetteEngine{knitr::rmarkdown}

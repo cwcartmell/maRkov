@@ -9,7 +9,7 @@ multipleRunTestStat(binChains, p)
 }
 \arguments{
 \item{binChains}{A two dimensional integer vector where each row is a
-seperate binary chain of data.}
+separate binary chain of data.}
 
 \item{p}{An integer value representing the length of run to test for.}
 }

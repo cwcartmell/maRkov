@@ -2,14 +2,14 @@
 % Please edit documentation in R/RcppExports.R
 \name{u6TestStat}
 \alias{u6TestStat}
-\title{Calculate the liklihood ratio test statistic for a set of binary chains of
+\title{Calculate the likelihood ratio test statistic for a set of binary chains of
 data.}
 \usage{
 u6TestStat(binChains, nChainUniques)
 }
 \arguments{
 \item{binChains}{A two dimensional integer vector where each row is a
-seperate binary chain of data.}
+separate binary chain of data.}
 
 \item{nChainUniques}{An integer value representing the number of unique
 elements in the set of chains \code{binChains}.}
@@ -17,6 +17,6 @@ elements in the set of chains \code{binChains}.}
 \description{
 \code{u6TestStat} takes a two dimensional integer vector \code{binChains}
 in which each row represents a single binary chain of data, and calculates
-a liklihood ratio test statistic for the entire set.
+a likelihood ratio test statistic for the entire set.
 }
 

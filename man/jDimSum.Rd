@@ -18,8 +18,8 @@ jDimSum(n, i, k)
 }
 \description{
 \code{jDimSum} takes a three dimensional integer vector, fixes the values
-of the first and thrid dimensions, and then sums the values of all the
-entires in the vector with those two values for its first and third
+of the first and third dimensions, and then sums the values of all the
+entries in the vector with those two values for its first and third
 dimensions.
 }
 

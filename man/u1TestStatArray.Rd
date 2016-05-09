@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{u1TestStatArray}
 \alias{u1TestStatArray}
-\title{Calulate likihood ratio test statistics for many binary chains.}
+\title{Calculate likelihood ratio test statistics for many binary chains.}
 \usage{
 u1TestStatArray(binChains, nChainUniques)
 }
@@ -15,7 +15,7 @@ values in the binary chains found in \code{binChains}.}
 }
 \description{
 \code{u1TestStatArray} takes an integer matrix with each row denoting a
-binary chain of data and returns an integer vector with liklihood ratio test
+binary chain of data and returns an integer vector with likelihood ratio test
 statistics corresponding to each binary chain.
 }
 

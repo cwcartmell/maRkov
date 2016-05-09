@@ -9,7 +9,7 @@
 snoqualmie
 }
 \description{
-A dataset documenting the presence of precipitation in Snoqualmie Falls
+A data set documenting the presence of precipitation in Snoqualmie Falls
 Washington on every day of every January from 1948 to 1983. 1 indicates a day
 with >=0.01 inches of precipitation, 0 indicates a day with <0.01 inches of
 precipitation. Data sourced from Peter Guttorp's Stochastic Modeling of

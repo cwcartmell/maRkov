@@ -14,7 +14,7 @@ nCounts(binChain, nChainUniques)
 }
 \description{
 \code{nCounts} counts the number of second order transitions in a binary
-chain of data, then returns a three dimensional vector whose indicies
+chain of data, then returns a three dimensional vector whose indices
 represent the type of transition, and whose values represent the number of
 times that each transition occurs in the chain.
 }

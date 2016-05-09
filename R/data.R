@@ -1,6 +1,6 @@
 #' Rainfall data for the month of January in Snoqualmie Falls, 1948 - 1983.
 #'
-#' A dataset documenting the presence of precipitation in Snoqualmie Falls
+#' A data set documenting the presence of precipitation in Snoqualmie Falls
 #' Washington on every day of every January from 1948 to 1983. 1 indicates a day
 #' with >=0.01 inches of precipitation, 0 indicates a day with <0.01 inches of
 #' precipitation. Data sourced from Peter Guttorp's Stochastic Modeling of
@@ -11,9 +11,9 @@
 
 #' Tornado data for Oklahoma, 1950 - 2015
 #'
-#' A dataset documenting the presence of tornadic activity in Oklahoma. Each
+#' A data set documenting the presence of tornadic activity in Oklahoma. Each
 #' row represents a year, starting with 1950, and ending in 2015, and each
-#' column is a day of that year. Each day on which a tornado occured is marked
+#' column is a day of that year. Each day on which a tornado occurred is marked
 #' encoded as a 1 and each day without tornadic activity is encoded as a 0. The
 #' data is inspired by, but not drawn from, the paper "A Markov Chain Model of
 #' Tornadic Activity" by Mathias Drton, Caren Marzban, Peter Guttorp, and Joseph
@@ -28,9 +28,9 @@
 
 #' Data from the Madras schizophrenia study
 #'
-#' A dataset documenting the presence of thought disorders across 12 months
+#' A data set documenting the presence of thought disorders across 12 months
 #' since hospitalization. Each column represents a single patient, and each
-#' row represents a seperate month. Months with thought disorders are encoded as
+#' row represents a separate month. Months with thought disorders are encoded as
 #' 1 and those without are encoded as 0. Data is sourced from "Analysis of
 #' Longitudinal Data" by Peter J. Diggle, Patrick J. Heagerty, Kung-Yee Liang,
 #' and Scott L. Zeger. It was retrieved from

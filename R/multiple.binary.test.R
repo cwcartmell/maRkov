@@ -1,11 +1,11 @@
-#' Preform goodness-of-fit tests on multiple binary chains.
+#' Perform goodness-of-fit tests on multiple binary chains.
 #'
 #' \code{multiple.binary.test} is used to preform goodness-of-fit tests on
 #' multiple binary chains of data of the same length to see if a Markov chain
 #' model is appropriate.
 #'
 #' \code{multiple.binary.test} works by taking the supplied \code{binary.chains}
-#' parameter, counting the transitions between diffferent elements, and then
+#' parameter, counting the transitions between different elements, and then
 #' generating \code{n} new sets of chains with the same number of transitions.
 #' It generates these new sets of chains by attempting to swap random elements
 #' of the chains \code{swaps} times, only doing so if the attempted swap
@@ -15,17 +15,17 @@
 #' \code{swaps} on that chain again, then recording the result in a new entry in
 #' a list of data. \code{multiple.binary.test} does this \code{n} times to
 #' generate the \code{n} new sets of chains. These new sets of chains are
-#' effictively independent of the original one.
+#' effectively independent of the original one.
 #'
 #' Once \code{multiple.binary.test} has generated new data, it preforms various
-#' tests of that data. included in the function are the liklihood ratio test,
+#' tests of that data. included in the function are the likelihood ratio test,
 #' the Pearson's chi square test, and a run test for a run of length specified
 #' by the argument \code{run}.
 #'
 #' @param binary.chains A two dimensional matrix, in which there are two unique
 #' values.
 #' @param swaps A positive nonzero integer value for the number of swaps to be
-#' attempted on the chain. Larger values will tend to yeild "more independent"
+#' attempted on the chain. Larger values will tend to yield "more independent"
 #' data. Generally, the number of swaps should be much larger then the number of
 #' elements in the matrix \code{binary.chains}.
 #' @param n A positive nonzero integer representing the number of new sets of
@@ -43,10 +43,10 @@
 #' @return  \code{multiple.binary.test} returns a list of \link{class}
 #' \code{"multiple.binary.test"} with the following elements:
 #'
-#' \code{data}, a list of matricies, the first of which is binary.chains, and
+#' \code{data}, a list of matrices, the first of which is binary.chains, and
 #' the rest of which are the generated data.
 #'
-#' \code{test.stats.lrt}, vector of liklihood ratio test statistics for each
+#' \code{test.stats.lrt}, vector of likelihood ratio test statistics for each
 #' element of list \code{data}.
 #'
 #' \code{test.stats.chisq}, a vector of Pearson's chi square test statistics

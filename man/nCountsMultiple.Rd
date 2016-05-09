@@ -16,7 +16,7 @@ represents a single binary chain of data.}
 \description{
 \code{nCountsMultiple} counts the number of second order transitions in
 a integer matrix whose rows represent individual binary chains. It returns
-a three dimensional vector whose indicies represent the type of transition,
+a three dimensional vector whose indices represent the type of transition,
 and whose values represent the number of times that each transition occurs
 in the set of chains.
 }

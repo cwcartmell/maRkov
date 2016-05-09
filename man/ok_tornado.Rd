@@ -9,9 +9,9 @@
 ok_tornado
 }
 \description{
-A dataset documenting the presence of tornadic activity in Oklahoma. Each
+A data set documenting the presence of tornadic activity in Oklahoma. Each
 row represents a year, starting with 1950, and ending in 2015, and each
-column is a day of that year. Each day on which a tornado occured is marked
+column is a day of that year. Each day on which a tornado occurred is marked
 encoded as a 1 and each day without tornadic activity is encoded as a 0. The
 data is inspired by, but not drawn from, the paper "A Markov Chain Model of
 Tornadic Activity" by Mathias Drton, Caren Marzban, Peter Guttorp, and Joseph

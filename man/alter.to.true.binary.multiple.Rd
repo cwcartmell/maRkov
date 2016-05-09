@@ -13,7 +13,7 @@ alter.to.true.binary.multiple(bin.chains)
 \description{
 \code{alter.to.true.binary.multiple} takes a two dimensional matrix that
 contains two unique values and switches all of the values with either integer
-values 0 or 1, so that the resulting matrix has a one-to-one corespondance
+values 0 or 1, so that the resulting matrix has a one-to-one correspondence
 with the original.
 }
 \details{

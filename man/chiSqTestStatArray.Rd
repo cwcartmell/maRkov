@@ -15,7 +15,7 @@ values in \code{binChains}.}
 }
 \description{
 \code{chiSqTestStatArray} takes a two dimensional matrix of many binary
-chains of data and returns a numberic vector filled with a chi square test
+chains of data and returns a numeric vector filled with a chi square test
 statistic for each of them.
 }
 

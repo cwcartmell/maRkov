@@ -1,4 +1,4 @@
-#' Preform goodness-of-fit tests on a single binary chain.
+#' Perform goodness-of-fit tests on a single binary chain.
 #'
 #' \code{single.binary.test} is used to preform goodness-of-fit tests on single
 #' binary chains of data to see if a Markov chain model is appropriate.
@@ -16,13 +16,13 @@
 #' new chains. These new chains are effectively independent of the original one.
 #'
 #' Once \code{single.binary.test} has generated new data, it preforms various
-#' tests on that data. Included in the function are the liklihood ratio test,
+#' tests on that data. Included in the function are the likelihood ratio test,
 #' the Pearson's chi square test, and a run test for a run of length specified
 #' by the argument \code{run}.
 #'
 #' @param binary.chain A one dimensional vector with two unique values.
 #' @param swaps A positive nonzero integer value for the number of swaps to be
-#' attempted on the chain. Larger numbers will tend to yeild "more independent"
+#' attempted on the chain. Larger numbers will tend to yield "more independent"
 #' data. Generally, the number of swaps should be far greater than the length
 #' of \code{binary.chain}.
 #' @param n A positive nonzero integer value representing the number of new
@@ -45,7 +45,7 @@
 #' \code{data}, a matrix of data with \code{binary.chain} in the first row, and
 #' the generated n rows of data in the following columns.
 #'
-#' \code{test.stats.lrt}, a vector of liklihood ratio test statistics for each
+#' \code{test.stats.lrt}, a vector of likelihood ratio test statistics for each
 #' row of data in \code{data}.
 #'
 #' \code{test.stats.chisq},  a vector of Pearson's chi square test statistics
@@ -81,7 +81,7 @@ single.binary.test <- function(binary.chain, swaps = 1000, n = 1000, run = 4,
     }
     # End Block
 
-    # Block checks binary chain, alters it if nessecary.
+    # Block checks binary chain, alters it if necessary.
 
     if (check.false.binary(binary.chain) == FALSE) {
         print("Error: the argument binary.chain must be a set of binary data")
