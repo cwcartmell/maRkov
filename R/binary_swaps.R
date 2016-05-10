@@ -7,7 +7,7 @@
 #' This function is not designed to be used outside of this package. It is
 #' sufficiently simple as to be practically redundant to the user.
 #'
-#' @param bin.chain A one dimension vector.
+#' @param bin.chain A one dimensional vector.
 #'
 #' @examples
 #' check.false.binary(c(1,0,0,1,0,0,0,1))
