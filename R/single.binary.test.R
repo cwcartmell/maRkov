@@ -98,13 +98,13 @@ single_binary_test <- function(binary_chain, swaps = 1000, n = 1000, run = 4,
 
     n_chain_uniques <- length(unique(binary_chain))
     data <- metropolis(binary_chain, swaps, n)
-    test_stats_lrt <- u1TestStatArray(data, n_chain_uniques)
-    test_stats_chi_sq <- chiSqTestStatArray(data, n_chain_uniques)
-    test_stats_run <- runTestStatArray(data, run)
+    test_stats_lrt <- u1_test_stat_array(data, n_chain_uniques)
+    test_stats_chi_sq <- chi_sq_test_stat_array(data, n_chain_uniques)
+    test_stats_run <- run_test_stat_array(data, run)
 
-    p_value_lrt <- vecGreaterThan(test_stats_lrt)/(n + 1)
-    p_value_chi_sq <- vecGreaterThan(test_stats_chi_sq)/(n + 1)
-    p_value_run <- vecGreaterThan(test_stats_run)/(n + 1)
+    p_value_lrt <- vec_greater_than(test_stats_lrt)/(n + 1)
+    p_value_chi_sq <- vec_greater_than(test_stats_chi_sq)/(n + 1)
+    p_value_run <- vec_greater_than(test_stats_run)/(n + 1)
 
     out <- list(data =  matrix(unlist(data), ncol = length(binary_chain),
                                byrow = TRUE),
