@@ -12,41 +12,41 @@ vignette: >
 
 It rains a lot in Washington. This will come as no surprise to anyone who has been to the Evergreen State, but the specific patterns of the rainfall in the region are important to scientists. For this example, we will be investigating whether precipitation at Snoqualmie Falls Washington during the month of January can be modeled with a single binary Markov chains. To determine the answer to this question, we will be testing the null hypothesis of a simple binary chain against the alternative of a second order binary chain for every year of rainfall data that we have from Snoqualmie Falls, and then test the null hypothesis that we only need one chain for all of the years against the alternative that we need different chains for different years.
 
-To do this, we will be using the `single.binary.test()` and `multiple.binary.test()` functions. But first we need to encode the rainfall data in the proper way. The data is below. Note that a "1" denotes that there was more than 0.01 inches of rain on a given day, and a "0"" denotes that there was less rainfall than that. Each row is a separate year and each column is a day of the month of January.
+To do this, we will be using the `single_binary_test()` and `multiple_binar_test()` functions. But first we need to encode the rainfall data in the proper way. The data is below. Note that a "1" denotes that there was more than 0.01 inches of rain on a given day, and a "0"" denotes that there was less rainfall than that. Each row is a separate year and each column is a day of the month of January.
 
 ```{r set_environment, echo=FALSE, results='asis'}
 library(maRkov)
 knitr::kable(maRkov::snoqualmie)
 ```
 
-We'll need to encode this data in a way that `single.binary.test` and `multiple.binary.test()` can understand, so we're going to turn it into a matrix with rows representing each single year chain, and columns representing days of January. Luckily, the as.matrix function makes it easy to do this.
+We'll need to encode this data in a way that `single_binary_test` and `multiple_binary_test()` can understand, so we're going to turn it into a matrix with rows representing each single year chain, and columns representing days of January. Luckily, the as.matrix function makes it easy to do this.
 
 ```{r import_data}
-snoqualmie.matrix <- as.matrix(maRkov::snoqualmie)
+snoqualmie_matrix <- as.matrix(maRkov::snoqualmie)
 ```
 
 Before we can examine whether a simple binary Markov chain is appropriate for describing rainfall in the month of January in general, we need to ask ourselves if each January that we have is appropriately modeled by a simple binary chain. To determine this, we will generate a vector of likelihood ratio p-values for each year, and a histogram:
 
 ```{r multiple_single_test, fig.width = 7, fig.height = 4}
-lrt.p.values <- vector(mode = "numeric", length = nrow(snoqualmie.matrix))
-for (i in 1:nrow(snoqualmie.matrix)) {
-  snoqualmie.year <- snoqualmie.matrix[i, ]
-  snoqualmie.year.test <- single.binary.test(snoqualmie.year, swaps = 10000, n = 10000)
-  lrt.p.values[i] <- snoqualmie.year.test$p.value.lrt
+lrt_p_values <- vector(mode = "numeric", length = nrow(snoqualmie_matrix))
+for (i in 1:nrow(snoqualmie_matrix)) {
+  snoqualmie_year <- snoqualmie_matrix[i, ]
+  snoqualmie_year_test <- single_binary_test(snoqualmie_year, swaps = 10000, n = 10000)
+  lrt_p_values[i] <- snoqualmie_year_test$p_value_lrt
 }
-hist(lrt.p.values, breaks = 10)
+hist(lrt_p_values, breaks = 10)
 ```
 
 This is quick and dirty analysis, but it is clear from looking at the histogram of p-values that very low ones are generally uncommon. This gives us no reason to doubt that simple binary chains can be used to model the month of January in each year, as the years with low p-values may very well be the result of having data from a great many years.
 
-We're finally ready to call `multiple.binary.test()`, which will produce an object of class `multiple.binary.test`. Afterwards, we'll look at some plots and a summary of our data. Specifically, we'll be taking a look at the distribution of test statistics and the p-value for the likelihood ratio test (LRT). This test will give us a answer to the question of whether or not the null hypothesis of a single binary chain is acceptable against the alternative of a second order binary chain.
+We're finally ready to call `multiple_binary_test()`, which will produce an object of class `multiple_binary_test`. Afterwards, we'll look at some plots and a summary of our data. Specifically, we'll be taking a look at the distribution of test statistics and the p-value for the likelihood ratio test (LRT). This test will give us a answer to the question of whether or not the null hypothesis of a single binary chain is acceptable against the alternative of a second order binary chain.
 
 ```{r run_test_plot, fig.width = 7}
-snoqualmie.test <- multiple.binary.test(binary.chains = snoqualmie.matrix, swaps = 10000, n = 10000)
-plot(snoqualmie.test)
+snoqualmie_test <- multiple_binary_test(binary_chains = snoqualmie_matrix, swaps = 10000, n = 10000)
+plot(snoqualmie_test)
 ```
-By looking at these plots, we notice a few things. First, plotting a object of class `multiple.binary.test` gives us a whole lot of information, much of which isn't particularly interesting to us. We'll just be looking at the tile plot and the histogram of likelihood ratio test statistics. The tile plot lets us get a general feel for the makeup of our set of chains, and the histogram of likelihood ratio statistics shows us that the test statistic of the real set of chains lies somewhere in the meaty part of the distribution, making it unlikely that it is an unusual observation. For more detailed and precise analysis, let's turn our attention to the summary of `snoqualmie.test`.
+By looking at these plots, we notice a few things. First, plotting a object of class `multiple_binary_test` gives us a whole lot of information, much of which isn't particularly interesting to us. We'll just be looking at the tile plot and the histogram of likelihood ratio test statistics. The tile plot lets us get a general feel for the makeup of our set of chains, and the histogram of likelihood ratio statistics shows us that the test statistic of the real set of chains lies somewhere in the meaty part of the distribution, making it unlikely that it is an unusual observation. For more detailed and precise analysis, let's turn our attention to the summary of `snoqualmie_test`.
 ```{r summary, fig.width = 20}
-summary(snoqualmie.test)
+summary(snoqualmie_test)
 ```
 While the output of this code is a little jumbled due to the formatting that knitr coerces it into, you can see the general structure of the output. The likelihood ratio test statistics are broken down by quantile, and there is a p-value printed next to them as well. In this case, the p-value of the likelihood ratio test indicates that a single binary chain is probably acceptable for modeling this data.

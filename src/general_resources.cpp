@@ -15,7 +15,7 @@ using namespace Rcpp ;
 //' Sum all the values in the first dimension of a three dimensional integer
 //' vector.
 //'
-//' \code{iDimSum} takes a three dimensional integer vector, fixes the values
+//' \code{i_dim_sum} takes a three dimensional integer vector, fixes the values
 //' of the second and third dimensions, and then sums the values of all the
 //' entries in the vector with those two values for its second and third
 //' dimensions.
@@ -26,7 +26,7 @@ using namespace Rcpp ;
 //' @param k An integer that is a valid index of the third dimension of
 //' \code{n}.
 // [[Rcpp::export]]
-int iDimSum (std::vector<std::vector<std::vector<int> > > n, int j, int k) {
+int i_dim_sum (std::vector<std::vector<std::vector<int> > > n, int j, int k) {
   int sum = 0 ;
   int dimi = n.size() ;
   for (int i = 0 ; i < dimi ; i++) {
@@ -38,7 +38,7 @@ int iDimSum (std::vector<std::vector<std::vector<int> > > n, int j, int k) {
 //' Sum all the values in the second dimension of a three dimensional integer
 //' vector.
 //'
-//' \code{jDimSum} takes a three dimensional integer vector, fixes the values
+//' \code{j_dim_sum} takes a three dimensional integer vector, fixes the values
 //' of the first and third dimensions, and then sums the values of all the
 //' entries in the vector with those two values for its first and third
 //' dimensions.
@@ -49,7 +49,7 @@ int iDimSum (std::vector<std::vector<std::vector<int> > > n, int j, int k) {
 //' @param k An integer that is a valid index of the third dimension of
 //' \code{n}.
 // [[Rcpp::export]]
-int jDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int k) {
+int j_dim_sum (std::vector<std::vector<std::vector<int> > > n, int i, int k) {
   int sum = 0 ;
   int dimj = n[0].size() ;
   for (int j = 0 ; j < dimj ; j++) {
@@ -61,7 +61,7 @@ int jDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int k) {
 //' Sum all the values in the third dimension of a three dimensional integer
 //' vector.
 //'
-//' \code{kDimSum} takes a three dimensional integer vector, fixes the values
+//' \code{k_dim_sum} takes a three dimensional integer vector, fixes the values
 //' of the first and second dimensions, and then sums the values of all the
 //' entries in the vector with those two values for its first and second
 //' dimensions.
@@ -72,7 +72,7 @@ int jDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int k) {
 //' @param j An integer that is a valid index of the second dimension of
 //' \code{n}.
 // [[Rcpp::export]]
-int kDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int j) {
+int k_dim_sum (std::vector<std::vector<std::vector<int> > > n, int i, int j) {
   int sum = 0 ;
   int dimk = n[0][0].size() ;
   for (int k = 0 ; k < dimk ; k++) {
@@ -84,7 +84,7 @@ int kDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int j) {
 //' Sum all the values in the first and third dimensions of a three dimensional
 //' integer vector.
 //'
-//' \code{ikDimSum} takes a three dimensional integer vector, fixes the value
+//' \code{ik_dim_sum} takes a three dimensional integer vector, fixes the value
 //' of the second dimension, and then sums the values of all the
 //' entries in the vector with that value for its second dimension.
 //'
@@ -92,7 +92,7 @@ int kDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int j) {
 //' @param j An integer that is a valid index of the second dimension of
 //' \code{n}.
 // [[Rcpp::export]]
-int ikDimSum (std::vector<std::vector<std::vector<int> > > n, int j) {
+int ik_dim_sum (std::vector<std::vector<std::vector<int> > > n, int j) {
   int sum = 0 ;
   int dimi = n.size() ;
   int dimk = n[0][0].size() ;
@@ -107,7 +107,7 @@ int ikDimSum (std::vector<std::vector<std::vector<int> > > n, int j) {
 //' Sum all the values in the second and third dimensions of a three dimensional
 //' integer vector.
 //'
-//' \code{ikDimSum} takes a three dimensional integer vector, fixes the value
+//' \code{jkDimSum} takes a three dimensional integer vector, fixes the value
 //' of the first dimension, and then sums the values of all the
 //' entries in the vector with that value for its first dimension.
 //'
@@ -115,7 +115,7 @@ int ikDimSum (std::vector<std::vector<std::vector<int> > > n, int j) {
 //' @param i An integer that is a valid index of the first dimension of
 //' \code{n}.
 // [[Rcpp::export]]
-int jkDimSum (std::vector<std::vector<std::vector<int> > > n, int i) {
+int jk_dim_sum (std::vector<std::vector<std::vector<int> > > n, int i) {
   int sum = 0 ;
   int dimj = n[0].size() ;
   int dimk = n[0][0].size() ;
@@ -131,7 +131,7 @@ int jkDimSum (std::vector<std::vector<std::vector<int> > > n, int i) {
 //' Find the number of entries in a vector greater or equal to the value of the
 //' first entry.
 //'
-//' \code{vecGreaterThan} counts the number of entries in a numeric vector
+//' \code{vec_greater_than} counts the number of entries in a numeric vector
 //' \code{testStats} whose values are greater than that of the value of the
 //' first element of the vector.
 //'
@@ -139,7 +139,7 @@ int jkDimSum (std::vector<std::vector<std::vector<int> > > n, int i) {
 //' @export
 //' @useDynLib maRkov
 // [[Rcpp::export]]
-int vecGreaterThan (NumericVector testStats) {
+int vec_greater_than (NumericVector testStats) {
   int n = testStats.size() ;
   int rank = 0 ;
   for (int i = 1 ; i < n ; i++) {

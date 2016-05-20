@@ -2,7 +2,7 @@
 title: "Madras Schizophrenia Study"
 author: "Conrad Cartmell"
 date: "`r Sys.Date()`"
-output: rmarkdown::pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Madras Schizophrenia Study}
   %\VignetteEngine{knitr::rmarkdown}
@@ -10,11 +10,11 @@ vignette: >
 ---
 The Madras Schizophrenia Study was a long term longitudinal study on the presence of schizophrenia in men and women in the Indian city of Madras, which is now known as Chennai. The data used in this vignette has been sourced from a book on longitudinal studies called "Analysis of Longitudinal Data" that can be found at [http://faculty.washington.edu/heagerty/Books/AnalysisLongitudinal/].
 
-The data found in `madras` is encoded as a data frame with 69 rows and 12 columns, with each row representing a different paitent, and each column representing a month since initial hospitalization. A 1 represents a month in which symptoms were present, and a 0 represents one in which none were. The original dataset from the book featured 86 different individuals, both men and women, but not all of them were followed up on for 12 whole months. Since the program `multiple.binary.test()` requires rectangular data, these individuals were removed from the dataset, leaving us with the 69 individuals mentioned.
+The data found in `madras` is encoded as a data frame with 69 rows and 12 columns, with each row representing a different paitent, and each column representing a month since initial hospitalization. A 1 represents a month in which symptoms were present, and a 0 represents one in which none were. The original dataset from the book featured 86 different individuals, both men and women, but not all of them were followed up on for 12 whole months. Since the program `multiple_binary_test()` requires rectangular data, these individuals were removed from the dataset, leaving us with the 69 individuals mentioned.
 
-The first thing that we need to do is to transform our data into something that the maRkov package can understand. `multiple.binary.test()` takes a binary matrix as input, so that's what we will transform our data into:
+The first thing that we need to do is to transform our data into something that the maRkov package can understand. `multiple_binary_test()` takes a binary matrix as input, so that's what we will transform our data into:
 
-```{r import_data}
+```{r import_data, tidy = TRUE}
 library(maRkov)
 madras <- as.matrix(madras)
 head(madras)
@@ -23,20 +23,20 @@ str(madras)
 
 Looks great! Now, ideally we would want to examine each of these chains seperately to see if a single binary Markov chains are appropriate models for each of them. Unfortunately, given the fact that chain is extremely short. However, since we have many of them, we can asses them all taken together to see if a simple binary Markov model is appropriate when compared to a second order chain.
 
-```{r multiple_test_1}
-madras.test <- multiple.binary.test(madras, swaps = 10000, n = 10000)
+```{r multiple_test_1, tidy = TRUE}
+madras_test <- multiple_binary_test(madras, swaps = 10000, n = 10000)
 ```
 
 And then we'll plot our results to see if we can identify any patterns:
 
 ```{r plot, fig.width = 7, fig.height = 4}
-plot(madras.test)
+plot(madras_test)
 ```
 
 As you can see from the histogram plots, it does not seem that there is any significant issue with using one Markov chain to model all of the data. Let's look at a more detailed summary to be sure:
 
-```{r summary}
-summary(madras.test)
+```{r summary, tidy = TRUE}
+summary(madras_test)
 ```
 
 As you can see, the high likelihood ratio p-value suggusts no reason to reject the hypothesis that a single Markov chain can be used instead of multiples.

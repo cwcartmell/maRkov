@@ -4,10 +4,10 @@
 \alias{swap}
 \title{Swap elements of single binary chains}
 \usage{
-swap(binChain, m)
+swap(bin_chain, m)
 }
 \arguments{
-\item{binChain}{A binary one dimensional integer vector.}
+\item{bin_chain}{A binary one dimensional integer vector.}
 
 \item{m}{A integer value representing the number of swaps to attempt.}
 }
@@ -17,8 +17,8 @@ maintains the same number of transitions between the two states of that
 chain.
 }
 \details{
-\code{swap} takes a one dimensional vector of integers \code{binChain} and
-an integer \code{m}. It attempts to swap elements of \code{binChain}
+\code{swap} takes a one dimensional vector of integers \code{bin_chain} and
+an integer \code{m}. It attempts to swap elements of \code{bin_chain}
 \code{m} times, each time only completing the swap if it does not affect the
 number of transitions between states in the sequence.
 }

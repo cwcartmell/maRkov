@@ -4,7 +4,7 @@
 #' Sum all the values in the first dimension of a three dimensional integer
 #' vector.
 #'
-#' \code{iDimSum} takes a three dimensional integer vector, fixes the values
+#' \code{i_dim_sum} takes a three dimensional integer vector, fixes the values
 #' of the second and third dimensions, and then sums the values of all the
 #' entries in the vector with those two values for its second and third
 #' dimensions.
@@ -14,14 +14,14 @@
 #' \code{n}.
 #' @param k An integer that is a valid index of the third dimension of
 #' \code{n}.
-iDimSum <- function(n, j, k) {
-    .Call('maRkov_iDimSum', PACKAGE = 'maRkov', n, j, k)
+i_dim_sum <- function(n, j, k) {
+    .Call('maRkov_i_dim_sum', PACKAGE = 'maRkov', n, j, k)
 }
 
 #' Sum all the values in the second dimension of a three dimensional integer
 #' vector.
 #'
-#' \code{jDimSum} takes a three dimensional integer vector, fixes the values
+#' \code{j_dim_sum} takes a three dimensional integer vector, fixes the values
 #' of the first and third dimensions, and then sums the values of all the
 #' entries in the vector with those two values for its first and third
 #' dimensions.
@@ -31,14 +31,14 @@ iDimSum <- function(n, j, k) {
 #' \code{n}.
 #' @param k An integer that is a valid index of the third dimension of
 #' \code{n}.
-jDimSum <- function(n, i, k) {
-    .Call('maRkov_jDimSum', PACKAGE = 'maRkov', n, i, k)
+j_dim_sum <- function(n, i, k) {
+    .Call('maRkov_j_dim_sum', PACKAGE = 'maRkov', n, i, k)
 }
 
 #' Sum all the values in the third dimension of a three dimensional integer
 #' vector.
 #'
-#' \code{kDimSum} takes a three dimensional integer vector, fixes the values
+#' \code{k_dim_sum} takes a three dimensional integer vector, fixes the values
 #' of the first and second dimensions, and then sums the values of all the
 #' entries in the vector with those two values for its first and second
 #' dimensions.
@@ -48,153 +48,153 @@ jDimSum <- function(n, i, k) {
 #' \code{n}.
 #' @param j An integer that is a valid index of the second dimension of
 #' \code{n}.
-kDimSum <- function(n, i, j) {
-    .Call('maRkov_kDimSum', PACKAGE = 'maRkov', n, i, j)
+k_dim_sum <- function(n, i, j) {
+    .Call('maRkov_k_dim_sum', PACKAGE = 'maRkov', n, i, j)
 }
 
 #' Sum all the values in the first and third dimensions of a three dimensional
 #' integer vector.
 #'
-#' \code{ikDimSum} takes a three dimensional integer vector, fixes the value
+#' \code{ik_dim_sum} takes a three dimensional integer vector, fixes the value
 #' of the second dimension, and then sums the values of all the
 #' entries in the vector with that value for its second dimension.
 #'
 #' @param n A three dimensional integer vector.
 #' @param j An integer that is a valid index of the second dimension of
 #' \code{n}.
-ikDimSum <- function(n, j) {
-    .Call('maRkov_ikDimSum', PACKAGE = 'maRkov', n, j)
+ik_dim_sum <- function(n, j) {
+    .Call('maRkov_ik_dim_sum', PACKAGE = 'maRkov', n, j)
 }
 
 #' Sum all the values in the second and third dimensions of a three dimensional
 #' integer vector.
 #'
-#' \code{ikDimSum} takes a three dimensional integer vector, fixes the value
+#' \code{jkDimSum} takes a three dimensional integer vector, fixes the value
 #' of the first dimension, and then sums the values of all the
 #' entries in the vector with that value for its first dimension.
 #'
 #' @param n A three dimensional integer vector.
 #' @param i An integer that is a valid index of the first dimension of
 #' \code{n}.
-jkDimSum <- function(n, i) {
-    .Call('maRkov_jkDimSum', PACKAGE = 'maRkov', n, i)
+jk_dim_sum <- function(n, i) {
+    .Call('maRkov_jk_dim_sum', PACKAGE = 'maRkov', n, i)
 }
 
 #' Find the number of entries in a vector greater or equal to the value of the
 #' first entry.
 #'
-#' \code{vecGreaterThan} counts the number of entries in a numeric vector
+#' \code{vec_greater_than} counts the number of entries in a numeric vector
 #' \code{testStats} whose values are greater than that of the value of the
 #' first element of the vector.
 #'
 #' @param testStats A one dimensional numeric vector.
 #' @export
 #' @useDynLib maRkov
-vecGreaterThan <- function(testStats) {
-    .Call('maRkov_vecGreaterThan', PACKAGE = 'maRkov', testStats)
+vec_greater_than <- function(testStats) {
+    .Call('maRkov_vec_greater_than', PACKAGE = 'maRkov', testStats)
 }
 
 #' Swap elements of multiple binary chains
 #'
-#' \code{swapMult} is used to swap elements of multiple binary chains if doing
+#' \code{swap_mult} is used to swap elements of multiple binary chains if doing
 #' so maintains the same number of transitions between the two states of those
 #' chains.
 #'
-#' \code{swapMult} works by taking a two dimensional integer vector
-#' \code{binChains} and \code{m}, a number of times to attempt swaps. It
+#' \code{swap_mult} works by taking a two dimensional integer vector
+#' \code{bin_chains} and \code{m}, a number of times to attempt swaps. It
 #' generates random integers which are valid indices of the two dimensional
-#' vector \code{binChains} and tries to swap the elements of the vector at
+#' vector \code{bin_chains} and tries to swap the elements of the vector at
 #' the indices that it generates, only doing so if this preserves the total
 #' number of transitions between states. After attempting \code{m} swaps,
-#' \code{swapMult} returns the new, freshly swapped two dimensional vector of
+#' \code{swap_mult} returns the new, freshly swapped two dimensional vector of
 #' binary chains.
 #'
-#' @param binChains A two dimensional integer vector with binary values.
+#' @param bin_chains A two dimensional integer vector with binary values.
 #' @param m A positive nonzero integer value for the attempted number of swaps
-#' to attempt on \code{binChains}.
-swapMult <- function(binChains, m) {
-    .Call('maRkov_swapMult', PACKAGE = 'maRkov', binChains, m)
+#' to attempt on \code{bin_chains}.
+swap_mult <- function(bin_chains, m) {
+    .Call('maRkov_swap_mult', PACKAGE = 'maRkov', bin_chains, m)
 }
 
 #' Generate independent data from a set of binary chains.
 #'
-#' \code{u6Metropolis} takes a set of binary chains of data in the form of an
+#' \code{multiple_metropolis} takes a set of binary chains of data in the form of an
 #' integer matrix and returns a three dimensional integer vector with
 #' with the first entry of the first dimension filled with the original set
 #' of binary chains and the rest filled with independent chains generated by
-#' \code{u6Metropolis}.
+#' \code{multiple_metropolis}.
 #'
-#' \code{u6Metropolis} works by taking a supplied set of binary chains
-#' \code{binChains} and attempting a number \code{m} swaps on entries of those
+#' \code{multiple_metropolis} works by taking a supplied set of binary chains
+#' \code{bin_chains} and attempting a number \code{m} swaps on entries of those
 #' chains, only swapping if doing so maintains the number of transitions
-#' between states that existed in the initial set of chains \code{binChains}.
+#' between states that existed in the initial set of chains \code{bin_chains}.
 #' After it does this, it repeats the process on the newly generated set of
 #' binary chains of data \code{b} times, each time saving the new set of chains
 #' in a three dimensional vector of data. The first entry of the first
 #' dimension of this vector is used to store the original set of binary chains
-#' \code{binChains}.
+#' \code{bin_chains}.
 #'
-#' @param binChains An integer matrix whose rows represent separate binary
+#' @param bin_chains An integer matrix whose rows represent separate binary
 #' chains of data.
 #' @param m An integer value representing the number of swaps to be attempted.
 #' @param b An integer value representing the number of new sets of data to be
 #' generated.
 #' @export
 #' @useDynLib maRkov
-u6Metropolis <- function(binChains, m, b) {
-    .Call('maRkov_u6Metropolis', PACKAGE = 'maRkov', binChains, m, b)
+multiple_metropolis <- function(bin_chains, m, b) {
+    .Call('maRkov_multiple_metropolis', PACKAGE = 'maRkov', bin_chains, m, b)
 }
 
 #' Second order transition counts for multiple binary chains.
 #'
-#' \code{nCountsMultiple} counts the number of second order transitions in
+#' \code{n_counts_multiple} counts the number of second order transitions in
 #' a integer matrix whose rows represent individual binary chains. It returns
 #' a three dimensional vector whose indices represent the type of transition,
 #' and whose values represent the number of times that each transition occurs
 #' in the set of chains.
 #'
-#' @param binChains A two dimensional integer vector, each of whose rows
+#' @param bin_chains A two dimensional integer vector, each of whose rows
 #' represents a single binary chain of data.
-#' @param nChainUniques The number of unique values in the set of chains
-#' \code{binChains}, represented as an integer value.
-nCountsMultiple <- function(binChains, nChainUniques) {
-    .Call('maRkov_nCountsMultiple', PACKAGE = 'maRkov', binChains, nChainUniques)
+#' @param n_chain_uniques The number of unique values in the set of chains
+#' \code{bin_chains}, represented as an integer value.
+n_counts_multiple <- function(bin_chains, n_chain_uniques) {
+    .Call('maRkov_n_counts_multiple', PACKAGE = 'maRkov', bin_chains, n_chain_uniques)
 }
 
 #' Calculate the likelihood ratio test statistic for a set of binary chains of
 #' data.
 #'
-#' \code{u6TestStat} takes a two dimensional integer vector \code{binChains}
+#' \code{u6_test_stat} takes a two dimensional integer vector \code{bin_chains}
 #' in which each row represents a single binary chain of data, and calculates
 #' a likelihood ratio test statistic for the entire set.
 #'
-#' @param binChains A two dimensional integer vector where each row is a
+#' @param bin_chains A two dimensional integer vector where each row is a
 #' separate binary chain of data.
-#' @param nChainUniques An integer value representing the number of unique
-#' elements in the set of chains \code{binChains}.
-u6TestStat <- function(binChains, nChainUniques) {
-    .Call('maRkov_u6TestStat', PACKAGE = 'maRkov', binChains, nChainUniques)
+#' @param n_chain_uniques An integer value representing the number of unique
+#' elements in the set of chains \code{bin_chains}.
+u6_test_stat <- function(bin_chains, n_chain_uniques) {
+    .Call('maRkov_u6_test_stat', PACKAGE = 'maRkov', bin_chains, n_chain_uniques)
 }
 
 #' Calculate the Pearson's chi square test statistic for a set of binary chains
 #' of data.
 #'
-#' \code{multipleChiSqTestStat} takes a two dimensional integer vector
-#' \code{binChains} in which each row represents a single binary chain of data,
+#' \code{multiple_chi_sq_test_stat} takes a two dimensional integer vector
+#' \code{bin_chains} in which each row represents a single binary chain of data,
 #' and calculates a Pearson's chi square test statistic for the entire set.
 #'
-#' @param binChains A two dimensional integer vector where each row is a
+#' @param bin_chains A two dimensional integer vector where each row is a
 #' separate binary chain of data.
-#' @param nChainUniques An integer value representing the number of unique
-#' elements in the set of chains \code{binChains}.
-multipleChiSqTestStat <- function(binChains, nChainUniques) {
-    .Call('maRkov_multipleChiSqTestStat', PACKAGE = 'maRkov', binChains, nChainUniques)
+#' @param n_chain_uniques An integer value representing the number of unique
+#' elements in the set of chains \code{bin_chains}.
+multiple_chi_sq_test_stat <- function(bin_chains, n_chain_uniques) {
+    .Call('maRkov_multiple_chi_sq_test_stat', PACKAGE = 'maRkov', bin_chains, n_chain_uniques)
 }
 
 #' Indicate whether or not a run of a certain length exists starting at a
 #' certain point.
 #'
-#' \code{multipleIndicateRun} takes a single binary chain \code{binChain}, a
+#' \code{multiple_indicate_run} takes a single binary chain \code{binChain}, a
 #' valid index of that chain \code{i}, and a length of run \code{p} and tests
 #' whether or not a run of that length starts at index \code{i}.
 #'
@@ -202,75 +202,75 @@ multipleChiSqTestStat <- function(binChains, nChainUniques) {
 #' of data.
 #' @param p An integer representing the length of run to test for.
 #' @param i An integer representing a valid index of \code{binChain}.
-multipleIndicateRun <- function(binChain, p, i) {
-    .Call('maRkov_multipleIndicateRun', PACKAGE = 'maRkov', binChain, p, i)
+multiple_indicate_run <- function(binChain, p, i) {
+    .Call('maRkov_multiple_indicate_run', PACKAGE = 'maRkov', binChain, p, i)
 }
 
 #' Calculate the run test statistic for a set of binary chains of data and a
 #' run of a certain length.
 #'
-#' \code{multipleRunTestStat} takes a two dimensional integer vector
-#' \code{binChains} in which each row represents a single binary chain of data,
+#' \code{multiple_run_test_stat} takes a two dimensional integer vector
+#' \code{bin_chains} in which each row represents a single binary chain of data,
 #' and calculates a run test statistic for a run of length \code{p} for the
 #' entire set.
 #'
-#' @param binChains A two dimensional integer vector where each row is a
+#' @param bin_chains A two dimensional integer vector where each row is a
 #' separate binary chain of data.
 #' @param p An integer value representing the length of run to test for.
-multipleRunTestStat <- function(binChains, p) {
-    .Call('maRkov_multipleRunTestStat', PACKAGE = 'maRkov', binChains, p)
+multiple_run_test_stat <- function(bin_chains, p) {
+    .Call('maRkov_multiple_run_test_stat', PACKAGE = 'maRkov', bin_chains, p)
 }
 
 #' Calculate likelihood ratio test statistics for many sets of binary chains of
 #' data.
 #'
-#' \code{u6TestStatArray} takes a three dimensional vector containing multiple
+#' \code{u6_test_stat_array} takes a three dimensional vector containing multiple
 #' sets of binary chains of data, and returns a numeric vector with entries
 #' corresponding to the likelihood ratio test statistics of each set of binary
 #' chains of data.
 #'
-#' @param binChains A three dimensional vector containing sets of chains of
+#' @param bin_chains A three dimensional vector containing sets of chains of
 #' binary data.
-#' @param nChainUniques An integer value representing the number of unique
-#' elements in the set of chains \code{binChains}.
+#' @param n_chain_uniques An integer value representing the number of unique
+#' elements in the set of chains \code{bin_chains}.
 #' @export
 #' @useDynLib maRkov
-u6TestStatArray <- function(binChains, nChainUniques) {
-    .Call('maRkov_u6TestStatArray', PACKAGE = 'maRkov', binChains, nChainUniques)
+u6_test_stat_array <- function(bin_chains, n_chain_uniques) {
+    .Call('maRkov_u6_test_stat_array', PACKAGE = 'maRkov', bin_chains, n_chain_uniques)
 }
 
 #' Calculate Pearson's chi square test statistics for many sets of binary
 #' chains of data.
 #'
-#' \code{multipleChiSqTestStatArray} takes a three dimensional vector
+#' \code{multiple_chi_sq_test_stat_array} takes a three dimensional vector
 #' containing multiple sets of binary chains of data, and returns a numeric
 #' vector with entries corresponding to the Pearson's chi square test
 #' statistics of each set of binary chains of data.
 #'
-#' @param binChains A three dimensional vector containing sets of chains of
+#' @param bin_chains A three dimensional vector containing sets of chains of
 #' binary data.
-#' @param nChainUniques An integer value representing the number of unique
-#' elements in the set of chains \code{binChains}.
+#' @param n_chain_uniques An integer value representing the number of unique
+#' elements in the set of chains \code{bin_chains}.
 #' @export
 #' @useDynLib maRkov
-multipleChiSqTestStatArray <- function(binChains, nChainUniques) {
-    .Call('maRkov_multipleChiSqTestStatArray', PACKAGE = 'maRkov', binChains, nChainUniques)
+multiple_chi_sq_test_stat_array <- function(bin_chains, n_chain_uniques) {
+    .Call('maRkov_multiple_chi_sq_test_stat_array', PACKAGE = 'maRkov', bin_chains, n_chain_uniques)
 }
 
 #' Calculate run test statistics for many sets of chains of binary data.
 #'
-#' \code{multipleRunTestStatArray} takes a three dimensional integer vector
+#' \code{multiple_run_test_stat_array} takes a three dimensional integer vector
 #' containing multiple sets of binary chains of data, and returns a numeric
 #' vector with entries corresponding to the run test statistics for runs of
 #' length p for each set of binary chains of data.
 #'
-#' @param binChains A three dimensional integer vector containing sets of
+#' @param bin_chains A three dimensional integer vector containing sets of
 #' chains of binary data.
 #' @param p An integer representing the length of run to test for.
 #' @export
 #' @useDynLib maRkov
-multipleRunTestStatArray <- function(binChains, p) {
-    .Call('maRkov_multipleRunTestStatArray', PACKAGE = 'maRkov', binChains, p)
+multiple_run_test_stat_array <- function(bin_chains, p) {
+    .Call('maRkov_multiple_run_test_stat_array', PACKAGE = 'maRkov', bin_chains, p)
 }
 
 #' Swap elements of single binary chains
@@ -279,15 +279,15 @@ multipleRunTestStatArray <- function(binChains, p) {
 #' maintains the same number of transitions between the two states of that
 #' chain.
 #'
-#' \code{swap} takes a one dimensional vector of integers \code{binChain} and
-#' an integer \code{m}. It attempts to swap elements of \code{binChain}
+#' \code{swap} takes a one dimensional vector of integers \code{bin_chain} and
+#' an integer \code{m}. It attempts to swap elements of \code{bin_chain}
 #' \code{m} times, each time only completing the swap if it does not affect the
 #' number of transitions between states in the sequence.
 #'
-#' @param binChain A binary one dimensional integer vector.
+#' @param bin_chain A binary one dimensional integer vector.
 #' @param m A integer value representing the number of swaps to attempt.
-swap <- function(binChain, m) {
-    .Call('maRkov_swap', PACKAGE = 'maRkov', binChain, m)
+swap <- function(bin_chain, m) {
+    .Call('maRkov_swap', PACKAGE = 'maRkov', bin_chain, m)
 }
 
 #' Generate independent data from a single binary chain.
@@ -297,7 +297,7 @@ swap <- function(binChain, m) {
 #' placing all of them in an integer matrix with the original data in the first
 #' row.
 #'
-#' \code{metropolis} works by taking the supplied \code{binChain}, and
+#' \code{metropolis} works by taking the supplied \code{bin_chain}, and
 #' attempting \code{m} swaps on it, only preforming a swap of elements if
 #' doing so maintains the number of transitions between states in the resulting
 #' chain. \code{metropolis} then takes the resulting chain, and attempts
@@ -305,131 +305,131 @@ swap <- function(binChain, m) {
 #' of an output matrix. \code{metropolis} does this \code{b} times, each time
 #' saving the resulting vector. Once all of the new data has been generated,
 #' \code{metropolis} returns the newly built integer matrix, of which the first
-#' row is the original chain of data \code{binChain}.
+#' row is the original chain of data \code{bin_chain}.
 #'
-#' @param binChain A single binary chain of data represented by an integer
+#' @param bin_chain A single binary chain of data represented by an integer
 #' vector.
 #' @param m An integer representing the number of swaps to be attempted.
 #' @param b An integer representing the number of new chains of data to be
 #' generated.
 #' @export
 #' @useDynLib maRkov
-metropolis <- function(binChain, m, b) {
-    .Call('maRkov_metropolis', PACKAGE = 'maRkov', binChain, m, b)
+metropolis <- function(bin_chain, m, b) {
+    .Call('maRkov_metropolis', PACKAGE = 'maRkov', bin_chain, m, b)
 }
 
 #' Second order transition counts for a single binary chain.
 #'
-#' \code{nCounts} counts the number of second order transitions in a binary
+#' \code{n_counts} counts the number of second order transitions in a binary
 #' chain of data, then returns a three dimensional vector whose indices
 #' represent the type of transition, and whose values represent the number of
 #' times that each transition occurs in the chain.
 #'
-#' @param binChain An integer vector representing a chain of data.
-#' @param nChainUniques The number or unique values in the chain
-#' \code{binChains}, represented as an integer value.
+#' @param bin_chain An integer vector representing a chain of data.
+#' @param n_chain_uniques The number or unique values in the chain
+#' \code{bin_chains}, represented as an integer value.
 #' @export
 #' @useDynLib maRkov
-nCounts <- function(binChain, nChainUniques) {
-    .Call('maRkov_nCounts', PACKAGE = 'maRkov', binChain, nChainUniques)
+n_counts <- function(bin_chain, n_chain_uniques) {
+    .Call('maRkov_n_counts', PACKAGE = 'maRkov', bin_chain, n_chain_uniques)
 }
 
 #' Calculates the likelihood ratio test statistic for a single binary chain.
 #'
-#' \code{u1TestStat} takes a binary chain of data and calculates the likelihood
+#' \code{u1_test_stat} takes a binary chain of data and calculates the likelihood
 #' ratio test statistic associated with it.
 #'
-#' @param binChain A binary chain of data in the form of a one dimensional
+#' @param bin_chain A binary chain of data in the form of a one dimensional
 #' integer vector.
-#' @param nChainUniques A integer value representing the number of unique
-#' values in \code{binChain}.
-u1TestStat <- function(binChain, nChainUniques) {
-    .Call('maRkov_u1TestStat', PACKAGE = 'maRkov', binChain, nChainUniques)
+#' @param n_chain_uniques A integer value representing the number of unique
+#' values in \code{bin_chain}.
+u1_test_stat <- function(bin_chain, n_chain_uniques) {
+    .Call('maRkov_u1_test_stat', PACKAGE = 'maRkov', bin_chain, n_chain_uniques)
 }
 
 #' Calculates the Pearson's chi square test statistic for a single binary chain
 #' .
 #'
-#' \code{chiSqTestStat} takes a binary chain of data and calculates the
+#' \code{chi_sq_test_stat} takes a binary chain of data and calculates the
 #' Pearson's chi square test statistic associated with it.
 #'
-#' @param binChain A single binary chain of data in the form of an integer
+#' @param bin_chain A single binary chain of data in the form of an integer
 #' vector.
-#' @param nChainUniques A integer value representing the number of unique
-#' values in \code{binChain}.
-chiSqTestStat <- function(binChain, nChainUniques) {
-    .Call('maRkov_chiSqTestStat', PACKAGE = 'maRkov', binChain, nChainUniques)
+#' @param n_chain_uniques A integer value representing the number of unique
+#' values in \code{bin_chain}.
+chi_sq_test_stat <- function(bin_chain, n_chain_uniques) {
+    .Call('maRkov_chi_sq_test_stat', PACKAGE = 'maRkov', bin_chain, n_chain_uniques)
 }
 
 #' Indicate whether or not there is a run at a point in a integer vector.
 #'
-#' \code{indicateRun} takes an integer vector \code{binChain}, and two
+#' \code{indicate_run} takes an integer vector \code{bin_chain}, and two
 #' integers, \code{p} and \code{i}, and tells the user if a run of length
 #' \code{p} starting and index \code{i} in the form of a Boolean value.
 #'
-#' @param binChain A binary chain of data in the form of an integer vector.
+#' @param bin_chain A binary chain of data in the form of an integer vector.
 #' @param p A integer value representing the length of the run to test for.
-#' @param i A integer value representing the location in \code{binChain} to
+#' @param i A integer value representing the location in \code{bin_chain} to
 #' test for a run starting at.
 #' @export
 #' @useDynLib maRkov
-indicateRun <- function(binChain, p, i) {
-    .Call('maRkov_indicateRun', PACKAGE = 'maRkov', binChain, p, i)
+indicate_run <- function(bin_chain, p, i) {
+    .Call('maRkov_indicate_run', PACKAGE = 'maRkov', bin_chain, p, i)
 }
 
 #' Calculate the run test statistic for a single binary chain.
 #'
-#' \code{runTestStat} takes an integer vector \code{binChain} of a chain of
+#' \code{run_test_stat} takes an integer vector \code{bin_chain} of a chain of
 #' binary data, and a integer \code{p} representing the length of run to test
 #' for. It returns the run test stat for that chain of data.
 #'
-#' @param binChain A binary chain of data in the form of an integer vector.
+#' @param bin_chain A binary chain of data in the form of an integer vector.
 #' @param p An integer greater than one representing the length of run to test
 #' for.
-runTestStat <- function(binChain, p) {
-    .Call('maRkov_runTestStat', PACKAGE = 'maRkov', binChain, p)
+run_test_stat <- function(bin_chain, p) {
+    .Call('maRkov_run_test_stat', PACKAGE = 'maRkov', bin_chain, p)
 }
 
 #' Calculate likelihood ratio test statistics for many binary chains.
 #'
-#' \code{u1TestStatArray} takes an integer matrix with each row denoting a
+#' \code{u1_test_stat_array} takes an integer matrix with each row denoting a
 #' binary chain of data and returns an integer vector with likelihood ratio test
 #' statistics corresponding to each binary chain.
 #'
-#' @param binChains A two dimensional integer matrix with each row denoting a
+#' @param bin_chains A two dimensional integer matrix with each row denoting a
 #' individual binary chain of data.
-#' @param nChainUniques An integer value representing the number of unique
-#' values in the binary chains found in \code{binChains}.
-u1TestStatArray <- function(binChains, nChainUniques) {
-    .Call('maRkov_u1TestStatArray', PACKAGE = 'maRkov', binChains, nChainUniques)
+#' @param n_chain_uniques An integer value representing the number of unique
+#' values in the binary chains found in \code{bin_chains}.
+u1_test_stat_array <- function(bin_chains, n_chain_uniques) {
+    .Call('maRkov_u1_test_stat_array', PACKAGE = 'maRkov', bin_chains, n_chain_uniques)
 }
 
 #' Calculate the chi square test statistics for many single binary chains.
 #'
-#' \code{chiSqTestStatArray} takes a two dimensional matrix of many binary
+#' \code{chi_sq_test_stat_array} takes a two dimensional matrix of many binary
 #' chains of data and returns a numeric vector filled with a chi square test
 #' statistic for each of them.
 #'
-#' @param binChains A integer matrix of binary chains of data, with each row
+#' @param bin_chains A integer matrix of binary chains of data, with each row
 #' being a different chain.
-#' @param nChainUniques A integer value representing the number of unique
-#' values in \code{binChains}.
-chiSqTestStatArray <- function(binChains, nChainUniques) {
-    .Call('maRkov_chiSqTestStatArray', PACKAGE = 'maRkov', binChains, nChainUniques)
+#' @param n_chain_uniques A integer value representing the number of unique
+#' values in \code{bin_chains}.
+chi_sq_test_stat_array <- function(bin_chains, n_chain_uniques) {
+    .Call('maRkov_chi_sq_test_stat_array', PACKAGE = 'maRkov', bin_chains, n_chain_uniques)
 }
 
 #' Calculate run test statistics for many binary chains.
 #'
-#' \code{runTestStatArray} takes an integer matrix with each row denoting a
+#' \code{run_test_stat_array} takes an integer matrix with each row denoting a
 #' binary chain of data and returns an integer vector with run test statistics
 #' for runs of length \code{p} corresponding to each binary chain.
 #'
-#' @param binChains A two dimensional integer matrix with each row denoting a
+#' @param bin_chains A two dimensional integer matrix with each row denoting a
 #' individual binary chain of data.
 #' @param p An integer value representing the length of run to test for.
 #' @export
 #' @useDynLib maRkov
-runTestStatArray <- function(binChains, p) {
-    .Call('maRkov_runTestStatArray', PACKAGE = 'maRkov', binChains, p)
+run_test_stat_array <- function(bin_chains, p) {
+    .Call('maRkov_run_test_stat_array', PACKAGE = 'maRkov', bin_chains, p)
 }
 

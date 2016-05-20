@@ -12,9 +12,9 @@
 
 using namespace Rcpp ;
 
-int iDimSum (std::vector<std::vector<std::vector<int> > > n, int j, int k) ;
-int jDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int k) ;
-int kDimSum (std::vector<std::vector<std::vector<int> > > n, int i, int j) ;
-int ikDimSum (std::vector<std::vector<std::vector<int> > > n, int j) ;
-int jkDimSum (std::vector<std::vector<std::vector<int> > > n, int i) ;
-int vecGreaterThan (NumericVector testStats) ;
+int i_dim_sum (std::vector<std::vector<std::vector<int> > > n, int j, int k) ;
+int j_dim_sum (std::vector<std::vector<std::vector<int> > > n, int i, int k) ;
+int k_dim_sum (std::vector<std::vector<std::vector<int> > > n, int i, int j) ;
+int ik_dim_sum (std::vector<std::vector<std::vector<int> > > n, int j) ;
+int jk_dim_sum (std::vector<std::vector<std::vector<int> > > n, int i) ;
+int vec_greater_than (NumericVector testStats) ;

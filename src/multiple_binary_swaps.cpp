@@ -12,98 +12,98 @@
 
 using namespace Rcpp ;
 
-std::vector<std::vector<int> > swapMult (std::vector<std::vector<int> > binChains, int m) ;
-std::vector<std::vector<std::vector<int> > > u6Metropolis (IntegerMatrix binChains, int m, int b) ;
-std::vector<std::vector<std::vector<int> > > nCountsMultiple (IntegerMatrix binChains, int nChainUniques) ;
+std::vector<std::vector<int> > swap_mult (std::vector<std::vector<int> > bin_chains, int m) ;
+std::vector<std::vector<std::vector<int> > > multiple_metropolis (IntegerMatrix bin_chains, int m, int b) ;
+std::vector<std::vector<std::vector<int> > > n_counts_multiple (IntegerMatrix bin_chains, int n_chain_uniques) ;
 
-long double u6TestStat (IntegerMatrix binChains, int nChainUniques, int nMultChains, int lengthOfChains) ;
-long double multipleChiSqTestStat (std::vector<std::vector<int> > binChains, int nChainUniques) ;
-bool multipleIndicateRun (std::vector<int> binChain, int p, int i) ;
-long double multipleRunTestStat (std::vector<std::vector<int> > binChains, int p) ;
+long double u6_test_stat (IntegerMatrix bin_chains, int n_chain_uniques, int n_mult_chains, int length_of_chains) ;
+long double multiple_chi_sq_test_stat (std::vector<std::vector<int> > bin_chains, int n_chain_uniques) ;
+bool multiple_indicate_run (std::vector<int> binChain, int p, int i) ;
+long double multiple_run_test_stat (std::vector<std::vector<int> > bin_chains, int p) ;
 
-NumericVector u6TestStatArray (std::vector<std::vector<std::vector<int> > > binChains, int nChainUniques) ;
-NumericVector multipleChiSqTestStatArray (std::vector<std::vector<std::vector<int> > > binChains, int nChainUniques) ;
-NumericVector multipleRunTestStatArray (std::vector<std::vector<std::vector<int> > > binChains, int p) ;
+NumericVector u6_test_stat_array (std::vector<std::vector<std::vector<int> > > bin_chains, int n_chain_uniques) ;
+NumericVector multiple_chi_sq_test_stat_array (std::vector<std::vector<std::vector<int> > > bin_chains, int n_chain_uniques) ;
+NumericVector multiple_run_test_stat_array (std::vector<std::vector<std::vector<int> > > bin_chains, int p) ;
 
 //' Swap elements of multiple binary chains
 //'
-//' \code{swapMult} is used to swap elements of multiple binary chains if doing
+//' \code{swap_mult} is used to swap elements of multiple binary chains if doing
 //' so maintains the same number of transitions between the two states of those
 //' chains.
 //'
-//' \code{swapMult} works by taking a two dimensional integer vector
-//' \code{binChains} and \code{m}, a number of times to attempt swaps. It
+//' \code{swap_mult} works by taking a two dimensional integer vector
+//' \code{bin_chains} and \code{m}, a number of times to attempt swaps. It
 //' generates random integers which are valid indices of the two dimensional
-//' vector \code{binChains} and tries to swap the elements of the vector at
+//' vector \code{bin_chains} and tries to swap the elements of the vector at
 //' the indices that it generates, only doing so if this preserves the total
 //' number of transitions between states. After attempting \code{m} swaps,
-//' \code{swapMult} returns the new, freshly swapped two dimensional vector of
+//' \code{swap_mult} returns the new, freshly swapped two dimensional vector of
 //' binary chains.
 //'
-//' @param binChains A two dimensional integer vector with binary values.
+//' @param bin_chains A two dimensional integer vector with binary values.
 //' @param m A positive nonzero integer value for the attempted number of swaps
-//' to attempt on \code{binChains}.
+//' to attempt on \code{bin_chains}.
 // [[Rcpp::export]]
-std::vector<std::vector<int> > swapMult (std::vector<std::vector<int> > binChains, int m) {
-  int nCol = binChains[0].size() ;
-  int nRow = binChains.size() ;
+std::vector<std::vector<int> > swap_mult (std::vector<std::vector<int> > bin_chains, int m) {
+  int n_col = bin_chains[0].size() ;
+  int n_row = bin_chains.size() ;
   for (int i = 0 ; i < m ; i++) {
-    int caseVar = ceil(unif_rand() * 3) ;
-    int a = ceil(unif_rand() * (nCol - 2)) ;
-    int b = ceil(unif_rand() * (nCol - 2)) ;
-    int c = floor(unif_rand() * nRow) ;
-    int d = floor(unif_rand() * nRow) ;
+    int case_var = ceil(unif_rand() * 3) ;
+    int a = ceil(unif_rand() * (n_col - 2)) ;
+    int b = ceil(unif_rand() * (n_col - 2)) ;
+    int c = floor(unif_rand() * n_row) ;
+    int d = floor(unif_rand() * n_row) ;
     int maxi = std::max(a, b) ;
     int mini = std::min(a, b) ;
-    if (caseVar == 1) {
-      if (abs(a - b) > 1 and binChains[c][a - 1] + binChains[c][a + 1] == binChains[c][b - 1] + binChains[c][b + 1]) {
-        int xac = binChains[c][a] ;
-        binChains[c][a] = binChains[c][b] ;
-        binChains[c][b] = xac ;
+    if (case_var == 1) {
+      if (abs(a - b) > 1 and bin_chains[c][a - 1] + bin_chains[c][a + 1] == bin_chains[c][b - 1] + bin_chains[c][b + 1]) {
+        int xac = bin_chains[c][a] ;
+        bin_chains[c][a] = bin_chains[c][b] ;
+        bin_chains[c][b] = xac ;
       }
-      else if (abs(a - b) == 1 and binChains[c][mini - 1] == binChains[c][maxi + 1]) {
-        int xac = binChains[c][a] ;
-        binChains[c][a] = binChains[c][b] ;
-        binChains[c][b] = xac ;
-      }
-    }
-    else if (caseVar == 2) {
-      if (binChains[c][a - 1] + binChains[c][a + 1] == binChains[d][b - 1] + binChains[d][b + 1]) {
-        int xac = binChains[c][a] ;
-        binChains[c][a] = binChains[d][b] ;
-        binChains[d][b] = xac ;
+      else if (abs(a - b) == 1 and bin_chains[c][mini - 1] == bin_chains[c][maxi + 1]) {
+        int xac = bin_chains[c][a] ;
+        bin_chains[c][a] = bin_chains[c][b] ;
+        bin_chains[c][b] = xac ;
       }
     }
-    else if (caseVar == 3) {
-      if (binChains[c][nCol - 1] == binChains[d][nCol - 1]) {
-        int xnColc = binChains[c][nCol] ;
-        binChains[c][nCol] = binChains[d][nCol] ;
-        binChains[d][nCol] = xnColc ;
+    else if (case_var == 2) {
+      if (bin_chains[c][a - 1] + bin_chains[c][a + 1] == bin_chains[d][b - 1] + bin_chains[d][b + 1]) {
+        int xac = bin_chains[c][a] ;
+        bin_chains[c][a] = bin_chains[d][b] ;
+        bin_chains[d][b] = xac ;
+      }
+    }
+    else if (case_var == 3) {
+      if (bin_chains[c][n_col - 1] == bin_chains[d][n_col - 1]) {
+        int xnColc = bin_chains[c][n_col] ;
+        bin_chains[c][n_col] = bin_chains[d][n_col] ;
+        bin_chains[d][n_col] = xnColc ;
       }
     }
   }
-  return binChains ;
+  return bin_chains ;
 }
 
 //' Generate independent data from a set of binary chains.
 //'
-//' \code{u6Metropolis} takes a set of binary chains of data in the form of an
+//' \code{multiple_metropolis} takes a set of binary chains of data in the form of an
 //' integer matrix and returns a three dimensional integer vector with
 //' with the first entry of the first dimension filled with the original set
 //' of binary chains and the rest filled with independent chains generated by
-//' \code{u6Metropolis}.
+//' \code{multiple_metropolis}.
 //'
-//' \code{u6Metropolis} works by taking a supplied set of binary chains
-//' \code{binChains} and attempting a number \code{m} swaps on entries of those
+//' \code{multiple_metropolis} works by taking a supplied set of binary chains
+//' \code{bin_chains} and attempting a number \code{m} swaps on entries of those
 //' chains, only swapping if doing so maintains the number of transitions
-//' between states that existed in the initial set of chains \code{binChains}.
+//' between states that existed in the initial set of chains \code{bin_chains}.
 //' After it does this, it repeats the process on the newly generated set of
 //' binary chains of data \code{b} times, each time saving the new set of chains
 //' in a three dimensional vector of data. The first entry of the first
 //' dimension of this vector is used to store the original set of binary chains
-//' \code{binChains}.
+//' \code{bin_chains}.
 //'
-//' @param binChains An integer matrix whose rows represent separate binary
+//' @param bin_chains An integer matrix whose rows represent separate binary
 //' chains of data.
 //' @param m An integer value representing the number of swaps to be attempted.
 //' @param b An integer value representing the number of new sets of data to be
@@ -111,41 +111,41 @@ std::vector<std::vector<int> > swapMult (std::vector<std::vector<int> > binChain
 //' @export
 //' @useDynLib maRkov
 // [[Rcpp::export]]
-std::vector<std::vector<std::vector<int> > > u6Metropolis (IntegerMatrix binChains, int m, int b) {
+std::vector<std::vector<std::vector<int> > > multiple_metropolis (IntegerMatrix bin_chains, int m, int b) {
   std::vector<std::vector<std::vector<int> > > metropolis ;
-  std::vector<std::vector<int> > backwardsBinChain ;
-  std::vector<std::vector<int> > tempBinChain ;
-  std::vector<std::vector<int> > convertedBinChain ;
-  int nRow = binChains.nrow() ;
-  int nCol = binChains.ncol() ;
+  std::vector<std::vector<int> > backwards_bin_chain ;
+  std::vector<std::vector<int> > temp_bin_chain ;
+  std::vector<std::vector<int> > converted_bin_chain ;
+  int n_row = bin_chains.nrow() ;
+  int n_col = bin_chains.ncol() ;
   metropolis.resize(b + 1) ;
   for (int i = 0 ; i < b + 1 ; i++) {
-    metropolis[i].resize(nRow) ;
-    for (int j = 0 ; j < nRow ; j++) {
-      metropolis[i][j].resize(nCol) ;
+    metropolis[i].resize(n_row) ;
+    for (int j = 0 ; j < n_row ; j++) {
+      metropolis[i][j].resize(n_col) ;
     }
   }
-  backwardsBinChain.resize(nRow) ;
-  tempBinChain.resize(nRow) ;
-  convertedBinChain.resize(nRow) ;
-  for (int k = 0 ; k < nRow ; k++) {
-    backwardsBinChain[k].resize(nCol) ;
-    tempBinChain[k].resize(nCol) ;
-    convertedBinChain[k].resize(nCol) ;
+  backwards_bin_chain.resize(n_row) ;
+  temp_bin_chain.resize(n_row) ;
+  converted_bin_chain.resize(n_row) ;
+  for (int k = 0 ; k < n_row ; k++) {
+    backwards_bin_chain[k].resize(n_col) ;
+    temp_bin_chain[k].resize(n_col) ;
+    converted_bin_chain[k].resize(n_col) ;
   }
-  for (int l = 0 ; l < nRow ; l++) {
-    for (int n = 0 ; n < nCol ; n++) {
-      metropolis[0][l][n] = binChains(l, n) ;
-      convertedBinChain[l][n] = binChains(l, n) ;
+  for (int l = 0 ; l < n_row ; l++) {
+    for (int n = 0 ; n < n_col ; n++) {
+      metropolis[0][l][n] = bin_chains(l, n) ;
+      converted_bin_chain[l][n] = bin_chains(l, n) ;
     }
   }
-  backwardsBinChain = swapMult(convertedBinChain, m) ;
+  backwards_bin_chain = swap_mult(converted_bin_chain, m) ;
 
   for (int x = 1 ; x < b + 1 ; x++) {
-    tempBinChain = swapMult(backwardsBinChain, m) ;
-    for (int y = 0 ; y < nRow ; y++) {
-      for (int z = 0 ; z < nCol ; z++) {
-        metropolis[x][y][z] = tempBinChain[y][z] ;
+    temp_bin_chain = swap_mult(backwards_bin_chain, m) ;
+    for (int y = 0 ; y < n_row ; y++) {
+      for (int z = 0 ; z < n_col ; z++) {
+        metropolis[x][y][z] = temp_bin_chain[y][z] ;
       }
     }
   }
@@ -154,33 +154,33 @@ std::vector<std::vector<std::vector<int> > > u6Metropolis (IntegerMatrix binChai
 
 //' Second order transition counts for multiple binary chains.
 //'
-//' \code{nCountsMultiple} counts the number of second order transitions in
+//' \code{n_counts_multiple} counts the number of second order transitions in
 //' a integer matrix whose rows represent individual binary chains. It returns
 //' a three dimensional vector whose indices represent the type of transition,
 //' and whose values represent the number of times that each transition occurs
 //' in the set of chains.
 //'
-//' @param binChains A two dimensional integer vector, each of whose rows
+//' @param bin_chains A two dimensional integer vector, each of whose rows
 //' represents a single binary chain of data.
-//' @param nChainUniques The number of unique values in the set of chains
-//' \code{binChains}, represented as an integer value.
+//' @param n_chain_uniques The number of unique values in the set of chains
+//' \code{bin_chains}, represented as an integer value.
 // [[Rcpp::export]]
-std::vector<std::vector<std::vector<int> > > nCountsMultiple (std::vector<std::vector<int> > binChains, int nChainUniques) {
+std::vector<std::vector<std::vector<int> > > n_counts_multiple (std::vector<std::vector<int> > bin_chains, int n_chain_uniques) {
   std::vector<std::vector<std::vector<int> > > n ;
 
-  n.resize(nChainUniques) ;
-  for (int i = 0; i < nChainUniques ; ++i) {
-    n[i].resize(nChainUniques) ;
+  n.resize(n_chain_uniques) ;
+  for (int i = 0; i < n_chain_uniques ; ++i) {
+    n[i].resize(n_chain_uniques) ;
 
-    for (int j = 0; j < nChainUniques; ++j)
-      n[i][j].resize(binChains.size()) ;
+    for (int j = 0; j < n_chain_uniques; ++j)
+      n[i][j].resize(bin_chains.size()) ;
   }
 
-  for (int i = 0 ; i < (binChains.size()) ; i++) {
-    for (int j = 0 ; j < (binChains[1].size() - 1) ; j++) {
-      for (int k = 0 ; k < nChainUniques ; k++) {
-        for (int l = 0 ; l < nChainUniques ; l++) {
-          if (binChains[i][j] == k and binChains[i][j + 1] == l) {
+  for (int i = 0 ; i < (bin_chains.size()) ; i++) {
+    for (int j = 0 ; j < (bin_chains[1].size() - 1) ; j++) {
+      for (int k = 0 ; k < n_chain_uniques ; k++) {
+        for (int l = 0 ; l < n_chain_uniques ; l++) {
+          if (bin_chains[i][j] == k and bin_chains[i][j + 1] == l) {
             n[k][l][i] = n[k][l][i] + 1 ;
           }
         }
@@ -194,78 +194,78 @@ std::vector<std::vector<std::vector<int> > > nCountsMultiple (std::vector<std::v
 //' Calculate the likelihood ratio test statistic for a set of binary chains of
 //' data.
 //'
-//' \code{u6TestStat} takes a two dimensional integer vector \code{binChains}
+//' \code{u6_test_stat} takes a two dimensional integer vector \code{bin_chains}
 //' in which each row represents a single binary chain of data, and calculates
 //' a likelihood ratio test statistic for the entire set.
 //'
-//' @param binChains A two dimensional integer vector where each row is a
+//' @param bin_chains A two dimensional integer vector where each row is a
 //' separate binary chain of data.
-//' @param nChainUniques An integer value representing the number of unique
-//' elements in the set of chains \code{binChains}.
+//' @param n_chain_uniques An integer value representing the number of unique
+//' elements in the set of chains \code{bin_chains}.
 // [[Rcpp::export]]
-long double u6TestStat (std::vector<std::vector<int> > binChains, int nChainUniques) {
-  std::vector<std::vector<std::vector<int> > > n = nCountsMultiple(binChains, nChainUniques) ;
-  long double testStat = 0 ;
+long double u6_test_stat (std::vector<std::vector<int> > bin_chains, int n_chain_uniques) {
+  std::vector<std::vector<std::vector<int> > > n = n_counts_multiple(bin_chains, n_chain_uniques) ;
+  long double test_stat = 0 ;
 
-  int dimi = n.size() ;
-  int dimj = n[0].size() ;
-  int dimk = n[0][0].size() ;
+  int dim_i = n.size() ;
+  int dim_j = n[0].size() ;
+  int dim_k = n[0][0].size() ;
 
-  for (int i = 0 ; i < dimi ; i++) {
-    for (int j = 0 ; j < dimj ; j++) {
-      for (int k = 0 ; k < dimk  ; k++) {
+  for (int i = 0 ; i < dim_i ; i++) {
+    for (int j = 0 ; j < dim_j ; j++) {
+      for (int k = 0 ; k < dim_k  ; k++) {
         if (n[i][j][k] != 0) {
-          testStat = testStat + (n[i][j][k] * (log(n[i][j][k]) - log(jDimSum(n, i, k)) - log(kDimSum(n, i, j)) + log(jkDimSum(n, i)))) ;
+          test_stat = test_stat + (n[i][j][k] * (log(n[i][j][k]) - log(j_dim_sum(n, i, k)) - log(k_dim_sum(n, i, j)) + log(jk_dim_sum(n, i)))) ;
         }
         else {
-          testStat = testStat ;
+          test_stat = test_stat ;
         }
       }
     }
   }
-  testStat = testStat * 2 ;
-  return testStat ;
+  test_stat = test_stat * 2 ;
+  return test_stat ;
 }
 
 //' Calculate the Pearson's chi square test statistic for a set of binary chains
 //' of data.
 //'
-//' \code{multipleChiSqTestStat} takes a two dimensional integer vector
-//' \code{binChains} in which each row represents a single binary chain of data,
+//' \code{multiple_chi_sq_test_stat} takes a two dimensional integer vector
+//' \code{bin_chains} in which each row represents a single binary chain of data,
 //' and calculates a Pearson's chi square test statistic for the entire set.
 //'
-//' @param binChains A two dimensional integer vector where each row is a
+//' @param bin_chains A two dimensional integer vector where each row is a
 //' separate binary chain of data.
-//' @param nChainUniques An integer value representing the number of unique
-//' elements in the set of chains \code{binChains}.
+//' @param n_chain_uniques An integer value representing the number of unique
+//' elements in the set of chains \code{bin_chains}.
 // [[Rcpp::export]]
-long double multipleChiSqTestStat (std::vector<std::vector<int> > binChains, int nChainUniques) {
-  std::vector<std::vector<std::vector<int> > > n = nCountsMultiple(binChains, nChainUniques) ;
-  long double testStat = 0 ;
+long double multiple_chi_sq_test_stat (std::vector<std::vector<int> > bin_chains, int n_chain_uniques) {
+  std::vector<std::vector<std::vector<int> > > n = n_counts_multiple(bin_chains, n_chain_uniques) ;
+  long double test_stat = 0 ;
 
-  int dimi = n.size() ;
-  int dimj = n[0].size() ;
-  int dimk = n[0][0].size() ;
+  int dim_i = n.size() ;
+  int dim_j = n[0].size() ;
+  int dim_k = n[0][0].size() ;
 
-  for (int i = 0 ; i < dimi ; i++) {
-    for (int j = 0 ; j < dimj ; j++) {
-      for (int k = 0 ; k < dimk  ; k++) {
+  for (int i = 0 ; i < dim_i ; i++) {
+    for (int j = 0 ; j < dim_j ; j++) {
+      for (int k = 0 ; k < dim_k  ; k++) {
         if (n[i][j][k] == 0) {
-          testStat = testStat ;
+          test_stat = test_stat ;
         }
         else {
-          testStat = testStat + (pow((n[i][j][k] - ((kDimSum(n, i, j) / 1.0 * jDimSum(n, i, k) / 1.0) / (jkDimSum(n, i) / 1.0))), 2) / ((kDimSum(n, i, j) / 1.0 * jDimSum(n, i, k) / 1.0) / (jkDimSum(n, i) / 1.0))) ;
+          test_stat = test_stat + (pow((n[i][j][k] - ((k_dim_sum(n, i, j) / 1.0 * j_dim_sum(n, i, k) / 1.0) / (jk_dim_sum(n, i) / 1.0))), 2) / ((k_dim_sum(n, i, j) / 1.0 * j_dim_sum(n, i, k) / 1.0) / (jk_dim_sum(n, i) / 1.0))) ;
         }
       }
     }
   }
-  return testStat ;
+  return test_stat ;
 }
 
 //' Indicate whether or not a run of a certain length exists starting at a
 //' certain point.
 //'
-//' \code{multipleIndicateRun} takes a single binary chain \code{binChain}, a
+//' \code{multiple_indicate_run} takes a single binary chain \code{binChain}, a
 //' valid index of that chain \code{i}, and a length of run \code{p} and tests
 //' whether or not a run of that length starts at index \code{i}.
 //'
@@ -274,7 +274,7 @@ long double multipleChiSqTestStat (std::vector<std::vector<int> > binChains, int
 //' @param p An integer representing the length of run to test for.
 //' @param i An integer representing a valid index of \code{binChain}.
 //[[Rcpp::export]]
-bool multipleIndicateRun (std::vector<int> binChain, int p, int i) {
+bool multiple_indicate_run (std::vector<int> binChain, int p, int i) {
   int first = binChain[i] ;
   bool run = TRUE ;
   for (int k = 0 ; k < p ; k++) {
@@ -288,49 +288,49 @@ bool multipleIndicateRun (std::vector<int> binChain, int p, int i) {
 //' Calculate the run test statistic for a set of binary chains of data and a
 //' run of a certain length.
 //'
-//' \code{multipleRunTestStat} takes a two dimensional integer vector
-//' \code{binChains} in which each row represents a single binary chain of data,
+//' \code{multiple_run_test_stat} takes a two dimensional integer vector
+//' \code{bin_chains} in which each row represents a single binary chain of data,
 //' and calculates a run test statistic for a run of length \code{p} for the
 //' entire set.
 //'
-//' @param binChains A two dimensional integer vector where each row is a
+//' @param bin_chains A two dimensional integer vector where each row is a
 //' separate binary chain of data.
 //' @param p An integer value representing the length of run to test for.
 //[[Rcpp::export]]
-long double multipleRunTestStat (std::vector<std::vector<int> > binChains, int p) {
-  int nRow = binChains.size() ;
-  int nCol = binChains[0].size() ;
-  long double testStat = 0 ;
-  for (int i = 0 ; i < nRow ; i++) {
-    for (int j = 0 ; j < nCol - p ; j++) {
-      if (multipleIndicateRun(binChains[i], p, j)) {
-        testStat = testStat + 1 ;
+long double multiple_run_test_stat (std::vector<std::vector<int> > bin_chains, int p) {
+  int n_row = bin_chains.size() ;
+  int n_col = bin_chains[0].size() ;
+  long double test_stat = 0 ;
+  for (int i = 0 ; i < n_row ; i++) {
+    for (int j = 0 ; j < n_col - p ; j++) {
+      if (multiple_indicate_run(bin_chains[i], p, j)) {
+        test_stat = test_stat + 1 ;
       }
     }
   }
-  return testStat ;
+  return test_stat ;
 }
 
 //' Calculate likelihood ratio test statistics for many sets of binary chains of
 //' data.
 //'
-//' \code{u6TestStatArray} takes a three dimensional vector containing multiple
+//' \code{u6_test_stat_array} takes a three dimensional vector containing multiple
 //' sets of binary chains of data, and returns a numeric vector with entries
 //' corresponding to the likelihood ratio test statistics of each set of binary
 //' chains of data.
 //'
-//' @param binChains A three dimensional vector containing sets of chains of
+//' @param bin_chains A three dimensional vector containing sets of chains of
 //' binary data.
-//' @param nChainUniques An integer value representing the number of unique
-//' elements in the set of chains \code{binChains}.
+//' @param n_chain_uniques An integer value representing the number of unique
+//' elements in the set of chains \code{bin_chains}.
 //' @export
 //' @useDynLib maRkov
 // [[Rcpp::export]]
-NumericVector u6TestStatArray (std::vector<std::vector<std::vector<int> > > binChains, int nChainUniques) {
-  int size = binChains.size() ;
+NumericVector u6_test_stat_array (std::vector<std::vector<std::vector<int> > > bin_chains, int n_chain_uniques) {
+  int size = bin_chains.size() ;
   NumericVector out(size) ;
   for (int i = 0 ; i < size ; i++) {
-    out[i] = u6TestStat(binChains[i], nChainUniques) ;
+    out[i] = u6_test_stat(bin_chains[i], n_chain_uniques) ;
   }
   return out ;
 }
@@ -338,45 +338,45 @@ NumericVector u6TestStatArray (std::vector<std::vector<std::vector<int> > > binC
 //' Calculate Pearson's chi square test statistics for many sets of binary
 //' chains of data.
 //'
-//' \code{multipleChiSqTestStatArray} takes a three dimensional vector
+//' \code{multiple_chi_sq_test_stat_array} takes a three dimensional vector
 //' containing multiple sets of binary chains of data, and returns a numeric
 //' vector with entries corresponding to the Pearson's chi square test
 //' statistics of each set of binary chains of data.
 //'
-//' @param binChains A three dimensional vector containing sets of chains of
+//' @param bin_chains A three dimensional vector containing sets of chains of
 //' binary data.
-//' @param nChainUniques An integer value representing the number of unique
-//' elements in the set of chains \code{binChains}.
+//' @param n_chain_uniques An integer value representing the number of unique
+//' elements in the set of chains \code{bin_chains}.
 //' @export
 //' @useDynLib maRkov
 //[[Rcpp::export]]
-NumericVector multipleChiSqTestStatArray (std::vector<std::vector<std::vector<int> > > binChains, int nChainUniques) {
-  int size = binChains.size() ;
+NumericVector multiple_chi_sq_test_stat_array (std::vector<std::vector<std::vector<int> > > bin_chains, int n_chain_uniques) {
+  int size = bin_chains.size() ;
   NumericVector out(size) ;
   for (int i = 0 ; i < size ; i++) {
-    out[i] = multipleChiSqTestStat(binChains[i], nChainUniques) ;
+    out[i] = multiple_chi_sq_test_stat(bin_chains[i], n_chain_uniques) ;
   }
   return out ;
 }
 
 //' Calculate run test statistics for many sets of chains of binary data.
 //'
-//' \code{multipleRunTestStatArray} takes a three dimensional integer vector
+//' \code{multiple_run_test_stat_array} takes a three dimensional integer vector
 //' containing multiple sets of binary chains of data, and returns a numeric
 //' vector with entries corresponding to the run test statistics for runs of
 //' length p for each set of binary chains of data.
 //'
-//' @param binChains A three dimensional integer vector containing sets of
+//' @param bin_chains A three dimensional integer vector containing sets of
 //' chains of binary data.
 //' @param p An integer representing the length of run to test for.
 //' @export
 //' @useDynLib maRkov
 //[[Rcpp::export]]
-NumericVector multipleRunTestStatArray (std::vector<std::vector<std::vector<int> > > binChains, int p) {
-  int n = binChains.size() ;
+NumericVector multiple_run_test_stat_array (std::vector<std::vector<std::vector<int> > > bin_chains, int p) {
+  int n = bin_chains.size() ;
   NumericVector out(n) ;
   for (int i = 0 ; i < n ; i++) {
-    out[i] = multipleRunTestStat(binChains[i], p) ;
+    out[i] = multiple_run_test_stat(bin_chains[i], p) ;
   }
   return out ;
 }

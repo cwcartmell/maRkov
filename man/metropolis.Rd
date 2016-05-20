@@ -4,10 +4,10 @@
 \alias{metropolis}
 \title{Generate independent data from a single binary chain.}
 \usage{
-metropolis(binChain, m, b)
+metropolis(bin_chain, m, b)
 }
 \arguments{
-\item{binChain}{A single binary chain of data represented by an integer
+\item{bin_chain}{A single binary chain of data represented by an integer
 vector.}
 
 \item{m}{An integer representing the number of swaps to be attempted.}
@@ -22,7 +22,7 @@ placing all of them in an integer matrix with the original data in the first
 row.
 }
 \details{
-\code{metropolis} works by taking the supplied \code{binChain}, and
+\code{metropolis} works by taking the supplied \code{bin_chain}, and
 attempting \code{m} swaps on it, only preforming a swap of elements if
 doing so maintains the number of transitions between states in the resulting
 chain. \code{metropolis} then takes the resulting chain, and attempts
@@ -30,6 +30,6 @@ chain. \code{metropolis} then takes the resulting chain, and attempts
 of an output matrix. \code{metropolis} does this \code{b} times, each time
 saving the resulting vector. Once all of the new data has been generated,
 \code{metropolis} returns the newly built integer matrix, of which the first
-row is the original chain of data \code{binChain}.
+row is the original chain of data \code{bin_chain}.
 }
 
