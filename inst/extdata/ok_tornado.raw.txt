@@ -2194,6 +2194,70 @@
 62	09/21/1992	1545	0.1	30	F0	0	0	Alfalfa	1 NW Cherokee
 63	09/21/1992	1555	0.1	30	F0	0	0	Bryan	2 S Caddo
 64	10/07/1992	1455	0.3	25	F1	0	3	Canadian	SW Oklahoma City (near SW 27th/ Czech Hall)
+1	03/28/1993	1800	0.01	30	F0	0	0	Nowata	2 S Lenapah
+2	03/29/1993	1612	0.1	25	F0	0	0	Beckham	2 W Elk City
+3	03/29/1993	1929	0.01	30	F0	0	0	Tillman	6 SE Grandfield
+4	03/29/1993	2152-2202	5	35	F1	0	0	Grady/ McClain	4 E Alex-3 W Criner
+5	03/30/1993	0030-0045	4.5	100	F1	0	0	Lincoln	2 SE-4 E Prague
+6	03/30/1993	1210	0.01	10	F0	0	0	Custer	5 W Weatherford
+7	04/24/1993	1750-1803	5.5	250	F4	7	100	Tulsa/ Rogers	E Tulsa To 1 N Catoosa
+8	04/24/1993	1757-1815	8	250	F3	0	30	Rogers	4 SW-4 E Catoosa
+9	04/24/1993	1846-1856	4.5	150	F2	0	1	Mayes	4 W-1.5 N Locust Grove
+10	04/24/1993	1917	0.1	10	F0	0	0	Mayes	2 W Rose
+11	04/24/1993	2015	0.1	10	F0	0	0	Adair	5 SW Watts
+12	04/24/1993	2155	0.01	20	F0	0	0	Coal	4 NE Centrahoma
+13	04/24/1993	2215	0.1	10	F0	0	0	Pittsburg	Near Ashland
+14	04/24/1993	2235	0.01	20	F0	0	0	Johnston	4 W Wapanucka
+15	04/28/1993	1740	0.01	20	F0	0	0	Beckham	3 W Retrop
+16	04/30/1993	1855	0.01	20	F0	0	0	Harper	3 E Rosston
+17	04/30/1993	2014	0.01	20	F0	0	0	Harper	4 N May
+18	04/30/1993	2027	0.01	20	F0	0	0	Harper	6 NE May
+19	04/30/1993	2158	0.01	20	F0	0	0	Woodward	7 N Woodward
+20	04/30/1993	2215	0.01	20	F0	0	0	Woodward	4 N Mooreland
+21	04/30/1993	2227	0.01	20	F0	0	0	Woodward	4 NE Mooreland
+22	04/30/1993	2240	0.01	20	F0	0	0	Woodward	5 N Mooreland
+23	04/30/1993	2352	0.01	20	F0	0	0	Woodward	2 NE Mooreland
+24	05/01/1993	0008	0.05	30	F0	0	0	Woodward	4 ENE Mooreland
+25	05/02/1993	1520	0.1	30	F0	0	0	McIntosh	5 W Checotah
+26	05/05/1993	1738-1815	12	500	F3	0	0	Texas	13 SSE-4.5 ESE Guymon
+27	05/05/1993	1755	1	150	F0	0	0	Texas	6 SW Hardesty
+28	05/05/1993	1810	2	275	F1	0	0	Texas	14 E & 2 N Guymon
+29	05/05/1993	1847	0.5	100	F0	0	0	Texas	2 SW Eva
+30	05/05/1993	1850	2	150	F0	0	0	Texas	17 N & 2 E Guymon
+31	05/05/1993	1854-1915	11	1200	F3	0	0	Texas/ Stevens KS	8 N Optima-13 ESE Hugoton, KS
+32	05/06/1993	1442-1457	8	50	F1	0	1	Carter	3 WNW-3 SSW Ardmore
+33	05/06/1993	1545	0.01	20	F0	0	0	Carter	1 NNE Lone Grove
+34	05/07/1993	1922	0.1	15	F0	0	0	Beckham	3 NE Sayre
+35	05/07/1993	2048-2051	0.8	70	F0	0	0	Kiowa	4 NNW-3 N Cooperton
+36	05/08/1993	1605-1609	0.8	50	F0	0	0	Cotton/ Stephens	6 SE Hulen-6WNW Empire City
+37	05/08/1993	1619-1640	8	60	F0	0	0	Stephens	8 SW-4 WNW Duncan
+38	05/08/1993	1625	0.1	20	F0	0	0	Jefferson	1 SW Ryan
+39	05/08/1993	1648	0.1	20	F0	0	0	Jefferson	3 ENE Ryan
+40	05/08/1993	1735	0.2	40	F1	0	0	Jefferson	8 W Ringling
+41	05/08/1993	1825-1836	5	600	F1	0	0	Carter	4 SW-1 N Woodford
+42	05/17/1993	2100	0.1	30	F0	0	0	Nowata	5 W South Coffeyville
+43	05/30/1993	1250-1258	3	100	F0	0	0	Delaware	8 E-11 ESE Jay
+44	06/02/1993	2130	0.5	50	F0	0	0	Beaver	4 N Turpin
+45	06/08/1993	0908-0913	1.5	40	F0	0	0	Love	0.5 W-1ENE Overbrook
+46	06/08/1993	1607	0.01	20	F0	0	0	Kay	7 N Blackwell
+47	06/08/1993	1620	0.01	20	F0	0	0	Kay	4 NW Newkirk -
+48	06/08/1993	1635-1702	11.5	150	F3	0	0	Kay	3 SSW-10 E Newkirk
+49	06/08/1993	1715-1717	0.3	80	F0	0	0	Kay	14 ESE Newkirk
+50	06/08/1993	1835	0.1	30	F0	0	0	Washington	1 S Copan
+51	06/09/1993	1558	0.1	30	F0	0	1	Tulsa	Glenpool
+52	06/09/1993	1600-1606	3	50	F1	0	0	Creek/ Tulsa	4 NNE Sapulpa-3 NNW Jenks
+53	06/09/1993	1615	0.1	50	F1	0	0	Tulsa	Broken Arrow
+54	06/09/1993	1619	0.1	30	F0	0	0	Wagoner	Near Oneta
+55	06/24/1993	1625	0.01	200	F0	0	0	Logan	N Lovell
+56	06/24/1993	1647-1648	0.2	35	F0	0	0	Logan	3 NNW Crescent
+57	09/13/1993	1330	0.01	25	F0	0	0	McClain	1 S Criner
+58	09/13/1993	1528-1531	1.5	50	F0	0	0	Johnston	0.5-2 NE Tishomingo
+59	09/13/1993	1645-1648	1.0	50	F0	0	0	Okfuskee	Bearden-1 E Bearden
+60	09/18/1993	1814-1818	0.5	100	F0	0	0	Beaver	6 ESE Elmwood
+61	09/19/1993	1800	0.1	30	F0	0	0	Okmulgee	4 E Beggs
+62	10/08/1993	1645	2.5	75	F0	0	0	Delaware	2 NW-3 N Jay
+63	10/08/1993	1836	0.1	30	F0	0	0	Cherokee	7 NE Tahlequah
+64	11/13/1993	1548	0.2	40	F0	0	0	McCurtain	5 SSE Valliant
 1	03/06/1994	2140	0.1	30	F0	0	0	Nowata	1 WSW Lenapah
 2	04/02/1994	1858	0.1	20	F0	0	0	Hughes	3 S Gerty
 3	04/02/1994	1909	0.1	20	F0	0	0	Pontotoc	3 S Ada
@@ -2688,6 +2752,67 @@
 42	10/22/2000	1800	0.1	15	F0	0	0	Pontotoc	5 SE Francis
 43	10/22/2000	1802-1807	1.5	40	F1	0	0	Oklahoma	SE OKC/Valley Brook (near SE79/Pole - 0.5 WNW SE59/Eastern)
 44	10/22/2000	1814-1822	3	25	F0	0	0	Oklahoma	Oklahoma City (just W of SE22/Eastern - just W of NE16/MLK)
+1	04/10/2001	2240-2310	12	200	F2	0	0	Beaver	8 S Balko - 9 S Beaver
+2	04/10/2001	2300-2315	6	100	F1	0	0	Beaver	8 SE Balko - 2 E Elmwood
+3	04/10/2001	2310-2320	2	50	F0	0	0	Beaver	6 NNW - 8 N Elmwood
+4	04/11/2001	0200-0206	5	50	F1	0	0	Pottawatomie	4 NW Maud - 2 NNW Harjo
+5	04/11/2001	0255-0315	18	100	F1	0	0	Cooke TX/ Love	4 NW Gainesville TX - 10 ESE Marietta
+6	04/11/2001	0340-0403	15	400	F2	0	0	Pontotoc/ Coal/ Pontotoc	3 WSW Jesse - 2 NNE Lula
+7	04/11/2001	0345-0410	19	500	F2	0	4	Johnston/ Atoka	6 SE Tishomingo - 7 NNW Boggy Depot (3 ENE Wapanucka)
+8	04/11/2001	0347	0.25	25	F0	0	0	Bryan	4 W Brown
+9	04/11/2001	0425-0440	13	200	F2	1	1	Coal/ Atoka	3 SE Coalgate - 1 NW Wardville
+10	04/11/2001	0626-0631	3	400	F1	0	0	Haskell	4 N Stigler - 5 SW Tamaha
+11	05/04/2001	1505-1506	0.5	200	F1	0	1	Tillman	Grandfield
+12	05/04/2001	1805-1806	0.2	25	F0	0	0	Grady	0.5 E Chickasha
+13	05/04/2001	1820-1824	0.7	50	F0	0	0	Grady	2 NNE - 3 N Amber
+14	05/05/2001	1911	0.1	15	F0	0	0	Washita	2 N Cordell
+15	05/05/2001	1915-1919	0.5	75	F0	0	0	Washita	4 NNE Cordell
+16	05/06/2001	1458-1504	1	220	F0	0	0	Carter	1.5 WSW - 1 WNW Springer
+17	05/06/2001	1604-1613	1	75	F0	0	0	Love	5 SW - 4 SW Overbrook
+18	05/06/2001	1630-1631	0.1	25	F1	0	0	Marshall	9 W Madill
+19	05/19/2001	1323-1325	0.5	25	F0	0	0	Jackson	4 WNW Altus
+20	05/20/2001	1520-1556	11	250	F2	0	0	Hughes/ McIntosh	6 SW Dustin - 5 N Hanna
+21	05/20/2001	1730	0.5	200	F0	0	0	Haskell	near Enterprise
+22	05/20/2001	1730	0.3	25	F0	0	0	Osage	1 S Pawhuska
+23	05/20/2001	1751	0.3	25	F0	0	0	Pontotoc	7 S Ada
+24	05/20/2001	1754	0.3	150	F0	0	0	Haskell	1 SW Stigler
+25	05/20/2001	1758	0.3	100	F0	0	0	Pittsburg	4 N McAlester
+26	05/20/2001	1815	0.1	150	F0	0	0	Coal	4 NE Tupelo
+27	05/20/2001	1830	1	100	F0	0	0	Haskell	6 SE Stigler
+28	05/20/2001	1837	0.3	25	F0	0	0	Latimer	7 NW Wilburton
+29	05/20/2001	1840-1841	0.2	30	F0	0	0	Coal	5 NE Centrahoma
+30	05/20/2001	1855	0.3	25	F0	0	0	Le Flore	2 W Spiro
+31	05/30/2001	1856	0.2	25	F0	0	0	Pittsburg	1 S Haileyville
+32	05/20/2001	1950-1952	1	200	F1	0	0	Le Flore	6 NE - 7 NE Talihina
+33	05/30/2001	2010	0.2	25	F0	0	0	Pittsburg	near Kiowa
+34	05/30/2001	2030	0.2	25	F0	0	0	Latimer	1 SE Yanush
+35	05/27/2001	2203-2213	9	320	F1	0	0	Carter	4 NW - 4.5 E Ratliff City
+36	06/05/2001	1834	0.1	25	F0	0	0	Woodward	5 SSW Woodward
+37	09/07/2001	1425-1428	2	50	F0	0	0	Alfalfa	Helena - 2 E Helena
+38	09/08/2001	1433-1434	0.3	25	F0	0	0	Atoka	near Chockie
+39	09/17/2001	1553-1554	0.1	25	F0	0	0	Cimarron	15 SW Boise City
+40	09/18/2001	0020-0021	0.5	10	F1	0	0	Major	0.5 W Ringwood - Ringwood
+41	09/19/2001	1830-1832	0.1	25	F0	0	0	Beaver	7 SSW Beaver
+42	09/20/2001	1720-1723	0.1	25	F0	0	0	Woods	7 N Camp Houston
+43	10/09/2001	1339-1340	1	50	F0	0	0	Beckham	6 WNW Sayre - 6 NW Sayre
+44	10/09/2001	1342	0.1	25	F0	0	0	Beckham	7.5 WNW Sayre
+45	10/09/2001	1342-1352	4.5	200	F0	0	0	Beckham	7 NW Sayre (0. 5 SW New Liberty) - (1 NE New Liberty) - 7 NNW Sayre
+46	10/09/2001	1350	0.1	25	F0	0	0	Beckham	6 NNW Sayre
+47	10/09/2001	1412-1418	3	50	F1	0	0	Roger Mills/ Beckham	2SSE Berlin - 3 ENE Berlin
+48	10/09/2001	1530-1556	11	600	F3	0	0	Beckham/ Washita/ Custer	NE side of Elk City - 2.5 W Foss Reservoir Dam
+49	10/09/2001	1552-1553	1	25	F0	0	0	Kiowa	4 WSW Hobart - 3 WSW Hobart
+50	10/09/2001	1608-1621	6	500	F3	0	9	Washita	1.5 SW Cordell - Cordell - 3.5 NE Cordell
+51	10/09/2001	1616	0.1	25	F0	0	0	Custer	3.5 NE Stafford (6 W Arapaho)
+52	10/09/2001	1632-1636	2	200	F1	0	0	Washita	2.5 NW Corn - 3 NNW Corn
+53	10/09/2001	1636-1710	13	440	F3	0	1	Kiowa/ Washita	1 NE Gotebo - 7 NNE Mountain View
+54	10/09/2001	1642	0.1	25	F0	0	0	Custer	3 SW Custer City
+55	10/09/2001	1657-1658	 	 	F0	0	0	Custer	4 SE Weatherford
+56	10/09/2001	1718-1722	2	300	F1	0	0	Caddo	1.5 ESE - 3 E Alfalfa
+57	10/09/2001	1728	0.4	25	F0	0	0	Caddo	2 NW Carnegie
+58	10/09/2001	1757-1758	0.8	50	F1	0	0	Caddo	3 S Albert to 3 SSE Albert
+59	10/09/2001	1805-1810	2	440	F1	0	0	Caddo	7 S Binger to 3.5 NW Gracemont
+60	10/09/2001	1815-1819	1.5	580	F0	0	0	Caddo	5 N Gracemont - 3.5 WSW Spring Creek
+61	10/09/2001	1820-1824	1.5	850	F1	0	0	Caddo	5 W Spring Creek - 4 WNW Spring Creek
 1	04/11/2002	2152-2159	2.1	25	F0	0	0	Grant/ Garfield/ Noble	8 SE Lamont-2 NNE Billings
 2	04/16/2002	1918-1928	3	100	F1	0	0	Atoka	2 W-1 N Atoka
 3	04/16/2002	2015	0.3	25	F0	0	0	Pushmataha	1 N Jumbo

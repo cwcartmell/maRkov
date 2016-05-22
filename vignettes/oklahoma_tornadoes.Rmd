@@ -7,29 +7,31 @@ vignette: >
   %\VignetteIndexEntry{Oklahoma Tornadoes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: oklahoma_tornadoes_ref.bibtex
 ---
-In "A Markov Chain Model of Tornadic Activity", a paper by Mathias Drton, Caren Marzban, Peter Guttorp, and Joseph T. Schaefer, the authors propose that tornadoes in the United States can be modeled with Markov chains. In the paper, they encode their data in a matrix with each row representing a year from 1953 to 1998, and each column representing a day of the year. 1 in an entry in the matrix indicates that at least one tornado occurred on the corresponding year and date and 0 in an entry indicates that no tornadoes occurred on the corresponding day.
+In "A Markov Chain Model of Tornadic Activity" [@Caren_amarkov], the authors propose that tornadoes in the United States can be modeled with Markov chains. In the paper, they encode their data in a matrix with each row representing a year from 1953 to 1998, and each column representing a day of the year. A 1 in an entry in the matrix indicates that at least one tornado occurred on the corresponding year and date and 0 in an entry indicates that no tornadoes occurred on the corresponding day.
 
 If the presence of tornadoes in the greater United States can be modeled with a binary Markov chain, it stands to reason that tornadoes in Oklahoma could be modeled in the same fashion. The data encoded in the included data set `ok_tornado` is encoded in the same way as the data in the Drton et al. paper, but it covers only tornadoes in Oklahoma, and instead of including only the years 1953 to 1998, it includes all years between 1950 and 2015. It's time to get started.
 
-The first thing that we are going to investigate is whether, out of all the data, a single year is adequately modeled by a first order Markov chain. We'll take a year, chosen at random (2009), and use `single_binary_test()` to analyze it. After that, if it appears that a first order chain is appropriate for that year, we can continue with our analysis of all of the chains. If a first order chain is not adequate, additional analysis on single chains will be necessary.
+The first thing that we are going to investigate is whether every year is adequately modeled by a first order Markov chain. We'll run `single_binary_test()` on every single year that we have data, and compile a vector of likelihood ratio test statistic p-values to see if there are issues with using binary Markov chains for each one.
 
 We need to take our data and transform it into forms that `single_binary_test()` and `multiple_binary_test()` can understand:
 
 ```{r set_environment_import_data}
 library(maRkov)
 tornadoes <- as.matrix(ok_tornado)
-tornadoes_2009 <- tornadoes[ 60, ]
 ```
 
 Now that we have a vector representing the days with tornadoes in 2009 and a matrix representing days with tornadoes from 1950-2015, we'll run `single_binary_test()` on the chain from 2009 and look at a summary of the results:
 
 ```{r run_single_test_summary_1}
-tornadoes_2009_test <- single_binary_test(tornadoes_2009, swaps = 10000, n = 10000)
-summary(tornadoes_2009_test)
+lrt_p_values <- apply(tornadoes, 1,
+                      function(X)(single_binary_test(binary_chain = X,
+                                                     swaps = 10000, n = 10000))$p_value_lrt)
+hist(lrt_p_values)
 ```
 
-Although the output of `summary(tornadoes_2009_test)` is constrained by the width of the vignette, you can see that the p-value for the likelihood ratio test is quite large. Given this, we'll move forward with analyzing all of the chains with `multiple_binary_test()`:
+This is not good. As you can see from the histogram of p-values, we have ~14 p-values that indicate significance at the .1 level. We would expect to see $66*.1=6.6$ if all the sequences could be adequetely modeled by first order Markov chains. None the less, we'll forge on our investigation to see if we can identify what is going on.
 
 ```{r run_multiple_test_2}
 tornadoes_test <- multiple_binary_test(tornadoes, swaps = 10000, n = 10000)
@@ -84,3 +86,4 @@ Again, it turns out that a simple, first order binary Markov chain does is not s
 
 It wasn't mentioned at the beginning of this vignette for the sake of constructing an interesting problem, but the authors of the Drton et al. paper did not actually use a first order binary Markov chain to describe their data. In their case, they used what are called non-homogeneous Markov chains to describe their data. These are Markov chains for which the transition probabilities change as the chain moves through states. Given a little bit of thought, the requirement for this kind of chain makes perfect sense, as there are climate factors that fluctuate throughout the year that affect tornado formation. Another issue is that tornadoes in an area limited to the size of Oklahoma are affected by far more local weather patterns than tornadoes across the entire United States, which may make them harder to model with Markov chains. Unfortunately, this is the limit of the functionality of the package, so all we can conclude is that simple first order binary Markov chains are not sufficient to represent this data.
 
+# References
