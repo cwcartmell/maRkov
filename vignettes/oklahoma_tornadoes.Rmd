@@ -31,7 +31,7 @@ lrt_p_values <- apply(tornadoes, 1,
 hist(lrt_p_values)
 ```
 
-This is not good. As you can see from the histogram of p-values, we have ~14 p-values that indicate significance at the .1 level. We would expect to see $66*.1=6.6$ if all the sequences could be adequetely modeled by first order Markov chains. None the less, we'll forge on our investigation to see if we can identify what is going on.
+This is not good. As you can see from the histogram of p-values, we have ~14 p-values that indicate significance at the .1 level. We would expect to see $66*.1=6.6$ if all the sequences could be adequately modeled by first order Markov chains. None the less, we'll forge on our investigation to see if we can identify what is going on.
 
 ```{r run_multiple_test_2}
 tornadoes_test <- multiple_binary_test(tornadoes, swaps = 10000, n = 10000)

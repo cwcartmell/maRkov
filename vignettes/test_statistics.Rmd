@@ -10,7 +10,7 @@ vignette: >
 bibliography: test_statistics_ref.bib
 ---
 
-The test statistics utilized in the `maRkov` package are drawn from the paper "Exact Goodness-of-Fit Tests for Markov Chains" [@BIOM:BIOM12009]. This vignette will attempt to give a brief introduction to them so that the user of the `maRkov` package may better understand the guts of the included programs.
+The test statistics utilized in the `maRkov` package are drawn from the paper "Exact Goodness-of-Fit Tests for Markov Chains" [@BIOM:BIOM12009]. This vignette will attempt to give a brief introduction so that the user of the `maRkov` package is better equipped to understand the guts of the included programs.
 
 ## Introduction to Markov chains
 
@@ -46,7 +46,7 @@ The Markov chain described in the above table is a first order Markov chain. Thi
 
 This table is read in the same way as the first. The first thing that pops out is the fact that it is impossible to transition to a certain states from any given states. This is because, despite the fact that each state captures two time steps, it is still only possible to take one step at once. Therefor, if the process is in, say, state (_0_,__0__), when time moves forward one step, the _italic 0_ in the first position will be "pushed out" of the state, and the __bold 0__ in the second position will be pushed into its place. Hence, the process is in state (0,0), the next state it is in will necessarily have a first element of 0.
 
-While second order Markov chains certainly useful, and may in many cases have more power to describe real life processes, there is a serious issue of computational efficiency. As you can see, increasing the order of a Markov chain increases the number of states by a factor of the number of states in the first order chain. Thus, to reduce computational demand, it is well within our interest to try to keep the total number of states at a minimum.
+While second order Markov chains are certainly useful, and may in many cases have more power to describe real life processes, there is a serious issue of computational efficiency. As you can see, increasing the order of a Markov chain increases the number of states by a factor of the number of states in the first order chain. Thus, to reduce computational demand, it is well within our interest to try to keep the total number of states at a minimum.
 
 ## Questions of interest & test statistics
 
@@ -58,27 +58,28 @@ Once all the swaps have been attempted, the resulting sequence of data is saved.
 
 ### Single sequences
 
-For single sequences of data, the primary question of interest adressed by the `maRkov` package is: is a first order binary Markov chain appropriate to describe the given sequence compared to a second order one? The function used to answer this question is `single_binary_test()`, which gives three test stastistics: the likelihood ratio test statistic, the Pearson's chi-squared ($\chi^2$) test statistic, and the run test statistic for a run of a given length. The likelihood ratio test statistic adresses the above question of interest. The $\chi^2$ test statistic functions as an approximation of the likelihood ratio test statistic, because they both have similar distributions. Lastly, the run test statistic is useful for judging the homogenaity of the sequence, although it does not test for a rigorous question of interest presented here.
+For single sequences of data, the primary question of interest addressed by the `maRkov` package is: is a first order binary Markov chain appropriate to describe the given sequence compared to a second order one? The function used to answer this question is `single_binary_test()`, which gives three test statistics: the likelihood ratio test statistic, the Pearson's chi-squared ($\chi^2$) test statistic, and the run test statistic for a run of a given length. The likelihood ratio test statistic addresses the above question of interest. The $\chi^2$ test statistic functions as an approximation of the likelihood ratio test statistic, because they both have similar distributions. Lastly, the run test statistic is useful for judging the homogeneity of the sequence, although it does not test for a rigorous question of interest presented here.
 
-Once `single_binary_test()` has generated a sufficient amount of data, it goes about generating the aforementioned test statistics. Since the test statistics in the `maRkov` package are concerned with determining the appropriateness of first order chains against second order ones, a table of second order transition counts is compiled for each sequence. From this table, the program generates test statistics. 
+Once `single_binary_test()` has generated a sufficient amount of exchangeable sequences, it goes about generating the aforementioned test statistics. Since the test statistics in the `maRkov` package are concerned with determining the appropriateness of first order chains against second order ones, a table of second order transition counts is compiled for each sequence. From this table, the program generates test statistics. 
 
 $$ LRT = 2 \sum_{i,j,k}^{} n_{ijk} log\Bigg(\frac{\frac{n_{ijk}}{n_{ij+}}}{\frac{n_{+jk}}{n_{+j+}}}\Bigg) $$
 
 $$ \chi^2 = \sum_{i,j,k}^{} \frac{\bigg(n_{ijk}-\frac{n_{ij+}n_{+jk}}{n_{+j+}}\bigg)^2}{\frac{n_{ij+}n_{+jk}}{n_{+j+}}} $$
 
-Where $n_{ijk}$ represents the frequency of the transition from state $ij$ to state $jk$ in a second order chain. The $n's$ with $+$ in the subscript indicate summation across all values of either $i, j, k$ or some combination thereof. It should be noted, additionally, that $i = j = k = \{0,1\}$.
+In the equations above, $n_{ijk}$ represents the frequency of the transition from state $ij$ to state $jk$ in a second order chain. The $n's$ with $+$ in the subscript indicate summation across all values of either $i, j, k$ or some combination thereof. It should be noted, additionally, that $i = j = k = \{0,1\}$.
 
 Run test statistics simply represent the number of times that a run of a certain specified length occurs within the sequence. The exact formula is shown below for a run of length $p$, where $x_i$ is the $i^{th}$ index of a sequence of data $x$ of length $l$.
 
 $$ Run = \sum_{i=1}^{l-p} \mathbb{I}_{x_i=x_{i+1}=...=x_{i+p-1}=x_{i+p}}(i) $$
+$$ Run = \sum_{i=1}^{l-p}   1_{x_i =1 \& x_{i+1} =1 \& \cdots \& x_{i+p} =1} $$
 
 ### Multiple sequences
 
-For multiple binary chains, the question of interest is different. Now, instead asking whether to use a first or second order chain, we ask ourselves whether a single binary Markov chain is adequete to describe a given set of sequences of data, or if multiple binary Markov chains are required. The liklihood ratio test statistic is used to answer this question. The $\chi^2$ distribution is once again an approximation of the distribution of likelihood ratio test statistics.
+For multiple binary chains, the question of interest is different. Now, instead asking whether to use a first or second order chain, we ask ourselves whether a single binary Markov chain is adequate to describe a given set of sequences of data, or if multiple binary Markov chains are required. The likelihood ratio test statistic is used to answer this question. The $\chi^2$ distribution is once again an approximation of the distribution of likelihood ratio test statistics.
 
 Unlike `single_binary_test()`, `multiple_binary_test()` isn't at all concerned with second order chains, so this time a table of first order transitions is compiled. 
 
-$$ LRT = 2 \sum_{i,j,k,t}^{} n_{ijk}^{(t)}*log\Bigg(\frac{\frac{n_{ijk}^{(t)}}{n_{ij+}^{(t)}}}{\frac{n_{+jk}^{(t)}}{n_{+j+}^{(t)}}}\Bigg) $$
+$$ LRT = 2 \sum_{i,j,t}^{} n_{ijk}^{(t)}*log\Bigg(\frac{\frac{n_{ijk}^{(t)}}{n_{ij+}^{(t)}}}{\frac{n_{+jk}^{(t)}}{n_{+j+}^{(t)}}}\Bigg) $$
 
 $$ \chi^2 = \sum_{t=0}^{n} \sum_{i,j}^{} \frac{{\Bigg(n_{ij}^{(t)}-\frac{n_{i+}^{(t)}n_{ij}^{(+)}}{n_{i+}^{(+)}}\Bigg)}^2}{n_{i+}^{t}+\frac{n_{ij}^{(+)}}{n_{i+}^{(+)}}} $$
 
@@ -87,5 +88,6 @@ Where $n_{ij}^{(t)}$ represents the frequency of the transition from state $i$ t
 The run test statistic is calculated in the same fashion as the run test statistic in the single sequence case, but the run test statistics from each sequence are added together. The exact formula is shown below for a run of length $p$, where $x_i^{(j)}$ is the $i^{th}$ index of a sequence of data $x^{(j)}$ within a set of $n$ sequences $x$, all of length $l$.
 
 $$ Run = \sum_{j=1}^{n} \sum_{i=1}^{l-p} \mathbb{I}_{x_i^{(j)}=x_{i+1}^{(j)}=...=x_{i+p-1}^{(j)}=x_{i+p}^{(j)}}(i) $$
+$$  Run= \sum_{j=}^n \sum_{i=1}^{l-p} 1_{ x_i^{(j)} =1 \& x_{i+1}^{(j)} =1 \& \cdots \& x_{i+p}^{(j)} =1} $$
 
 # References

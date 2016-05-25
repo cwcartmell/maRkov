@@ -26,7 +26,7 @@ We'll need to encode this data in a way that `single_binary_test` and `multiple_
 snoqualmie_matrix <- as.matrix(maRkov::snoqualmie)
 ```
 
-Before we can examine whether a simple binary Markov chain is appropriate for describing rainfall in the month of January in general, we need to ask ourselves if each January that we have is appropriately modeled by a simple binary chain. To determine this, we will generate a vector of likelihood ratio p-values for each year, and a histogram:
+Before we can examine whether a simple binary Markov chain is appropriate for describing rainfall in the month of January in general, we need to ask ourselves if each January that we have is appropriately modeled by a simple binary Markov chain. To determine this, we will generate a vector of likelihood ratio p-values for each year, and a histogram:
 
 ```{r multiple_single_test, fig.width = 7, fig.height = 4}
 lrt_p_values <- apply(snoqualmie_matrix, 1,
@@ -35,7 +35,7 @@ lrt_p_values <- apply(snoqualmie_matrix, 1,
 hist(lrt_p_values, breaks = 10)
 ```
 
-This is quick and dirty analysis, but it is clear from looking at the histogram of p-values that very low ones are generally uncommon. Given a p-value cutoff of .1, we would expect to see $36*.1=3.6$ p-values below .1. In the above histogram, you see about 3 results with p-values below .1. This gives us no reason to doubt that simple binary chains can be used to model the month of January in each year, as the years with low p-values may very well be the result of having data from a great many years.
+This is quick and dirty analysis, but it is clear from looking at the histogram of p-values that very low ones are generally uncommon. Given a p-value cutoff of .1, we would expect to see $36*.1=3.6$ p-values below .1. In the above histogram, you see about 3 results with p-values below .1. This gives us no reason to doubt that simple binary Markov chains can be used to model the month of January in each year, as the years with low p-values may very well be the result of having data from a great many years.
 
 We're finally ready to call `multiple_binary_test()`, which will produce an object of class `multiple_binary_test`. Afterwards, we'll look at some plots and a summary of our data. Specifically, we'll be taking a look at the distribution of test statistics and the p-value for the likelihood ratio test (LRT). This test will give us a answer to the question of whether or not the null hypothesis of a single binary chain is acceptable against the alternative of a second order binary chain.
 
