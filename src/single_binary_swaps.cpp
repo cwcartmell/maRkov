@@ -200,8 +200,8 @@ long double chi_sq_test_stat (std::vector<int> bin_chain, int n_chain_uniques) {
   long double test_stat = 0 ;
 
   for (int i = 0 ; i < 2 ; i++) {
-    for (int j = 0 ; i < 2 ; i++) {
-      for (int k = 0 ; i < 2 ; i++) {
+    for (int j = 0 ; j < 2 ; j++) {
+      for (int k = 0 ; k < 2 ; k++) {
         test_stat = test_stat + (pow((n[i][j][k] - ((k_dim_sum(n, i, j) / 1.0 * i_dim_sum(n, j, k) / 1.0) / (ik_dim_sum(n, j) / 1.0 ))), 2) / ((k_dim_sum(n, i, j) / 1.0 * i_dim_sum(n, j, k) / 1.0) / (ik_dim_sum(n, j) / 1.0))) ;
       }
     }
