@@ -127,9 +127,9 @@ check_true_binary_multiple <- function(bin_chains) {
 #' @param success Denotes the data entry to be counted for run statistics.
 #'
 #' @examples
-#' alter_to_true_binary(c("A","B","B","B","A","B","A","A"))
+#' alter_to_true_binary(c("A","B","B","B","A","B","A","A"), success = NULL)
 #' alter_to_true_binary(c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,
-#' FALSE))
+#' FALSE), success = NULL)
 #' @export
 alter_to_true_binary <- function(bin_chain, success) {
   uniques <- unique(bin_chain)
@@ -166,9 +166,9 @@ alter_to_true_binary <- function(bin_chain, success) {
 #'
 #' @examples
 #' alter_to_true_binary_multiple(matrix(data = c("A","B","A","B","A","B","B",
-#' "A","A"), ncol = 3))
+#' "A","A"), ncol = 3), success = NULL)
 #' alter_to_true_binary_multiple(matrix(data = c(TRUE,TRUE,TRUE,FALSE,FALSE,
-#' TRUE,FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3))
+#' TRUE,FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3), success = NULL)
 #' @export
 alter_to_true_binary_multiple <- function(bin_chains, success) {
     uniques <- c()

@@ -26,8 +26,8 @@ returns TRUE.
 }
 \examples{
 alter_to_true_binary_multiple(matrix(data = c("A","B","A","B","A","B","B",
-"A","A"), ncol = 3))
+"A","A"), ncol = 3), success = NULL)
 alter_to_true_binary_multiple(matrix(data = c(TRUE,TRUE,TRUE,FALSE,FALSE,
-TRUE,FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3))
+TRUE,FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3), success = NULL)
 }
 

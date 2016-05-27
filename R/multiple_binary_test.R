@@ -72,7 +72,7 @@
 #' \code{run}, the length of run specified in the function call.
 #' @export
 multiple_binary_test <- function(binary_chains, swaps = 1000, n = 1000,
-                                 run = 4, bins = 30) {
+                                 run = 4, bins = 30, success = NULL) {
     # Block checks binary chain, alters it if nessecary.
 
     if (check_false_binary_multiple(binary_chains) == FALSE) {

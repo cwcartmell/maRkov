@@ -24,8 +24,8 @@ using \code{\link{check_false_binary}}, and only used in
 \code{alter_to_true_binary} if \code{\link{check_false_binary}} returns TRUE.
 }
 \examples{
-alter_to_true_binary(c("A","B","B","B","A","B","A","A"))
+alter_to_true_binary(c("A","B","B","B","A","B","A","A"), success = NULL)
 alter_to_true_binary(c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,
-FALSE))
+FALSE), success = NULL)
 }
 

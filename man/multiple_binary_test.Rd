@@ -5,7 +5,7 @@
 \title{Perform goodness-of-fit tests on multiple binary chains.}
 \usage{
 multiple_binary_test(binary_chains, swaps = 1000, n = 1000, run = 4,
-  bins = 30)
+  bins = 30, success = NULL)
 }
 \arguments{
 \item{binary_chains}{A two dimensional matrix, in which there are two unique
