@@ -20,10 +20,8 @@ check_false_binary <- function(bin_chain) {
     if (length(options) == 2) {
         return(TRUE)
     } else if (length(options) == 1){
-      print("WARNING: Your binary chain only has one value. This will probably
-            cause calculating test statistics impossible, and you should
-            reconsider your model.")
-      return(TRUE)
+      stop("Your binary chain only has one value. This will cause calculating test statistics impossible, and you should reconsider your model.",
+           call. = FALSE)
     } else {
       return(FALSE)
     }
@@ -126,23 +124,28 @@ check_true_binary_multiple <- function(bin_chains) {
 #' \code{alter_to_true_binary} if \code{\link{check_false_binary}} returns TRUE.
 #'
 #' @param bin_chain A one dimensional vector with two unique elements.
+#' @param success Denotes the data entry to be counted for run statistics.
 #'
 #' @examples
 #' alter_to_true_binary(c("A","B","B","B","A","B","A","A"))
 #' alter_to_true_binary(c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,
 #' FALSE))
 #' @export
-alter_to_true_binary <- function(bin_chain) {
-    uniques <- unique(bin_chain)
-    binary <- c(0, 1)
+alter_to_true_binary <- function(bin_chain, success) {
+  uniques <- unique(bin_chain)
 
-    for (i in 1:2) {
-        unique.logic <- bin_chain == uniques[i]
-        bin_chain[unique.logic] <- binary[i]
+  if (is.null(success) == TRUE) {
+    bin_chain[bin_chain == uniques[1]] <- 0
+    bin_chain[bin_chain == uniques[2]] <- 1
+  } else {
+    if (is.element(success, uniques) == FALSE) {
+      stop("The success argument did not match the entries of the given binary chain.",
+           call. = FALSE)
     }
-    bin_chain <- as.integer(bin_chain)
-    print(bin_chain)
-    return(bin_chain)
+    bin_chain[bin_chain != success] <- 0
+    bin_chain[bin_chain == success] <- 1
+  }
+  return(as.integer(bin_chain))
 }
 
 #' Take a two dimensional matrix with two unique values and change those values
@@ -159,6 +162,7 @@ alter_to_true_binary <- function(bin_chain) {
 #' returns TRUE.
 #'
 #' @param bin_chains A two dimensional vector with two unique elements.
+#' @param success Denotes the data entry to be counted for run statistics.
 #'
 #' @examples
 #' alter_to_true_binary_multiple(matrix(data = c("A","B","A","B","A","B","B",
@@ -166,20 +170,21 @@ alter_to_true_binary <- function(bin_chain) {
 #' alter_to_true_binary_multiple(matrix(data = c(TRUE,TRUE,TRUE,FALSE,FALSE,
 #' TRUE,FALSE,FALSE,TRUE,TRUE,FALSE), ncol = 3))
 #' @export
-alter_to_true_binary_multiple <- function(bin_chains) {
+alter_to_true_binary_multiple <- function(bin_chains, success) {
     uniques <- c()
     for (i in 1:nrow(bin_chains)) {
         uniques <- union(uniques, unique(bin_chains[i, ]))
     }
-    binary <- c(0, 1)
-    for (j in 1:nrow(bin_chains)) {
-        for (k in 1:ncol(bin_chains)) {
-            if (bin_chains[j, k] == uniques[1]) {
-                bin_chains[j, k] <- binary[1]
-            } else if (bin_chains[j, k] == uniques[2]) {
-                bin_chains[j, k] <- binary[2]
-            }
-        }
+    if (is.null(success) == TRUE) {
+      bin_chains[bin_chains == uniques[1]] <- 0
+      bin_chains[bin_chains == uniques[2]] <- 1
+    } else {
+      if (is.element(success, uniques) == FALSE) {
+        stop("The success argument did not match the entries of the given, binary chains.",
+             call. = FALSE)
+      }
+      bin_chains[bin_chains != success] <- 0
+      bin_chains[bin_chains == success] <- 1
     }
-    return(bin_chains)
+    return(as.integer(bin_chains))
 }

@@ -5,10 +5,12 @@
 \title{Take a one dimensional vector with two unique values and change those values
 to integers 0 and 1.}
 \usage{
-alter_to_true_binary(bin_chain)
+alter_to_true_binary(bin_chain, success)
 }
 \arguments{
 \item{bin_chain}{A one dimensional vector with two unique elements.}
+
+\item{success}{Denotes the data entry to be counted for run statistics.}
 }
 \description{
 \code{alter_to_true_binary} takes a one dimensional vector that contains two

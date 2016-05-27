@@ -224,9 +224,8 @@ long double chi_sq_test_stat (std::vector<int> bin_chain, int n_chain_uniques) {
 //' @useDynLib maRkov
 // [[Rcpp::export]]
 bool indicate_run (std::vector<int> bin_chain, int p, int i) {
-  int first = bin_chain[i] ;
   for (int k = 0 ; k < p ; k++) {
-    if (bin_chain[i + k] != first) {
+    if (bin_chain[i + k] != 1) {
       return FALSE ;
     }
   }

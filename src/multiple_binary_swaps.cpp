@@ -250,7 +250,7 @@ long double multiple_chi_sq_test_stat (std::vector<std::vector<int> > bin_chains
   for (int i = 0 ; i < dim_i ; i++) {
     for (int j = 0 ; j < dim_j ; j++) {
       for (int k = 0 ; k < dim_k  ; k++) {
-        if (n[i][j][k] == 0) {
+        if (n[i][j][k] == 0 or k_dim_sum(n, i, j) * j_dim_sum(n, i, k) == 0) {
           test_stat = test_stat ;
         }
         else {
@@ -275,14 +275,12 @@ long double multiple_chi_sq_test_stat (std::vector<std::vector<int> > bin_chains
 //' @param i An integer representing a valid index of \code{binChain}.
 //[[Rcpp::export]]
 bool multiple_indicate_run (std::vector<int> binChain, int p, int i) {
-  int first = binChain[i] ;
-  bool run = TRUE ;
   for (int k = 0 ; k < p ; k++) {
-    if (binChain[i + k] != first) {
+    if (binChain[i + k] != 1) {
       return FALSE ;
     }
   }
-  return run ;
+  return TRUE ;
 }
 
 //' Calculate the run test statistic for a set of binary chains of data and a

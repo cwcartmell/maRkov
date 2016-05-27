@@ -2,7 +2,7 @@
 title: "Explanation of Test Statistics"
 author: "Conrad Cartmell"
 date: "`r Sys.Date()`"
-output: rmarkdown::pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Explanation of Test Statistics}
   %\VignetteEngine{knitr::rmarkdown}
@@ -70,7 +70,6 @@ In the equations above, $n_{ijk}$ represents the frequency of the transition fro
 
 Run test statistics simply represent the number of times that a run of a certain specified length occurs within the sequence. The exact formula is shown below for a run of length $p$, where $x_i$ is the $i^{th}$ index of a sequence of data $x$ of length $l$.
 
-$$ Run = \sum_{i=1}^{l-p} \mathbb{I}_{x_i=x_{i+1}=...=x_{i+p-1}=x_{i+p}}(i) $$
 $$ Run = \sum_{i=1}^{l-p}   1_{x_i =1 \& x_{i+1} =1 \& \cdots \& x_{i+p} =1} $$
 
 ### Multiple sequences
@@ -87,7 +86,6 @@ Where $n_{ij}^{(t)}$ represents the frequency of the transition from state $i$ t
 
 The run test statistic is calculated in the same fashion as the run test statistic in the single sequence case, but the run test statistics from each sequence are added together. The exact formula is shown below for a run of length $p$, where $x_i^{(j)}$ is the $i^{th}$ index of a sequence of data $x^{(j)}$ within a set of $n$ sequences $x$, all of length $l$.
 
-$$ Run = \sum_{j=1}^{n} \sum_{i=1}^{l-p} \mathbb{I}_{x_i^{(j)}=x_{i+1}^{(j)}=...=x_{i+p-1}^{(j)}=x_{i+p}^{(j)}}(i) $$
 $$  Run= \sum_{j=}^n \sum_{i=1}^{l-p} 1_{ x_i^{(j)} =1 \& x_{i+1}^{(j)} =1 \& \cdots \& x_{i+p}^{(j)} =1} $$
 
 # References

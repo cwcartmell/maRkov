@@ -5,10 +5,12 @@
 \title{Take a two dimensional matrix with two unique values and change those values
 to integers 0 and 1.}
 \usage{
-alter_to_true_binary_multiple(bin_chains)
+alter_to_true_binary_multiple(bin_chains, success)
 }
 \arguments{
 \item{bin_chains}{A two dimensional vector with two unique elements.}
+
+\item{success}{Denotes the data entry to be counted for run statistics.}
 }
 \description{
 \code{alter_to_true_binary_multiple} takes a two dimensional matrix that
