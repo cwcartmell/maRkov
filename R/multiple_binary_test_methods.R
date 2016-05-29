@@ -25,91 +25,78 @@ print.multiple_binary_test <- function(x, ...) {
 #'
 #' @export
 summary.multiple_binary_test <- function(object, ...) {
+  sym_p <- stats::symnum(c(object$p_value_lrt, object$p_value_chi_sq,
+                           object$p_value_run),
+                         corr = FALSE,
+                         cutpoints = c(0, .001, .01, .05, .1, 1),
+                         symbols = c("***", "**", "*", ".", " "))
   cat("\nCall:\n")
   print(object$call)
   cat("\nTest statistics\n")
-  cat("                 Min          1Q      Median          3Q         Max   test stat  Pr(>test stat)\n")
-  cat("LRT\t", format(stats::quantile(object$test_stats_lrt)[1], trim = FALSE,
-                      justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_lrt)[2], trim = FALSE,
-             justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_lrt)[3], trim = FALSE,
-             justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_lrt)[4], trim = FALSE,
-             justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_lrt)[5], trim = FALSE,
-             justify = "right", width = 10),
-      format(object$test_stats_lrt[1], trim = FALSE, justify = "right",
-             width = 10),
-      format(object$p_value_lrt, trim = FALSE, justify = "right", width = 10),
-      sep = "  ")
-  if (object$p_value_lrt < 0.001) {
-    cat(" ***\n")
-  } else if (object$p_value_lrt < 0.01 & object$p_value_lrt >= 0.001) {
-    cat(" **\n")
-  } else if (object$p_value_lrt < 0.05 & object$p_value_lrt >= 0.01) {
-    cat(" *\n")
-  } else if (object$p_value_lrt < 0.1 & object$p_value_lrt >= 0.05) {
-    cat(" .\n")
-  } else if (object$p_value_lrt < 1 & object$p_value_lrt >= 0.1) {
-    cat(" \n")
-  }
+  cat("               Min       1Q        Med        3Q       Max      stat    Pr(>test stat)\n")
+  cat("LRT\t",
+      format(stats::quantile(object$test_stats_lrt), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[1],
+      format(stats::quantile(object$test_stats_lrt), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[2],
+      format(stats::quantile(object$test_stats_lrt), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[3],
+      format(stats::quantile(object$test_stats_lrt), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[4],
+      format(stats::quantile(object$test_stats_lrt), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[5],
+      format(object$test_stats_lrt, trim = FALSE, justify = "right",
+             width = 8, digits = 4)[1],
+      format(object$p_value_lrt, trim = TRUE, justify = "left", width = 8,
+             digits = 3),
+      sym_p[1],
+      "\n",
+      sep = "  "
+  )
 
-  cat("chi_sq\t", format(stats::quantile(object$test_stats_chi_sq), trim = FALSE,
-                        justify = "right", width = 10)[1],
-      format(stats::quantile(object$test_stats_chi_sq)[2], trim = FALSE,
-             justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_chi_sq)[3], trim = FALSE,
-             justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_chi_sq)[4], trim = FALSE,
-             justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_chi_sq)[5], trim = FALSE,
-             justify = "right", width = 10), format(object$test_stats_chi_sq[1],
-                                                    trim = FALSE,
-                                                    justify = "right",
-                                                    width = 10),
-      format(object$p_value_chi_sq, trim = FALSE, justify = "right", width = 10),
-      sep = "  ")
-  if (object$p_value_chi_sq < 0.001) {
-    cat(" ***\n")
-  } else if (object$p_value_chi_sq < 0.01 & object$p_value_chi_sq >= 0.001) {
-    cat(" **\n")
-  } else if (object$p_value_chi_sq < 0.05 & object$p_value_chi_sq >= 0.01) {
-    cat(" *\n")
-  } else if (object$p_value_chi_sq < 0.1 & object$p_value_chi_sq >= 0.05) {
-    cat(" .\n")
-  } else if (object$p_value_chi_sq < 1 & object$p_value_chi_sq >= 0.1) {
-    cat(" \n")
-  }
+  cat("Chi Sq\t",
+      format(stats::quantile(object$test_stats_chi_sq), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[1],
+      format(stats::quantile(object$test_stats_chi_sq), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[2],
+      format(stats::quantile(object$test_stats_chi_sq), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[3],
+      format(stats::quantile(object$test_stats_chi_sq), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[4],
+      format(stats::quantile(object$test_stats_chi_sq), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[5],
+      format(object$test_stats_chi_sq[1], trim = FALSE, justify = "right",
+             width = 8, digits = 4),
+      format(object$p_value_chi_sq, trim = TRUE, justify = "left", width = 8,
+             digits = 3),
+      sym_p[2],
+      "\n",
+      sep = "  "
+  )
 
-  cat("Run =", object$run, format(stats::quantile(object$test_stats_run)[1],
-                                  trim = FALSE, justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_run)[2], trim = FALSE,
-             justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_run)[3], trim = FALSE,
-             justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_run)[4], trim = FALSE,
-             justify = "right", width = 10),
-      format(stats::quantile(object$test_stats_run)[5], trim = FALSE,
-             justify = "right", width = 10), format(object$test_stats_run[1],
-                                                    trim = FALSE,
-                                                    justify = "right",
-                                                    width = 10),
-      format(object$p_value_run, trim = FALSE, justify = "right", width = 10),
-      sep = "  ")
-  if (object$p_value_run < 0.001) {
-    cat(" ***\n")
-  } else if (object$p_value_run < 0.01 & object$p_value_run >= 0.001) {
-    cat(" **\n")
-  } else if (object$p_value_run < 0.05 & object$p_value_run >= 0.01) {
-    cat(" *\n")
-  } else if (object$p_value_run < 0.1 & object$p_value_run >= 0.05) {
-    cat(" .\n")
-  } else if (object$p_value_run < 1 & object$p_value_run >= 0.1) {
-    cat(" \n")
-  }
+  cat("Run =", object$run,
+      format(stats::quantile(object$test_stats_run), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[1],
+      format(stats::quantile(object$test_stats_run), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[2],
+      format(stats::quantile(object$test_stats_run), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[3],
+      format(stats::quantile(object$test_stats_run), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[4],
+      format(stats::quantile(object$test_stats_run), trim = FALSE,
+             justify = "right", width = 8, digits = 4)[5],
+      format(object$test_stats_run, trim = FALSE, justify = "right", width = 8,
+             digits = 4)[1],
+      format(object$p_value_run, trim = TRUE, justify = "left", width = 8,
+             digits = 3),
+      sym_p[3],
+      "\n",
+      sep = "  "
+  )
 
-  cat("---\nSignif. codes: 0 '***' 0.001 '**' 0.01 '*' .05 '.' .1 ' ' 1\n---\n")
+  cat("---\nSignif. codes: ",
+      attr(sym_p, "legend"),
+      "\n---\n")
 }
 
 #' Produce plots from objects of class "multiple_binary_test".
