@@ -25,7 +25,7 @@ print.multiple_binary_test <- function(x, ...) {
 #'
 #' @export
 summary.multiple_binary_test <- function(object, ...) {
-  cat("\ncall:\n")
+  cat("\nCall:\n")
   print(object$call)
   cat("\nTest statistics\n")
   cat("                 Min          1Q      Median          3Q         Max   test stat  Pr(>test stat)\n")
