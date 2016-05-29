@@ -29,15 +29,15 @@ summary.single_binary_test <- function(object, ...) {
   print(object$call)
   cat("\nVarious test statistics:\n")
   cat("                 Min          1Q      Median          3Q         Max   test stat  Pr(>test stat)\n")
-  cat("LRT\t", format(quantile(object$test_stats_lrt)[1], trim = FALSE,
+  cat("LRT\t", format(stats::quantile(object$test_stats_lrt)[1], trim = FALSE,
                       justify = "right", width = 10),
-      format(quantile(object$test_stats_lrt)[2], trim = FALSE,
+      format(stats::quantile(object$test_stats_lrt)[2], trim = FALSE,
              justify = "right", width = 10),
-      format(quantile(object$test_stats_lrt)[3], trim = FALSE,
+      format(stats::quantile(object$test_stats_lrt)[3], trim = FALSE,
              justify = "right", width = 10),
-      format(quantile(object$test_stats_lrt)[4], trim = FALSE,
+      format(stats::quantile(object$test_stats_lrt)[4], trim = FALSE,
              justify = "right", width = 10),
-      format(quantile(object$test_stats_lrt)[5], trim = FALSE,
+      format(stats::quantile(object$test_stats_lrt)[5], trim = FALSE,
              justify = "right", width = 10),
       format(object$test_stats_lrt[1], trim = FALSE, justify = "right",
              width = 10),
@@ -56,15 +56,15 @@ summary.single_binary_test <- function(object, ...) {
   }
 
   cat("chi_sq\t",
-      format(quantile(object$test_stats_chi_sq)[1], trim = FALSE,
+      format(stats::quantile(object$test_stats_chi_sq)[1], trim = FALSE,
              justify = "right", width = 10, digits = 6),
-      format(quantile(object$test_stats_chi_sq)[2], trim = FALSE,
+      format(stats::quantile(object$test_stats_chi_sq)[2], trim = FALSE,
              justify = "right", width = 10, digits = 6),
-      format(quantile(object$test_stats_chi_sq)[3], trim = FALSE,
+      format(stats::quantile(object$test_stats_chi_sq)[3], trim = FALSE,
              justify = "right", width = 10, digits = 6),
-      format(quantile(object$test_stats_chi_sq)[4], trim = FALSE,
+      format(stats::quantile(object$test_stats_chi_sq)[4], trim = FALSE,
              justify = "right", width = 10, digits = 6),
-      format(quantile(object$test_stats_chi_sq)[5], trim = FALSE,
+      format(stats::quantile(object$test_stats_chi_sq)[5], trim = FALSE,
              justify = "right", width = 10, digits = 6),
       format(object$test_stats_chi_sq[1], trim = FALSE, justify = "right",
              width = 10, digits = 6),
@@ -83,15 +83,15 @@ summary.single_binary_test <- function(object, ...) {
     cat(" \n")
   }
 
-  cat("Run =", object$run, format(quantile(object$test_stats_run)[1],
+  cat("Run =", object$run, format(stats::quantile(object$test_stats_run)[1],
                                   trim = FALSE, justify = "right", width = 10),
-      format(quantile(object$test_stats_run)[2], trim = FALSE,
+      format(stats::quantile(object$test_stats_run)[2], trim = FALSE,
              justify = "right", width = 10),
-      format(quantile(object$test_stats_run)[3], trim = FALSE,
+      format(stats::quantile(object$test_stats_run)[3], trim = FALSE,
              justify = "right", width = 10),
-      format(quantile(object$test_stats_run)[4], trim = FALSE,
+      format(stats::quantile(object$test_stats_run)[4], trim = FALSE,
              justify = "right", width = 10),
-      format(quantile(object$test_stats_run)[5], trim = FALSE,
+      format(stats::quantile(object$test_stats_run)[5], trim = FALSE,
              justify = "right", width = 10),
       format(object$test_stats_run[1], trim = FALSE, justify = "right",
              width = 10),
@@ -130,26 +130,26 @@ summary.single_binary_test <- function(object, ...) {
 #'
 #' @export
 plot.single_binary_test <- function(x, ...) {
-  par(ask = TRUE, mar = c(5, 1, 1, 1))
+  graphics::par(ask = TRUE, mar = c(5, 1, 1, 1))
   y <- x$data
   y <- y[1:x$tiles, ]
   reverse <- nrow(y):1
   y <- y[reverse, ]
-  image(c(1:ncol(y)), c(1:nrow(y)), t(y), axes = FALSE, ylab = " ", xlab = "Real data above the black line, generated data below it", col = c("aquamarine3",
+  graphics::image(c(1:ncol(y)), c(1:nrow(y)), t(y), axes = FALSE, ylab = " ", xlab = "Real data above the black line, generated data below it", col = c("aquamarine3",
                                                                                                                                               "chocolate1"))
-  abline(h = x$tiles - 0.5, col = "black", lwd = 4)
+  graphics::abline(h = x$tiles - 0.5, col = "black", lwd = 4)
 
-  par(ask = TRUE, mar = c(5, 4, 4, 2))
+  graphics::par(ask = TRUE, mar = c(5, 4, 4, 2))
 
-  hist(x$test_stats_lrt, breaks = x$bins, xlab = "LRT Test Statistics\nRed line indicates value of test statistic of real data",
+  graphics::hist(x$test_stats_lrt, breaks = x$bins, xlab = "LRT Test Statistics\nRed line indicates value of test statistic of real data",
        main = NULL)
-  abline(v = x$test_stats_lrt[1], col = "red")
+  graphics::abline(v = x$test_stats_lrt[1], col = "red")
 
-  hist(x$test_stats_chi_sq, breaks = x$bins, xlab = "Pearson's Chi-Square Test Statistics\nRed line indicates value of test statistic of real data",
+  graphics::hist(x$test_stats_chi_sq, breaks = x$bins, xlab = "Pearson's Chi-Square Test Statistics\nRed line indicates value of test statistic of real data",
        main = NULL)
-  abline(v = x$test_stats_chi_sq[1], col = "red")
+  graphics::abline(v = x$test_stats_chi_sq[1], col = "red")
 
-  hist(x$test_stats_run, breaks = x$bins, xlab = paste("Run Test Statistics For a Run of", x$run,
+  graphics::hist(x$test_stats_run, breaks = x$bins, xlab = paste("Run Test Statistics For a Run of", x$run,
                                                        "\nRed line indicates value of test statistic of real data"), main = NULL)
-  abline(v = x$test_stats_run[1], col = "red")
+  graphics::abline(v = x$test_stats_run[1], col = "red")
 }
